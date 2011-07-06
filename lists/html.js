@@ -49,7 +49,9 @@ function(head, req) {
   const SINCE = (req.query.since)?req.query.since:1900;
   while (row = getRow()) {
     var o = row.doc;
-    if (o.issued >= SINCE) {
+    if (
+      o.issued >= SINCE && (!req.query.by || o.creator.indexOf(req.query.by))>=0
+    ) {
       if (o.aeresType!=lastType) {
         if (lastType) {
           send('</ol>');

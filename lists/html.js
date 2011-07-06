@@ -24,7 +24,7 @@ function(head, req) {
   send('<form method="get">');
   send('<label>Publications de</label>');
   send('<select id="creator" name="by">');
-  send('<option></option>');
+  send('<option value="">tous</option>');
   send('</select>');
   send('<label>depuis</label>');
   send('<select id="issued" name="since"></select>');
@@ -92,8 +92,9 @@ function(head, req) {
         send('.');
       }
       send('</i><br/>');
-      send(o.publisher);
-      send(', ');
+      if (o.publisher) {
+        send(o.publisher + ', ');
+      }
       send(o.issued);
       send('.<br/>');
       for each (var i in o.indexed) {

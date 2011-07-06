@@ -12,13 +12,14 @@
     "from": "attribute",
     "to": "_view/attribute",
     "query": {
-      "group": "true"
+      "group": true
     }
   }, {
     "from": "",
     "to": "_list/html/byType",
     "query": {
-      "include_docs": "true"
+      "descending": true,
+      "include_docs": true
     }
   }
 ]

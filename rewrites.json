@@ -1,0 +1,24 @@
+[
+  { 
+    "from": "image/:image",
+    "to": ":image"
+  }, {
+    "from": "script/:file", 
+    "to": "../../../_utils/script/:file"
+  }, {
+    "from": ":object/:attachment",
+    "to": "../../:object/:attachment"
+  }, {
+    "from": "attribute",
+    "to": "_view/attribute",
+    "query": {
+      "group": "true"
+    }
+  }, {
+    "from": "",
+    "to": "_list/html/byType",
+    "query": {
+      "include_docs": "true"
+    }
+  }
+]

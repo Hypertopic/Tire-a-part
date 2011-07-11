@@ -1,6 +1,6 @@
 function (o) {
-  for each (c in o.creator) {
+  for each (c in o['DC.creator']) {
     emit(["creator", c]);
   }
-  emit(["issued", o.issued]);
+  emit(["issued", o['DC.issued']]);
 }

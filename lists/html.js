@@ -1,4 +1,9 @@
 function(head, req) {
+
+  function sendTitle(paper) {
+    send('<a href="' + paper._id + '/abstract">' + paper['DC.title'] + '</a>');
+  }
+
   start({"headers":{"Content-Type" : "text/html;charset=utf-8"}});
   send('<html>');
   send('<head>');
@@ -22,18 +27,18 @@ function(head, req) {
   send('</head>');
   send('<body>');
   send('<form method="get">');
-  send('<label>Publications de</label>');
+  send('<label>Publications de</label>&nbsp;');
   send('<select id="creator" name="by">');
   send('<option value="">tous</option>');
-  send('</select>');
-  send('<label>depuis</label>');
-  send('<select id="issued" name="since"></select>');
+  send('</select>&nbsp;');
+  send('<label>depuis</label>&nbsp;');
+  send('<select id="issued" name="since"></select>&nbsp;');
   send('<button type="submit">Filtrer</button>');
   send('</form>');
   var o, lastType;
   const label = {
     ACL: "Articles dans des revues répertoriées dans les bases de données internationales",
-    ACLN: "Article dans des revues non répertoriées",
+    ACLN: "Articles dans des revues non répertoriées",
     ASCL: "Articles dans des revues sans comité de lecture",
     BRE: "Brevets",
     INV: "Conférences données à l'invitation du comité d'organisation dans un congrés national ou international",
@@ -41,17 +46,17 @@ function(head, req) {
     ACTN: "Communications avec actes dans un congrès",
     COM: "Communications orales sans actes dans un congrès",
     AFF: "Communications par affiche dans un congrès",
-    OS: "Ouvrages scientifiques (ou chapitre de ces ouvrages)",
-    OV: "Ouvrages de vulgarisation (ou chapitre de ces ouvrages)",
+    OS: "Ouvrages scientifiques (ou chapitres de ces ouvrages)",
+    OV: "Ouvrages de vulgarisation (ou chapitres de ces ouvrages)",
     DO: "Directions d'ouvrages ou de revues",
     AP: "Autres productions (logiciels enregistrés, traductions, comptes rendus d'ouvrages, rapports de projets internationaux, guides techniques)"
   };
   const SINCE = (req.query.since)?req.query.since:1900;
   while (row = getRow()) {
     var o = row.doc;
-    if (
-      o.issued >= SINCE && (!req.query.by || o.creator.indexOf(req.query.by))>=0
-    ) {
+    if (o['DC.issued'] >= SINCE && (
+      !req.query.by || o['DC.creator'].indexOf(req.query.by)>=0
+    )) {
       if (o.aeresType!=lastType) {
         if (lastType) {
           send('</ol>');
@@ -63,41 +68,24 @@ function(head, req) {
         lastType = o.aeresType;
       }
       send('<li>');
-      for each (var c in o.creator) {
+      for each (var c in o['DC.creator']) {
         send(c + ", ");
       }
       send('<br/>');
-      if (o.bibliographicCitation) {
-        if (o._attachments) { // paper with attachment
-          send('<a href="');
-          //TODO only once
-          for (a in o._attachments) {
-            send(o._id + "/" + a);
-          }
-          send('">');
-          send(o.title);
-          send('</a>');
-        } else { // paper without attachment
-            send(o.title);
-        }
+      if (o['DC.relation.ispartof']) { // paper
+        sendTitle(o);
         send('.<br/><i>');
-        send((o.url)
-          ? '<a href="' + o.url + '">' + o.bibliographicCitation + '</a>'
-          : o.bibliographicCitation
-        );
+        send(o['DC.relation.ispartof']);
       } else { // book
         send('<i>');
-        send((o.url)
-          ? '<a href="' + o.url + '"/>' + o.title + '</a>'
-          : o.title
-        );
+        sendTitle(o);
         send('.');
       }
       send('</i><br/>');
-      if (o.publisher) {
-        send(o.publisher + ', ');
+      if (o['DC.publisher']) {
+        send(o['DC.publisher'] + ', ');
       }
-      send(o.issued);
+      send(o['DC.issued']);
       send('.<br/>');
       for each (var i in o.indexed) {
         send('<img height="20" src="image/');

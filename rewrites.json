@@ -6,6 +6,9 @@
     "from": "script/:file", 
     "to": "../../../_utils/script/:file"
   }, {
+    "from": ":object/abstract",
+    "to": "_show/abstract/:object"
+  }, {
     "from": ":object/:attachment",
     "to": "../../:object/:attachment"
   }, {

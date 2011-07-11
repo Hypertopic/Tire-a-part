@@ -15,5 +15,5 @@ function(o) {
     "DO":1,
     "AP":0
   };
-  emit([order[o.aeresType], o.issued], null);
+  emit([order[o.aeresType], o['DC.issued']]);
 }

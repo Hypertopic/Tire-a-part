@@ -7,6 +7,7 @@ function(head, req) {
   start({"headers":{"Content-Type" : "text/html;charset=utf-8"}});
   send('<html>');
   send('<head>');
+  send('<link rel="stylesheet" type="text/css" href="included/main.css" />');
   send('<script src="script/jquery.js"></script>');
   send('<script type="text/javascript">');
   send('$(document).ready(function() {');
@@ -26,7 +27,8 @@ function(head, req) {
   send('</script>');
   send('</head>');
   send('<body>');
-  send('<form method="get">');
+  send('<div id="container">');
+  send('<form id="header" class="menu" method="get">');
   send('<label>Publications de</label>&nbsp;');
   send('<select id="creator" name="by">');
   send('<option value="">tous</option>');
@@ -35,6 +37,7 @@ function(head, req) {
   send('<select id="issued" name="since"></select>&nbsp;');
   send('<button type="submit">Filtrer</button>');
   send('</form>');
+  send('<div id="content">');
   var o, lastType;
   const label = {
     ACL: "Articles dans des revues répertoriées dans les bases de données internationales",
@@ -49,7 +52,7 @@ function(head, req) {
     OS: "Ouvrages scientifiques (ou chapitres de ces ouvrages)",
     OV: "Ouvrages de vulgarisation (ou chapitres de ces ouvrages)",
     DO: "Directions d'ouvrages ou de revues",
-    AP: "Autres productions (logiciels enregistrés, traductions, comptes rendus d'ouvrages, rapports de projets internationaux, guides techniques)"
+    AP: "Autres productions"
   };
   const SINCE = (req.query.since)?req.query.since:1900;
   while (row = getRow()) {
@@ -88,13 +91,17 @@ function(head, req) {
       send(o['DC.issued']);
       send('.<br/>');
       for each (var i in o.indexed) {
-        send('<img height="20" src="image/');
+        send('<img height="20" src="included/');
         send(i)
         send('.png" />');
       }
       send('</li>');
     }
   }
+  send('</div>');
+  send('<div id="footer" class="menu">');
+  send('</div>');
+  send('</div>');
   send('</body>');
   send('</html>');
 }

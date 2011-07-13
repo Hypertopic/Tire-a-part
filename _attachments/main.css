@@ -1,0 +1,47 @@
+body {
+  height: 100%;
+  margin: 0; 
+}
+
+#container {
+  min-height: 100%;
+  position: relative;
+}
+
+#footer {
+  bottom: 0;
+  position: absolute;
+  width: 99%;
+}
+
+.menu {
+  background-color: black;
+  color: white;
+  padding: 4px;
+}
+
+.menu a {
+  text-decoration: none;
+  color: white;
+}
+
+#content {
+  padding: 30px;
+}
+
+#footer a {
+  text-decoration:none;
+  color:white;
+}
+
+th {
+  vertical-align: top;
+  text-align: right;
+  color: gray;
+}
+
+td {
+  vertical-align: top;
+  text-align: left;
+}
+

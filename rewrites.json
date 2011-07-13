@@ -1,7 +1,7 @@
 [
   { 
-    "from": "image/:image",
-    "to": ":image"
+    "from": "included/:file",
+    "to": ":file"
   }, {
     "from": "script/:file", 
     "to": "../../../_utils/script/:file"

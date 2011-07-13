@@ -18,9 +18,12 @@ function(o, req) {
   }
 
   function sendLabeledTextInput(label, key, value) {
-      send('\n<label>' + label + '</label>');
+      send('\n<tr>');
+      send('<th>' + label + '</th>');
+      send('<td>');
       sendInput(key, value, 'text');
-      send('<br />');
+      send('</td>');
+      send('</tr>');
   }
 
   function sendOption(value, text, selectedValue) {
@@ -30,13 +33,17 @@ function(o, req) {
   }
 
   function sendLabeledTextArea(label, key, value) {
-    send('\n<label>Résumé :</label>');
+    send('\n<tr>');
+    send('<th>Résumé</th>');
+    send('\n<td>');
     if (!value) {
       value = '';
     }
-    send('\n<textarea cols="80" rows="7" type="text" id="' + key + '">' + value
+    send('\n<textarea cols="80" rows="9" type="text" id="' + key + '">' + value
       + '</textarea>'
     );
+    send('</td>');
+    send('</tr>');
   }
 
   function startsWith(whole, part) {
@@ -45,6 +52,7 @@ function(o, req) {
 
   send('<html>');
   send('<head>');
+  send('<link rel="stylesheet" type="text/css" href="../included/main.css" />');
   for (var key in o) {
     if (startsWith(key, 'DC.')) {
       sendMeta(key, o[key]);
@@ -59,19 +67,24 @@ function(o, req) {
   }
   send('</head>');
   send('<body>');
-  send('<form>');
+  send('<div id="container">');
+  send('<div class="menu"><a href="..">Retour</a></div>');
+  send('<form id="content">');
   sendInput('_id', o._id, 'hidden');
   sendInput('_rev', o._rev, 'hidden');
-  sendLabeledTextInput('Auteurs :', 'DC.creator', o['DC.creator']);
-  sendLabeledTextInput('Titre :', 'DC.title', o['DC.title']);
+  send('<table>');
+  sendLabeledTextInput('Auteurs', 'DC.creator', o['DC.creator']);
+  sendLabeledTextInput('Titre', 'DC.title', o['DC.title']);
   sendLabeledTextInput(
-    'In :', 'DC.relation.ispartof', o['DC.relation.ispartof']
+    'In', 'DC.relation.ispartof', o['DC.relation.ispartof']
   );
-  sendLabeledTextInput('Éditeur :', 'DC.publisher', o['DC.publisher']);
-  sendLabeledTextInput('Année :', 'DC.issued', o['DC.issued']);
-  sendLabeledTextInput("URL chez l'éditeur :", 'url', o.url);
-  sendLabeledTextInput('Indexé par :', 'indexed', o.indexed);
-  send('\n<label>Type (AERES) :</label>');
+  sendLabeledTextInput('Éditeur', 'DC.publisher', o['DC.publisher']);
+  sendLabeledTextInput('Année', 'DC.issued', o['DC.issued']);
+  sendLabeledTextInput("URL chez l'éditeur", 'url', o.url);
+  sendLabeledTextInput('Indexé par', 'indexed', o.indexed);
+  send('\n<tr>');
+  send('<th>Type (AERES)</th>');
+  send('<td>');
   send('\n<select id="aeresType" />');
   sendOption('ACL',"Articles dans des revues répertoriées dans les bases de données internationales", o.aeresType);
   sendOption('ACLN', "Articles dans des revues non répertoriées", o.aeresType);
@@ -85,12 +98,16 @@ function(o, req) {
   sendOption('OS', "Ouvrages scientifiques (ou chapitres de ces ouvrages)", o.aeresType);
   sendOption('OV', "Ouvrages de vulgarisation (ou chapitres de ces ouvrages)", o.aeresType);
   sendOption('DO', "Directions d'ouvrages ou de revues</option>", o.aeresType);
-  sendOption('AP', "Autres productions (logiciels enregistrés, traductions, comptes rendus d'ouvrages, rapports de projets internationaux, guides techniques)", o.aeresType);
+  sendOption('AP', "Autres productions", o.aeresType);
   send('</select>');
-  send('<br />');
-  sendLabeledTextArea('Résumé :', 'abstract', o.abstract);
+  send('</td>');
+  send('</tr>');
+  sendLabeledTextArea('Résumé', 'abstract', o.abstract);
+  send('</table>');
   //TODO PDF upload
   send('</form>');
+  send('<div class="menu"></div>');
+  send('</div>');
   send('</body>');
   send('</html>');
 }

@@ -34,6 +34,13 @@ function(o, req) {
     );
   }
 
+  function sendCheckbox(name, value, selectedValues) {
+    send('<input type="checkbox" name="' + name + '" value="' + value + '"'
+      + ((selectedValues && selectedValues.indexOf(value)!=-1)?'checked':''
+      ) + '>' + value + '</input>&nbsp;'
+    );
+  }
+
   function sendLabeledTextArea(label, key, value) {
     send('\n<tr>');
     send('<th>Résumé</th>');
@@ -84,7 +91,16 @@ function(o, req) {
   sendLabeledTextInput('Éditeur', 'DC.publisher', o['DC.publisher']);
   sendLabeledTextInput('Année', 'DC.issued', o['DC.issued']);
   sendLabeledTextInput("URL chez l'éditeur", 'url', o.url);
-  sendLabeledTextInput('Indexé par', 'indexed', o.indexed);
+  send('\n<tr>');
+  send('<th>Indexé par</th>');
+  send('<td>');
+  sendCheckbox('indexed', 'AERES', o.indexed);
+  sendCheckbox('indexed', 'ISI', o.indexed);
+  sendCheckbox('indexed', 'ACM', o.indexed);
+  sendCheckbox('indexed', 'DBLP', o.indexed);
+  sendCheckbox('indexed', 'INIST', o.indexed);
+  send('</td>');
+  send('</tr>');
   send('\n<tr>');
   send('<th>Type (AERES)</th>');
   send('<td>');

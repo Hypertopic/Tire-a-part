@@ -17,9 +17,11 @@ function(head, req) {
   send('    dataType: "json",');
   send('    success: function(result) {');
   send('      $.each(result.rows, function(i, o) {');
-  send('        $("#" + o.key[0]).append(');
-  send('          "<option>" + o.key[1] + "</option>"');
-  send('        );');
+  send('        if (o.key[0]=="issued" || o.value>1) {');
+  send('          $("#" + o.key[0]).append(');
+  send('            "<option>" + o.key[1] + "</option>"');
+  send('          );');
+  send('        }');
   send('      });');
   send('    }');
   send('  });');

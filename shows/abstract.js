@@ -54,6 +54,7 @@ function(o, req) {
 
   send('<html>');
   send('<head>');
+  send('<title>Publication (notice)</title>');
   send('<link rel="stylesheet" type="text/css" href="../included/main.css" />');
   for (var key in o) {
     if (startsWith(key, 'DC.')) {

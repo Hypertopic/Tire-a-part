@@ -27,6 +27,7 @@ function(head, req) {
   send('  });');
   send('});');
   send('</script>');
+  send('<title>Publications (références)</title>');
   send('</head>');
   send('<body>');
   send('<div id="container">');

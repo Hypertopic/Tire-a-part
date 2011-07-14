@@ -6,8 +6,13 @@
     "from": "script/:file", 
     "to": "../../../_utils/script/:file"
   }, {
+    "method": "GET",
     "from": ":object/abstract",
     "to": "_show/abstract/:object"
+  }, {
+    "method": "POST",
+    "from": ":object/abstract",
+    "to": "../../:object"
   }, {
     "from": ":object/:attachment",
     "to": "../../:object/:attachment"

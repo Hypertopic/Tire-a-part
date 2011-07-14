@@ -12,6 +12,7 @@ body {
   bottom: 0;
   position: absolute;
   width: 99%;
+  margin: 0;
 }
 
 .menu {

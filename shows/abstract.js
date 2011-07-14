@@ -14,7 +14,9 @@ function(o, req) {
     if (!value) {
       value = '';
     }
-    send('\n<input id="'+key+'" type="'+type+'" value="'+value+'" />');
+    send('\n<input id="' + key + '" type="' + type + '" value="' + value 
+      + '" size="80" />'
+    );
   }
 
   function sendLabeledTextInput(label, key, value) {
@@ -39,7 +41,7 @@ function(o, req) {
     if (!value) {
       value = '';
     }
-    send('\n<textarea cols="80" rows="9" type="text" id="' + key + '">' + value
+    send('\n<textarea cols="80" rows="12" type="text" id="' + key + '">' + value
       + '</textarea>'
     );
     send('</td>');
@@ -68,7 +70,7 @@ function(o, req) {
   send('</head>');
   send('<body>');
   send('<div id="container">');
-  send('<div class="menu"><a href="..">Retour</a></div>');
+  send('<div id="header" class="menu"><a href="..">Retour</a></div>');
   send('<form id="content">');
   sendInput('_id', o._id, 'hidden');
   sendInput('_rev', o._rev, 'hidden');
@@ -85,7 +87,7 @@ function(o, req) {
   send('\n<tr>');
   send('<th>Type (AERES)</th>');
   send('<td>');
-  send('\n<select id="aeresType" />');
+  send('\n<select id="aeresType">');
   sendOption('ACL',"Articles dans des revues répertoriées dans les bases de données internationales", o.aeresType);
   sendOption('ACLN', "Articles dans des revues non répertoriées", o.aeresType);
   sendOption('ASCL', "Articles dans des revues sans comité de lecture", o.aeresType);
@@ -97,16 +99,29 @@ function(o, req) {
   sendOption('AFF', "Communications par affiche dans un congrès", o.aeresType);
   sendOption('OS', "Ouvrages scientifiques (ou chapitres de ces ouvrages)", o.aeresType);
   sendOption('OV', "Ouvrages de vulgarisation (ou chapitres de ces ouvrages)", o.aeresType);
-  sendOption('DO', "Directions d'ouvrages ou de revues</option>", o.aeresType);
+  sendOption('DO', "Directions d'ouvrages ou de revues", o.aeresType);
   sendOption('AP', "Autres productions", o.aeresType);
   send('</select>');
   send('</td>');
   send('</tr>');
   sendLabeledTextArea('Résumé', 'abstract', o.abstract);
+  send('<tr>');
+  send('<th>Tirés à part</th>');
+  send('<td><ul>');
+  for (a in o._attachments) {
+    send('<li><a href="' + a + '">' + a + '</a> ('
+      + Math.round(o._attachments[a].length/104857.6)/10 + ' Mo)</li>'
+    );
+  }
+  send('</ul></td>');
+  send('</tr>');
   send('</table>');
-  //TODO PDF upload
   send('</form>');
-  send('<div class="menu"></div>');
+  send('<form id="footer" class="menu" enctype="multipart/form-data" method="post">');
+  send('<input type="hidden" name="_rev" value="'+o._rev+'" />');
+  send('<input id="uploader" type="file" name="_attachments" />');
+  send('<button type="submit">Déposer</button>');
+  send('</form>');
   send('</div>');
   send('</body>');
   send('</html>');

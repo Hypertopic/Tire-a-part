@@ -16,10 +16,14 @@ function(head, req) {
   send('    type: "GET",');
   send('    dataType: "json",');
   send('    success: function(result) {');
+  send('      const BY = "' + req.query.by + '";'); 
+  send('      const SINCE = ' + req.query.since + ';'); 
   send('      $.each(result.rows, function(i, o) {');
   send('        if (o.key[0]=="issued" || o.value>1) {');
   send('          $("#" + o.key[0]).append(');
-  send('            "<option>" + o.key[1] + "</option>"');
+  send('            "<option"');
+  send('            + ((o.key[1]==SINCE || o.key[1]==BY)?" selected":"")');
+  send('            + ">" + o.key[1] + "</option>"');
   send('          );');
   send('        }');
   send('      });');

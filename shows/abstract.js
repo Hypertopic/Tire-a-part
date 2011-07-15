@@ -35,9 +35,9 @@ function(o, req) {
   }
 
   function sendCheckbox(name, value, selectedValues) {
-    send('<input type="checkbox" name="' + name + '" value="' + value + '"'
-      + ((selectedValues && selectedValues.indexOf(value)!=-1)?'checked':''
-      ) + '>' + value + '</input>&nbsp;'
+    send('\n<input type="checkbox" name="' + name + '" value="' + value + '"'
+      + ((selectedValues && selectedValues.indexOf(value)!=-1)?' checked':''
+      ) + ' />' + value + '&nbsp;'
     );
   }
 

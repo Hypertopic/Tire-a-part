@@ -149,7 +149,7 @@ function(o, req) {
   send('<th>Tirés à part</th>');
   send('<td><ul>');
   for (a in o._attachments) {
-    send('<li><a href="' + a + '">' + a + '</a> ('
+    send('<li><a href="' + o._id + '/' + a + '">' + a + '</a> ('
       + Math.round(o._attachments[a].length/104857.6)/10 + ' Mo)</li>'
     );
   }

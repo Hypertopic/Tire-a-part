@@ -6,28 +6,31 @@
     "from": "script/:file", 
     "to": "../../../_utils/script/:file"
   }, {
-    "method": "GET",
-    "from": ":object/abstract",
-    "to": "_show/abstract/:object"
-  }, {
-    "method": "POST",
-    "from": ":object/abstract",
-    "to": "../../:object"
-  }, {
-    "from": ":object/:attachment",
-    "to": "../../:object/:attachment"
-  }, {
     "from": "attribute",
     "to": "_view/attribute",
     "query": {
       "group": true
     }
   }, {
+    "method": "GET",
+    "from": ":object",
+    "to": "_show/abstract/:object"
+  }, {
+    "from": ":object",
+    "to": "../../:object"
+  }, {
+    "from": ":object/:attachment",
+    "to": "../../:object/:attachment"
+  }, {
+    "method": "GET",
     "from": "",
     "to": "_list/html/byType",
     "query": {
       "descending": true,
       "include_docs": true
     }
+  }, {
+    "from": "",
+    "to": "../../"
   }
 ]

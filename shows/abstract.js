@@ -62,7 +62,7 @@ function(o, req) {
   send('<html>');
   send('<head>');
   send('<title>Publication (notice)</title>');
-  send('<link rel="stylesheet" type="text/css" href="../included/main.css" />');
+  send('<link rel="stylesheet" type="text/css" href="included/main.css" />');
   for (var key in o) {
     if (startsWith(key, 'DC.')) {
       sendMeta(key, o[key]);
@@ -75,21 +75,44 @@ function(o, req) {
   for (var a in o._attachments) {
     sendMeta("DC.identifier", folder + a);
   }
+  send('<script src="script/jquery.js"></script>');
+  send('<script type="text/javascript">');
+  send('function save() {');
+  send('  var data = {');
+  send('    "_rev": "' + o._rev + '",');
+  send('    "DC.creator": $("#creator").val().split(","),');
+  send('    "DC.title": $("#title").val(),');
+  send('    "DC.relation.ispartof": $("#ispartof").val(),');
+  send('    "DC.publisher": $("#publisher").val(),');
+  send('    "DC.issued": parseInt($("#issued").val()),');
+  send('    "url": $("#url").val(),');
+  send('    "indexed": $("input[name=\'indexed\']:checked").map(function(){');
+  send('      return $(this).val();');
+  send('    }).get(),');
+  send('    "aeresType": $("#aeresType").val(),');
+  send('    "abstract": $("#abstract").val()');
+  send('  };');
+  send('  $.ajax({');
+  send('    url: "",');
+  send('    type: "PUT",');
+  send('    dataType: "json",');
+  send('    contentType: "application/json",');
+  send('    data: JSON.stringify(data),');
+  send('    success: location.reload()');
+  send('  });');
+  send('}');
+  send('</script>');
   send('</head>');
   send('<body>');
   send('<div id="container">');
-  send('<div id="header" class="menu"><a href="..">Retour</a></div>');
+  send('<div id="header" class="menu"><a href=".">Retour</a></div>');
   send('<form id="content">');
-  sendInput('_id', o._id, 'hidden');
-  sendInput('_rev', o._rev, 'hidden');
   send('<table>');
-  sendLabeledTextInput('Auteurs', 'DC.creator', o['DC.creator']);
-  sendLabeledTextInput('Titre', 'DC.title', o['DC.title']);
-  sendLabeledTextInput(
-    'In', 'DC.relation.ispartof', o['DC.relation.ispartof']
-  );
-  sendLabeledTextInput('Éditeur', 'DC.publisher', o['DC.publisher']);
-  sendLabeledTextInput('Année', 'DC.issued', o['DC.issued']);
+  sendLabeledTextInput('Auteurs', 'creator', o['DC.creator']);
+  sendLabeledTextInput('Titre', 'title', o['DC.title']);
+  sendLabeledTextInput('In', 'ispartof', o['DC.relation.ispartof']);
+  sendLabeledTextInput('Éditeur', 'publisher', o['DC.publisher']);
+  sendLabeledTextInput('Année', 'issued', o['DC.issued']);
   sendLabeledTextInput("URL chez l'éditeur", 'url', o.url);
   send('\n<tr>');
   send('<th>Indexé par</th>');
@@ -138,6 +161,7 @@ function(o, req) {
   send('<input type="hidden" name="_rev" value="'+o._rev+'" />');
   send('<input id="uploader" type="file" name="_attachments" />');
   send('<button type="submit">Déposer</button>');
+  send('<button type="button" onclick="save()">Enregistrer</button>');
   send('</form>');
   send('</div>');
   send('</body>');

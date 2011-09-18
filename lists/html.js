@@ -1,7 +1,7 @@
 function(head, req) {
 
   function sendTitle(paper) {
-    send('<a href="' + paper._id + '/abstract">' + paper['DC.title'] + '</a>');
+    send('<a href="' + paper._id + '">' + paper['DC.title'] + '</a>');
   }
 
   start({"headers":{"Content-Type" : "text/html;charset=utf-8"}});
@@ -30,6 +30,16 @@ function(head, req) {
   send('    }');
   send('  });');
   send('});');
+  send('function create() {');
+  send('  $.ajax({');
+  send('    url: "",');
+  send('    type: "POST",');
+  send('    dataType: "json",');
+  send('    contentType: "application/json",');
+  send('    data: "{}",');
+  send('    success: function(data) {location.replace(data.id)}');
+  send('  });');
+  send('}');
   send('</script>');
   send('<title>Publications (références)</title>');
   send('</head>');
@@ -106,8 +116,9 @@ function(head, req) {
     }
   }
   send('</div>');
-  send('<div id="footer" class="menu">');
-  send('</div>');
+  send('<form id="footer" class="menu">');
+  send('<button type="button" onclick="create()">+</button>');
+  send('</form>');
   send('</div>');
   send('</body>');
   send('</html>');

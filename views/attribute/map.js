@@ -2,5 +2,7 @@ function (o) {
   for each (c in o['DC.creator']) {
     emit(["creator", c]);
   }
-  emit(["issued", o['DC.issued']]);
+  if (o['DC.issued']) {
+    emit(["issued", o['DC.issued']]);
+  }
 }

@@ -45,7 +45,7 @@ function(head, req) {
   send('</head>');
   send('<body>');
   send('<div id="container">');
-  send('<form id="header" class="menu" method="get">');
+  send('<form class="menu" method="get">');
   send('<label>Publications de</label>&nbsp;');
   send('<select id="creator" name="by">');
   send('<option value="">tous</option>');
@@ -53,6 +53,7 @@ function(head, req) {
   send('<label>depuis</label>&nbsp;');
   send('<select id="issued" name="since"></select>&nbsp;');
   send('<button type="submit">Filtrer</button>');
+  send('<a id="help" href="https://github.com/benel/Tire-a-part/issues">?&nbsp;</a>');
   send('</form>');
   send('<div id="content">');
   var o, lastType;

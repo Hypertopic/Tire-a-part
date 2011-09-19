@@ -30,9 +30,8 @@ body {
   padding: 30px;
 }
 
-#footer a {
-  text-decoration:none;
-  color:white;
+#help {
+  float: right;
 }
 
 th {

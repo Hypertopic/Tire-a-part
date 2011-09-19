@@ -105,7 +105,10 @@ function(o, req) {
   send('</head>');
   send('<body>');
   send('<div id="container">');
-  send('<div id="header" class="menu"><a href=".">Retour</a></div>');
+  send('<div class="menu">');
+  send('<a href=".">Retour</a>');
+  send('<a id="help" href="https://github.com/benel/Tire-a-part/issues">?&nbsp;</a>');
+  send('</div>');
   send('<form id="content">');
   send('<table>');
   sendLabeledTextInput('Auteurs', 'creator', o['DC.creator']);

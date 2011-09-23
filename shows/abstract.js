@@ -87,7 +87,7 @@ function(o, req) {
   send('<script type="text/javascript">');
   send('function save() {');
   send('  var data = {');
-  send('    "_rev": "' + o._rev + '",');
+  send('    "_rev": $("#rev").val(),');
   send('    "DC.creator": $("#creator").val().split(", "),');
   send('    "DC.title": $("#title").val(),');
   send('    "DC.relation.ispartof": $("#ispartof").val(),');
@@ -106,7 +106,9 @@ function(o, req) {
   send('    dataType: "json",');
   send('    contentType: "application/json",');
   send('    data: JSON.stringify(data),');
-  send('    success: location.reload()');
+  send('    success: function(result) {');
+  send('      $("#rev").val(result.rev);');
+  send('    }');
   send('  });');
   send('}');
   send('</script>');
@@ -119,6 +121,7 @@ function(o, req) {
   send('</div>');
   send('<form id="content">');
   send('<table>');
+  sendInput('rev', o._rev, "hidden");
   sendLabeledTextInput('Auteurs', 'creator', toString(o['DC.creator']));
   sendLabeledTextInput('Titre', 'title', o['DC.title']);
   sendLabeledTextInput('In', 'ispartof', o['DC.relation.ispartof']);

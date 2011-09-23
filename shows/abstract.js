@@ -59,6 +59,14 @@ function(o, req) {
     return whole.substring(0, part.length) === part;
   }
 
+  function toString(array) {
+    var s = "";
+    for each (var c in array) {
+      s += c + ", ";
+    }
+    return s.substring(0, s.length-2);
+  } 
+
   send('<html>');
   send('<head>');
   send('<title>Publication (notice)</title>');
@@ -80,7 +88,7 @@ function(o, req) {
   send('function save() {');
   send('  var data = {');
   send('    "_rev": "' + o._rev + '",');
-  send('    "DC.creator": $("#creator").val().split(","),');
+  send('    "DC.creator": $("#creator").val().split(", "),');
   send('    "DC.title": $("#title").val(),');
   send('    "DC.relation.ispartof": $("#ispartof").val(),');
   send('    "DC.publisher": $("#publisher").val(),');
@@ -111,7 +119,7 @@ function(o, req) {
   send('</div>');
   send('<form id="content">');
   send('<table>');
-  sendLabeledTextInput('Auteurs', 'creator', o['DC.creator']);
+  sendLabeledTextInput('Auteurs', 'creator', toString(o['DC.creator']));
   sendLabeledTextInput('Titre', 'title', o['DC.title']);
   sendLabeledTextInput('In', 'ispartof', o['DC.relation.ispartof']);
   sendLabeledTextInput('Éditeur', 'publisher', o['DC.publisher']);

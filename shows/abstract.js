@@ -87,6 +87,7 @@ function(o, req) {
   send('<script type="text/javascript">');
   send('function save() {');
   send('  var data = {');
+  send('    "_attachments": ' + JSON.stringify(o._attachments) + ',');
   send('    "_rev": $("#rev").val(),');
   send('    "DC.creator": $("#creator").val().split(", "),');
   send('    "DC.title": $("#title").val(),');

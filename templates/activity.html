@@ -10,7 +10,7 @@
       type: "GET",
       dataType: "json",
       success: function(result) {
-        const BY = "{{query.by}}"; 
+        const BY = "{{{query.by}}}"; 
         const SINCE = "{{query.since}}"; 
         $.each(result.rows, function(i, o) {
           if (o.key[0]=="issued" || o.value>1) {

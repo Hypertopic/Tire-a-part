@@ -24,9 +24,10 @@
   }, {
     "method": "GET",
     "from": "",
-    "to": "_list/html/byType",
+    "to": "_list/activity/year",
     "query": {
       "descending": true,
+      "endkey": [":since"],
       "include_docs": true
     }
   }, {

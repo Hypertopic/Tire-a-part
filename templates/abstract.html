@@ -1,0 +1,156 @@
+<html>
+<head>
+  <title>Publication (notice)</title>
+  <link rel="stylesheet" type="text/css" href="included/main.css" />
+  <meta charset="utf-8" />
+  {{#creators}}
+  <meta name="DC.creator" content="{{.}}" />
+  {{/creators}}
+  <meta name="DC.title" content="{{title}}" />
+  <meta name="DC.relation.ispartof" content="{{ispartof}}" />
+  <meta name="DC.publisher" content="{{publisher}}" />
+  <meta name="DC.issued" content="{{issued}}" />
+  {{#identifiers}}
+  <meta name="DC.identifier" content="{{.}}" />
+  {{/identifiers}}
+  <script src="script/jquery.js"></script>
+  <script type="text/javascript">
+
+  $(document).ready(function() {
+    $("#aeresType").val("{{aeresType}}");
+    $("[name=indexed]").val({{{indexed}}});
+  });
+
+  function save() {
+    var data = {
+      "_attachments": {{{raw_attachments}}},
+      "_rev": $("#rev").val(),
+      "DC.creator": $("#creator").val().split(", "),
+      "DC.title": $("#title").val(),
+      "DC.relation.ispartof": $("#ispartof").val(),
+      "DC.publisher": $("#publisher").val(),
+      "DC.issued": parseInt($("#issued").val()),
+      "url": $("#url").val(),
+      "indexed": $("input[name='indexed']:checked").map(function(){
+        return $(this).val();
+      }).get(),
+      "aeresType": $("#aeresType").val(),
+      "abstract": $("#abstract").val()
+    };
+    $.ajax({
+      url: "",
+      type: "PUT",
+      dataType: "json",
+      contentType: "application/json",
+      data: JSON.stringify(data),
+      success: function(result) {
+        $("#rev").val(result.rev);
+      }
+    });
+  }
+
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="menu">
+      <a href=".">Retour</a>
+      <a id="help" href="https://github.com/benel/Tire-a-part/issues">?&nbsp;</a>
+    </div>
+    <form id="content">
+      <table>
+        <input id="rev" type="hidden" value="{{_rev}}" size="80" />
+        <tr><th>Auteurs</th>
+          <td><input id="creator" type="text" value="{{formatted_creators}}" size="80" /></td>
+        </tr>
+        <tr><th>Titre</th>
+          <td><input id="title" type="text" value="{{title}}" size="80" /></td>
+        </tr>
+        <tr><th>In</th>
+          <td><input id="ispartof" type="text" value="{{ispartof}}" size="80" /></td>
+        </tr>
+        <tr><th>Éditeur</th>
+          <td><input id="publisher" type="text" value="{{publisher}}" size="80" /></td>
+        </tr>
+        <tr><th>Année</th>
+          <td><input id="issued" type="text" value="{{issued}}" size="80" /></td>
+        </tr>
+        <tr><th>URL chez l'éditeur</th>
+          <td><input id="issued" type="text" value="{{url}}" size="80" /></td>
+        </tr>
+        <tr><th>Indexé par</th><td>
+          <input type="checkbox" name="indexed" value="AERES" />AERES&nbsp;
+          <input type="checkbox" name="indexed" value="ISI" />ISI&nbsp;
+          <input type="checkbox" name="indexed" value="ACM" />ACM&nbsp;
+          <input type="checkbox" name="indexed" value="DBLP" />DBLP&nbsp;
+          <input type="checkbox" name="indexed" value="INIST" />INIST&nbsp;
+        </td></tr>
+        <tr><th>Type (AERES)</th>
+          <td><select id="aeresType">
+            <option value="ACL">
+              Articles dans des revues répertoriées dans les bases de données internationales
+            </option>
+            <option value="ACLN">
+              Articles dans des revues non répertoriées dans les bases de données internationales
+            </option>
+            <option value="ASCL">
+              Articles dans des revues sans comité de lecture
+            </option>
+            <option value="BRE">
+              Brevets
+            </option>
+            <option value="INV">
+        Conférences données à l'invitation du comité d'organisation dans un congrés national ou international
+            </option>
+            <option value="ACTI">
+              Communications avec actes dans un congrès international
+            </option>
+            <option value="ACTN">
+              Communications avec actes dans un congrès
+            </option>
+            <option value="COM">
+              Communications orales sans actes dans un congrès
+            </option>
+            <option value="AFF">
+              Communications par affiche dans un congrès
+            </option>
+            <option value="OS">
+              Ouvrages scientifiques (ou chapitres de ces ouvrages)
+            </option>
+            <option value="OV">
+              Ouvrages de vulgarisation (ou chapitres de ces ouvrages)
+            </option>
+            <option value="DO">
+              Directions d'ouvrages ou de revues
+            </option>
+            <option value="AP">
+              Autres productions
+            </option>
+          </select></td>
+        </tr>
+        <tr><th>Résumé</th>
+          <td>
+            <textarea cols="80" rows="12" type="text" id="abstract">{{abstract}}</textarea>
+          </td>
+        </tr>
+        <tr><th>Tirés à part</th>
+          <td><ul>
+           {{#formatted_attachments}}
+           <li>
+             <a href="{{url}}">{{name}}</a>
+             ({{size}} Mo)
+           </li>
+           {{/formatted_attachments}}
+         </ul></td>
+        </tr>
+      </table>
+    </form>
+    <form id="footer" class="menu" enctype="multipart/form-data" method="post">
+      <input type="hidden" name="_rev" value="{{_rev}}" />
+      <input id="uploader" type="file" name="_attachments" />
+      <button type="submit">Déposer</button>
+      <button type="button" onclick="save()">Enregistrer</button>
+    </form>
+  </div>
+</body>
+</html>

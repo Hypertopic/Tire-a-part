@@ -1,0 +1,80 @@
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="included/main.css" />
+  <script src="script/jquery.js"></script>
+  <script type="text/javascript">
+
+  $(document).ready(function() {
+    $.ajax({
+      url: "attribute",
+      type: "GET",
+      dataType: "json",
+      success: function(result) {
+        const BY = "{{query.by}}"; 
+        const SINCE = "{{query.since}}"; 
+        $.each(result.rows, function(i, o) {
+          if (o.key[0]=="issued" || o.value>1) {
+            $("#" + o.key[0]).append(
+              "<option"
+              + ((o.key[1]==SINCE || o.key[1]==BY)?" selected":"")
+              + ">" + o.key[1] + "</option>"
+            );
+          }
+        });
+      }
+    });
+  });
+
+  function create() {
+    $.ajax({
+      url: "",
+      type: "POST",
+      dataType: "json",
+      contentType: "application/json",
+      data: "{}",
+      success: function(data) {location.replace(data.id)}
+    });
+  }
+
+  </script>
+  <title>Publications (références)</title>
+</head>
+<body>
+  <div id="container">
+    <form class="menu" method="get">
+      <label>Publications de</label>&nbsp;
+      <select id="creator" name="by">
+        <option value="">tous</option>
+      </select>&nbsp;
+      <label>depuis</label>&nbsp;
+      <select id="issued" name="since"></select>&nbsp;
+      <button type="submit">Filtrer</button>
+      <a id="help" href="https://github.com/benel/Tire-a-part/issues">?&nbsp;</a>
+    </form>
+    <div id="content">
+      {{#types}}
+        <h1>{{label}}</h1>
+        <ol>
+          {{#papers}}
+            <li>
+              <div>{{#creators}}{{.}}, {{/creators}}</div>
+                {{^ispartof}}
+                  <div><a href="{{_id}}"><i>{{title}}.</i></a></div>
+                {{/ispartof}}
+                {{#ispartof}}
+                  <div><a href="{{_id}}">{{title}}.</a></div>
+                  <div><i>{{ispartof}}</i></div>
+                {{/ispartof}}
+              <div>{{#publisher}}{{publisher}}, {{/publisher}}{{issued}}.</div>
+              <div>{{#indexed}}<img height="20" src="included/{{.}}.png" />{{/indexed}}</div>
+            </li>
+          {{/papers}}
+        </ol>
+      {{/types}}
+    </div>
+    <form id="footer" class="menu">
+      <button type="button" onclick="create()">+</button>
+    </form>
+  </div>
+</body>
+</html>

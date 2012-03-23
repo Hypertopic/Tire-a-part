@@ -20,7 +20,7 @@ Installation procedure
 
 * In any folder:
 
-    git clone git://github.com/benel/Tire-a-part.git
-    couchapp push http://127.0.0.1:5984/tire-a-part
+        git clone git://github.com/benel/Tire-a-part.git
+        couchapp push http://127.0.0.1:5984/tire-a-part
 
 * Set up your reverse proxy so that other methods than GET requires an authentication (e.g. LDAP).

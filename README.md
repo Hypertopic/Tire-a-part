@@ -16,11 +16,15 @@ Installation requirements
 Installation procedure
 ----------------------
 
-* Create a database named ``tire-a-part``at <http://127.0.0.1:5984/_utils>.
+* Create a database named ``tire-a-part`` at <http://127.0.0.1:5984/_utils>.
 
 * In any folder:
 
         git clone git://github.com/benel/Tire-a-part.git
         couchapp push http://127.0.0.1:5984/tire-a-part
 
-* Set up your reverse proxy so that other methods than GET requires an authentication (e.g. LDAP).
+* The application should be now accessible at <http://127.0.0.1:5984/tire-a-part/_design/tire-a-part/_rewrite/>.
+
+* Set up your reverse proxy so that:
+ * the visible URL is more simple,
+ * other methods than GET requires an authentication (e.g. LDAP).

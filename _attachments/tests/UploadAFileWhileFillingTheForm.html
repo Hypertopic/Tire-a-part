@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://tire-a-part.test.hypertopic.org/" />
+<title>Nouvelle entrée avec upload v2</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Nouvelle entrée avec upload v2</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=button[type=&quot;button&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=creator</td>
+	<td>Richard Strauss</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=title</td>
+	<td>Also Sprach Zarathustra</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=ispartof</td>
+	<td>Music</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=publisher</td>
+	<td>Minn</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=issued</td>
+	<td>2000</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>xpath=(//input[@id='issued'])[2]</td>
+	<td>http://minn.com/strauss</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>xpath=(//input[@name='indexed'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=aeresType</td>
+	<td>label=Autres productions</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=abstract</td>
+	<td>Un superbe morceau.</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=uploader</td>
+	<td>C:\Organ.pdf</td>
+</tr>
+<!--PROTIP : On Windows, the file needs to be located in C:\Organ.pdf ; otherwise change the value of the previous line with the absolute path to the file.-->
+<tr>
+	<td>clickAndWait</td>
+	<td>css=button[type=&quot;submit&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=creator</td>
+	<td>Richard Strauss</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=title</td>
+	<td>Also Sprach Zarathustra</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=ispartof</td>
+	<td>Music</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=publisher</td>
+	<td>Minn</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=issued</td>
+	<td>2000</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>xpath=(//input[@id='issued'])[2]</td>
+	<td>exact:http://minn.com/strauss</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>xpath=(//input[@name='indexed'])[1]</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>xpath=(//input[@name='indexed'])[2]</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>xpath=(//input[@name='indexed'])[3]</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>xpath=(//input[@name='indexed'])[4]</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>xpath=(//input[@name='indexed'])[5]</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=aeresType</td>
+	<td>AP</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=abstract</td>
+	<td>Un superbe morceau.</td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Organ.pdf</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

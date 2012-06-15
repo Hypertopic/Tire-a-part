@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://tire-a-part.test.hypertopic.org/" />
+<title>test declarer comme publié</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">TEST: Déclarer un article comme publié</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=button[type=&quot;button&quot;][id=&quot;nouveau&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTitle</td>
+	<td>Publication (notice)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=creator</td>
+	<td>Aurélien Bénel</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=title</td>
+	<td>New publication</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=ispartof</td>
+	<td>Document Numérique, RSTI 13(2), 41-56</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=abstract</td>
+	<td>C'est un résumé de New Publication</td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>xpath=(//input[@name='published'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=button[type=&quot;button&quot;][id=&quot;enregistrer&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Retour</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyLocation</td>
+	<td>http://tire-a-part.test.hypertopic.org</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=button[type=&quot;button&quot;][id=&quot;monEspace&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyLocation</td>
+	<td>http://tire-a-part.test.hypertopic.org/myspace</td>
+	<td></td>
+</tr>
+<tr>
+	<td>selectAndWait</td>
+	<td>id=type</td>
+	<td>label=Non Publiés</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=a:contains('New publication')</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTitle</td>
+	<td>Publication (notice)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=publisher</td>
+	<td>NSP</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=issued</td>
+	<td>2012</td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>xpath=(//input[@name='indexed'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>xpath=(//input[@name='published'])[1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=button[type=&quot;button&quot;][id=&quot;enregistrer&quot;]</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

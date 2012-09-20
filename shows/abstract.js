@@ -49,7 +49,7 @@ function(o, req) {
     formatted_creators: formatCreators(o["DC.creator"]),
     identifiers: getIdentifiers(req.headers.Host, req.path, o._attachments),
     formatted_attachments: formatAttachments(o._attachments, o._id),
-    raw_attachments: JSON.stringify(o._attachments)
+    raw_attachments: (o._attachments)?JSON.stringify(o._attachments):"{}"
   }
   return Mustache.to_html(templates.abstract, data);  
 }

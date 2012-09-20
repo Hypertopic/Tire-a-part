@@ -9,7 +9,7 @@
     "from": "attribute",
     "to": "_view/attribute",
     "query": {
-      "group": true
+      "group": "true"
     }
   }, {
     "method": "GET",
@@ -26,9 +26,9 @@
     "from": "",
     "to": "_list/activity/year",
     "query": {
-      "descending": true,
+      "descending": "true",
       "endkey": [":since"],
-      "include_docs": true
+      "include_docs": "true"
     }
   }, {
     "from": "",

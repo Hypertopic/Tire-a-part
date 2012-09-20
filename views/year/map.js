@@ -1,3 +1,5 @@
 function(o) {
-  emit([JSON.stringify(o['DC.issued'])]);
+  if (o['DC.issued']) {
+    emit([JSON.stringify(o['DC.issued'])]);
+  }
 }

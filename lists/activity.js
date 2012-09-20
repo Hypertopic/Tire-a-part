@@ -1,7 +1,17 @@
 function(head, req) {
-  // !json templates.activity
+  // !json templates.activity_html
+  // !json templates.activity_plain
   // !code lib/mustache.js
-  start({"headers":{"Content-Type":"text/html;charset=utf-8"}});
+  var contentType;
+  var headers = {};
+  if (req.query.csv=="") {
+    contentType = "plain";
+    headers["Content-Disposition"] = "attachment;filename=activity.csv";
+  } else {
+    contentType = "html";
+  }
+  headers["Content-Type"] = "text/" + contentType + ";charset=utf-8";
+  start({headers: headers});
   const order = {
     ACL: 0, ACLN: 1, ASCL: 2, BRE: 3, INV: 4, ACTI: 5, ACTN: 6,
     COM: 7, AFF: 8, OS: 9, OV: 10, DO:11 , AP: 12
@@ -34,12 +44,13 @@ function(head, req) {
         ispartof: o["DC.relation.ispartof"],
         publisher: o["DC.publisher"],
         issued: o["DC.issued"],
-        indexed: o.indexed
+        indexed: o.indexed,
+        aeresType: o.aeresType
       });
     }
   }
   data.types = data.types.filter(function(t) {
     return t.papers.length>0;
   });
-  return Mustache.to_html(templates.activity, data);    
+  return Mustache.to_html(templates["activity_" + contentType], data);
 }

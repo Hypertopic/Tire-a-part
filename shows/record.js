@@ -1,14 +1,7 @@
 function(o, req) {
-  // !json templates.abstract
+  // !json templates.record_html
+  // !json templates.record_bibtex
   // !code lib/mustache.js
-
-  function formatCreators(creators) {
-    var s = "";
-    for each (var c in creators) {
-      s += c + ", ";
-    }
-    return s.substring(0, s.length-2);
-  } 
 
   function formatAttachments(attachments, paperID) {
     var result = [];
@@ -35,7 +28,29 @@ function(o, req) {
     return result;
   }
 
-  var data = {
+  function texEncode(raw) {
+    return raw.replace(/"/g, '\\"');
+  }
+
+  if (req.query.bibtex=="") {
+    return {
+      headers: {
+        "Content-Type": "application/x-bibtex",
+        "Content-Disposition": "attachment;filename=record.bib"
+      }, 
+      body: Mustache.to_html(templates.record_bibtex, {
+        type: (o.ispartof)?"inproceedings":(o.publisher)?"book":"misc",
+        id: o._id,
+        abstract: texEncode(o.abstract),
+        publisher: o["DC.publisher"],
+        booktitle: texEncode(o["DC.relation.ispartof"]),
+        author: o["DC.creator"].join(" and "),
+        title: texEncode(o["DC.title"]),
+        year: o["DC.issued"]
+      })
+    };
+  }
+  return Mustache.to_html(templates.record_html, {
     _rev: o._rev,
     url: o.url,
     abstract: o.abstract,
@@ -46,10 +61,9 @@ function(o, req) {
     ispartof: o["DC.relation.ispartof"],
     publisher: o["DC.publisher"],
     issued: o["DC.issued"],
-    formatted_creators: formatCreators(o["DC.creator"]),
+    formatted_creators: o["DC.creator"].join(", "),
     identifiers: getIdentifiers(req.headers.Host, req.path, o._attachments),
     formatted_attachments: formatAttachments(o._attachments, o._id),
     raw_attachments: (o._attachments)?JSON.stringify(o._attachments):"{}"
-  }
-  return Mustache.to_html(templates.abstract, data);  
+  });
 }

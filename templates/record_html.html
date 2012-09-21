@@ -49,6 +49,10 @@
     });
   }
 
+  function toBibtex() {
+    self.location = "?bibtex";
+  }
+
   </script>
 </head>
 <body>
@@ -151,6 +155,7 @@
       <input id="uploader" type="file" name="_attachments" />
       <button type="submit">Déposer</button>
       <button type="button" onclick="save()">Enregistrer</button>
+      <button type="button" onclick="toBibtex()">Exporter</button>      
     </form>
   </div>
 </body>

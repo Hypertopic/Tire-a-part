@@ -14,7 +14,7 @@
   }, {
     "method": "GET",
     "from": ":object",
-    "to": "_show/abstract/:object"
+    "to": "_show/record/:object"
   }, {
     "from": ":object",
     "to": "../../:object"

@@ -1,7 +1,7 @@
 [
   { 
-    "from": "included/:file",
-    "to": ":file"
+    "from": "included/*",
+    "to": "*"
   }, {
     "from": "script/:file", 
     "to": "../../../_utils/script/:file"

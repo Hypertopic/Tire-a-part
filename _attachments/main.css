@@ -34,6 +34,10 @@ body {
   float: right;
 }
 
+.ui-widget {
+  font-size: 80%;
+}
+
 th {
   vertical-align: top;
   text-align: right;

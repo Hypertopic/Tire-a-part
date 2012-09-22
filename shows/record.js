@@ -28,6 +28,9 @@ function(o, req) {
     return result;
   }
 
+  if (!o["DC.creator"]) {
+    o["DC.creator"] = [];
+  }
   if (req.query.bibtex=="") {
     return {
       headers: {

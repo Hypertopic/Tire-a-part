@@ -28,10 +28,6 @@ function(o, req) {
     return result;
   }
 
-  function texEncode(raw) {
-    return raw.replace(/"/g, '\\"');
-  }
-
   if (req.query.bibtex=="") {
     return {
       headers: {
@@ -41,11 +37,11 @@ function(o, req) {
       body: Mustache.to_html(templates.record_bibtex, {
         type: (o.ispartof)?"inproceedings":(o.publisher)?"book":"misc",
         id: o._id,
-        abstract: texEncode(o.abstract),
+        abstract: o.abstract,
         publisher: o["DC.publisher"],
-        booktitle: texEncode(o["DC.relation.ispartof"]),
+        booktitle: o["DC.relation.ispartof"],
         author: o["DC.creator"].join(" and "),
-        title: texEncode(o["DC.title"]),
+        title: o["DC.title"],
         year: o["DC.issued"]
       })
     };

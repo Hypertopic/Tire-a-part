@@ -16,6 +16,7 @@
   {{/identifiers}}
   <script src="included/lib/jquery-1.8.0.min.js"></script>
   <script src="included/lib/jquery-ui-1.8.23.custom.min.js"></script>
+  <script src="included/lib/jquery-form-3.19.js"></script>
   <script type="text/javascript">
 
   $(document).ready(function() {
@@ -70,6 +71,14 @@
         Annuler: function() {
           $(this).dialog("close");
         }
+      }
+    });
+  }
+
+  function upload() {
+    $("#footer").ajaxSubmit({
+      success: function() {
+        location.reload();
       }
     });
   }
@@ -178,7 +187,7 @@
     <form id="footer" class="menu" enctype="multipart/form-data" method="post">
       <input id="upload_rev" type="hidden" name="_rev" value="{{_rev}}" />
       <input id="uploader" type="file" name="_attachments" />
-      <button type="submit">Déposer</button>
+      <button type="button" onclick="upload()">Déposer</button>
       <button type="button" onclick="save()">Enregistrer</button>
       <button type="button" onclick="toBibtex()">Exporter</button>
       <button type="button" onclick="erase()">Supprimer...</button>

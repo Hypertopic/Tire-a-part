@@ -47,6 +47,7 @@
       data: JSON.stringify(data),
       success: function(result) {
         $("#rev").val(result.rev);
+        $("#upload_rev").val(result.rev);
       }
     });
   }
@@ -175,7 +176,7 @@
       </table>
     </form>
     <form id="footer" class="menu" enctype="multipart/form-data" method="post">
-      <input type="hidden" name="_rev" value="{{_rev}}" />
+      <input id="upload_rev" type="hidden" name="_rev" value="{{_rev}}" />
       <input id="uploader" type="file" name="_attachments" />
       <button type="submit">Déposer</button>
       <button type="button" onclick="save()">Enregistrer</button>

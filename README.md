@@ -28,3 +28,22 @@ Installation procedure
 * Set up your reverse proxy so that:
  * the visible URL is more simple,
  * other methods than GET requires an authentication (e.g. LDAP).
+
+Tests requirements
+------------------
+
+* Ruby
+* [Install QT](https://github.com/thoughtbot/capybara-webkit/wiki/Installing-Qt-and-compiling-capybara-webkit)
+
+Tests installation procedure
+---------------------------
+
+* In any folder :
+
+        sudo gem install capybara capybara-webkit rspec
+
+Tests running
+-------------
+
+        rspec spec/features/*
+

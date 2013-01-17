@@ -61,7 +61,7 @@
       buttons: {
         Supprimer: function() {
           $.ajax({
-            url: "?rev={{_rev}}",
+            url: "?rev=" + $("#rev").val(),
             type: "DELETE",
             success: function() {
               self.location = ".";

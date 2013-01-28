@@ -1,6 +1,7 @@
 <html>
+{{#i18n}}
 <head>
-  <title>Publication (notice)</title>
+  <title>{{i_record}}</title>
   <link rel="stylesheet" type="text/css" href="included/lib/jquery-ui-1.8.23.custom.css" />
   <link rel="stylesheet" type="text/css" href="included/main.css" />
   <meta charset="utf-8" />
@@ -54,12 +55,12 @@
   }
 
   function erase() {
-    $("#dialog").text("Voulez-vous supprimer cette notice ?")
-    .attr("title", "Supprimer...")
+    $("#dialog").text("{{i_delete?}}")
+    .attr("title", "{{i_delete}}...")
     .dialog({
       modal: true,
       buttons: {
-        Supprimer: function() {
+        {{i_delete}}: function() {
           $.ajax({
             url: "?rev=" + $("#rev").val(),
             type: "DELETE",
@@ -68,7 +69,7 @@
             }
           });
         },
-        Annuler: function() {
+        {{i_cancel}}: function() {
           $(this).dialog("close");
         }
       }
@@ -92,31 +93,31 @@
 <body>
   <div id="container">
     <div class="menu">
-      <a href=".">Retour</a>
+      <a href=".">{{i_back}}</a>
       <a id="help" href="https://github.com/benel/Tire-a-part/issues">?&nbsp;</a>
     </div>
     <form id="content">
       <table>
         <input id="rev" type="hidden" value="{{_rev}}" size="80" />
-        <tr><th>Auteurs</th>
+        <tr><th>{{i_creator}}</th>
           <td><input id="creator" type="text" value="{{formatted_creators}}" size="80" /></td>
         </tr>
-        <tr><th>Titre</th>
+        <tr><th>{{i_title}}</th>
           <td><input id="title" type="text" value="{{title}}" size="80" /></td>
         </tr>
-        <tr><th>In</th>
+        <tr><th>{{i_ispartof}}</th>
           <td><input id="ispartof" type="text" value="{{ispartof}}" size="80" /></td>
         </tr>
-        <tr><th>Éditeur</th>
+        <tr><th>{{i_publisher}}</th>
           <td><input id="publisher" type="text" value="{{publisher}}" size="80" /></td>
         </tr>
-        <tr><th>Année</th>
+        <tr><th>{{i_issued}}</th>
           <td><input id="issued" type="text" value="{{issued}}" size="80" /></td>
         </tr>
-        <tr><th>URL chez l'éditeur</th>
+        <tr><th>{{i_url}}</th>
           <td><input id="url" type="text" value="{{url}}" size="80" /></td>
         </tr>
-        <tr><th>Indexé par</th><td>
+        <tr><th>{{i_indexed}}</th><td>
           <label>
             <input type="checkbox" name="indexed" value="AERES" />AERES&nbsp;
           </label>
@@ -136,55 +137,19 @@
             <input type="checkbox" name="indexed" value="INIST" />INIST&nbsp;
           </label>
         </td></tr>
-        <tr><th>Type (AERES)</th>
+        <tr><th>{{i_aeresType}}</th>
           <td><select id="aeresType">
-            <option value="ACL">
-              Articles dans des revues répertoriées dans les bases de données internationales
-            </option>
-            <option value="ACLN">
-              Articles dans des revues non répertoriées dans les bases de données internationales
-            </option>
-            <option value="ASCL">
-              Articles dans des revues sans comité de lecture
-            </option>
-            <option value="BRE">
-              Brevets
-            </option>
-            <option value="INV">
-        Conférences données à l'invitation du comité d'organisation dans un congrés national ou international
-            </option>
-            <option value="ACTI">
-              Communications avec actes dans un congrès international
-            </option>
-            <option value="ACTN">
-              Communications avec actes dans un congrès
-            </option>
-            <option value="COM">
-              Communications orales sans actes dans un congrès
-            </option>
-            <option value="AFF">
-              Communications par affiche dans un congrès
-            </option>
-            <option value="OS">
-              Ouvrages scientifiques (ou chapitres de ces ouvrages)
-            </option>
-            <option value="OV">
-              Ouvrages de vulgarisation (ou chapitres de ces ouvrages)
-            </option>
-            <option value="DO">
-              Directions d'ouvrages ou de revues
-            </option>
-            <option value="AP">
-              Autres productions
-            </option>
+            {{#i_aeresTypeValues}}
+            <option value="{{key}}">{{label}}</option>
+            {{/i_aeresTypeValues}}
           </select></td>
         </tr>
-        <tr><th>Résumé</th>
+        <tr><th>{{i_abstract}}</th>
           <td>
             <textarea cols="80" rows="12" type="text" id="abstract">{{abstract}}</textarea>
           </td>
         </tr>
-        <tr><th>Tirés à part</th>
+        <tr><th>{{i_offprint}}</th>
           <td><ul>
            {{#formatted_attachments}}
            <li>
@@ -199,12 +164,13 @@
     <form id="footer" class="menu" enctype="multipart/form-data" method="post">
       <input id="upload_rev" type="hidden" name="_rev" value="{{_rev}}" />
       <input id="uploader" type="file" name="_attachments" />
-      <button type="button" onclick="upload()">Déposer</button>
-      <button type="button" onclick="save()">Enregistrer</button>
-      <button type="button" onclick="toBibtex()">Exporter</button>
-      <button type="button" onclick="erase()">Supprimer...</button>
+      <button type="button" onclick="upload()">{{i_upload}}</button>
+      <button type="button" onclick="save()">{{i_save}}</button>
+      <button type="button" onclick="toBibtex()">{{i_export}}</button>
+      <button type="button" onclick="erase()">{{i_delete}}...</button>
       <div id="dialog" />
     </form>
   </div>
 </body>
+{{/i18n}}
 </html>

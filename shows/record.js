@@ -2,6 +2,8 @@ function(o, req) {
   // !json templates.record_html
   // !json templates.record_bibtex
   // !code lib/mustache.js
+  // !code localization.js
+  
 
   function formatAttachments(attachments, paperID) {
     var result = [];
@@ -63,6 +65,7 @@ function(o, req) {
     formatted_creators: o["DC.creator"].join(", "),
     identifiers: getIdentifiers(req.headers.Host, req.path, o._attachments),
     formatted_attachments: formatAttachments(o._attachments, o._id),
-    raw_attachments: (o._attachments)?JSON.stringify(o._attachments):"{}"
+    raw_attachments: (o._attachments)?JSON.stringify(o._attachments):"{}",
+    i18n: localized()
   });
 }

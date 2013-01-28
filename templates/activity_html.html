@@ -1,4 +1,5 @@
 <html>
+{{#i18n}}
 <head>
   <link rel="stylesheet" type="text/css" href="included/main.css" />
   <script src="script/jquery.js"></script>
@@ -41,18 +42,18 @@
   }
 
   </script>
-  <title>Publications (références)</title>
+  <title>{{i_records}}</title>
 </head>
 <body>
   <div id="container">
     <form class="menu" method="get">
-      <label>Publications de</label>&nbsp;
+      <label>{{i_references}}</label>&nbsp;
       <select id="creator" name="by">
-        <option value="">tous</option>
+        <option value="">{{i_all}}</option>
       </select>&nbsp;
-      <label>depuis</label>&nbsp;
+      <label>{{i_since}}</label>&nbsp;
       <select id="issued" name="since"></select>&nbsp;
-      <button type="submit">Filtrer</button>
+      <button type="submit">{{i_filter}}</button>
       <a id="help" href="https://github.com/benel/Tire-a-part/issues">?&nbsp;</a>
     </form>
     <div id="content">
@@ -78,8 +79,9 @@
     </div>
     <form id="footer" class="menu">
       <button type="button" onclick="create()">+</button>
-      <button type="button" onclick="toCSV()">Exporter</button>
+      <button type="button" onclick="toCSV()">{{i_export}}</button>
     </form>
   </div>
 </body>
+{{/i18n}}
 </html>

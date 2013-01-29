@@ -162,10 +162,10 @@
       </table>
     </form>
     <form id="footer" class="menu" enctype="multipart/form-data" method="post">
+      <button type="button" onclick="save()">{{i_save}}</button>
       <input id="upload_rev" type="hidden" name="_rev" value="{{_rev}}" />
       <input id="uploader" type="file" name="_attachments" />
       <button type="button" onclick="upload()">{{i_upload}}</button>
-      <button type="button" onclick="save()">{{i_save}}</button>
       <button type="button" onclick="toBibtex()">{{i_export}}</button>
       <button type="button" onclick="erase()">{{i_delete}}...</button>
       <div id="dialog" />

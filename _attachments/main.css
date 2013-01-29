@@ -10,15 +10,17 @@ body {
 
 #footer {
   bottom: 0;
-  position: absolute;
-  width: 99%;
+  position: fixed;
+  width: 100%;
   margin: 0;
 }
 
 .menu {
+  position: fixed;
+  width: 100%;
   background-color: black;
   color: white;
-  padding: 4px;
+  padding: 2px 8px;
 }
 
 .menu a {
@@ -32,6 +34,7 @@ body {
 
 #help {
   float: right;
+  padding-right: 12px;
 }
 
 .ui-widget {

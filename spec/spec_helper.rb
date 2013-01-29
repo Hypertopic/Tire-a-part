@@ -14,3 +14,6 @@ def in_dialog()
   f = find('.ui-dialog')
 end
 
+def prefer_language(language)
+  page.driver.header 'Accept-Language', language
+end

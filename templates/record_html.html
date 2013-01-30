@@ -10,6 +10,10 @@
   {{/creators}}
   <meta name="DC.title" content="{{title}}" />
   <meta name="DC.relation.ispartof" content="{{ispartof}}" />
+  <meta name="DC.citation.volume" content="{{volume}}" />
+  <meta name="DC.citation.issue" content="{{issue}}" />
+  <meta name="DC.citation.spage" content="{{spage}}" />
+  <meta name="DC.citation.epage" content="{{epage}}" />
   <meta name="DC.publisher" content="{{publisher}}" />
   <meta name="DC.issued" content="{{issued}}" />
   {{#identifiers}}
@@ -26,12 +30,17 @@
   });
 	
   function save() {
+    var pages = $("#pages").val().split(/[-–]/);
     var data = {
       "_attachments": {{{raw_attachments}}},
       "_rev": $("#rev").val(),
       "DC.creator": $("#creator").val().split(", "),
       "DC.title": $("#title").val(),
       "DC.relation.ispartof": $("#ispartof").val(),
+      "DC.citation.volume": $("#volume").val(),
+      "DC.citation.issue": $("#issue").val(),
+      "DC.citation.spage": pages[0],
+      "DC.citation.epage": pages[1],
       "DC.publisher": $("#publisher").val(),
       "DC.issued": parseInt($("#issued").val()),
       "url": $("#url").val(),
@@ -107,6 +116,15 @@
         </tr>
         <tr><th>{{i_ispartof}}</th>
           <td><input id="ispartof" type="text" value="{{ispartof}}" size="80" /></td>
+        </tr>
+        <tr><th>{{i_volume}}</th>
+          <td><input id="volume" type="text" value="{{volume}}" size="80" /></td>
+        </tr>
+        <tr><th>{{i_issue}}</th>
+          <td><input id="issue" type="text" value="{{issue}}" size="80" /></td>
+        </tr>
+        <tr><th>{{i_pages}}</th>
+          <td><input id="pages" type="text" value="{{spage}}{{#epage}}–{{epage}}{{/epage}}" size="80" /></td>
         </tr>
         <tr><th>{{i_publisher}}</th>
           <td><input id="publisher" type="text" value="{{publisher}}" size="80" /></td>

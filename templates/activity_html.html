@@ -68,7 +68,10 @@
                 {{/ispartof}}
                 {{#ispartof}}
                   <div><a href="{{_id}}">{{title}}.</a></div>
-                  <div><i>{{ispartof}}</i></div>
+                  <div><i>{{ispartof}}{{#volume}}
+                      <b>{{volume}}{{#issue}}({{issue}}){{/issue}}</b>{{/volume}}</i>{{#spage}},
+                      {{spage}}{{#epage}}–{{epage}}{{/epage}}{{/spage}}.
+                  </div>
                 {{/ispartof}}
               <div>{{#publisher}}{{publisher}}, {{/publisher}}{{issued}}.</div>
               <div>{{#indexed}}<img height="20" src="included/{{.}}.png" />{{/indexed}}</div>

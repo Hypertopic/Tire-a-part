@@ -30,25 +30,25 @@
   });
 	
   function save() {
-    var pages = $("#pages").val().split(/[-–]/);
+    var pages = $("#pages").val().trim().split(/[-–]/);
     var data = {
       "_attachments": {{{raw_attachments}}},
       "_rev": $("#rev").val(),
-      "DC.creator": $("#creator").val().split(", "),
-      "DC.title": $("#title").val(),
-      "DC.relation.ispartof": $("#ispartof").val(),
-      "DC.citation.volume": $("#volume").val(),
-      "DC.citation.issue": $("#issue").val(),
+      "DC.creator": $("#creator").val().trim().split(/ *, */),
+      "DC.title": $("#title").val().trim(),
+      "DC.relation.ispartof": $("#ispartof").val().trim(),
+      "DC.citation.volume": $("#volume").val().trim(),
+      "DC.citation.issue": $("#issue").val().trim(),
       "DC.citation.spage": pages[0],
       "DC.citation.epage": pages[1],
-      "DC.publisher": $("#publisher").val(),
+      "DC.publisher": $("#publisher").val().trim(),
       "DC.issued": parseInt($("#issued").val()),
       "url": $("#url").val(),
       "indexed": $("input[name='indexed']:checked").map(function(){
         return $(this).val();
       }).get(),
       "aeresType": $("#aeresType").val(),
-      "abstract": $("#abstract").val()
+      "abstract": $("#abstract").val().trim()
     };
     $.ajax({
       url: "",

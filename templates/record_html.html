@@ -30,7 +30,7 @@
   });
 	
   function save() {
-    var pages = $("#pages").val().trim().split(/[-–]/);
+    var pages = $("#pages").val().trim().split(/[-–]{1,2}/);
     var data = {
       "_attachments": {{{raw_attachments}}},
       "_rev": $("#rev").val(),
@@ -95,6 +95,93 @@
 
   function toBibtex() {
     self.location = "?bibtex";
+  }
+
+  function fromBibtex() {
+    $("#dialog")
+    .attr("title", "{{i_import}}...")
+    .html('<form><textarea cols="50" rows="12" type="text" id="bibtex" placeholder="BibTeX" /></form>')
+    .dialog({
+      modal: true,
+      width: 400,
+      buttons: {
+        {{i_import}}: function() {
+          var bibtex = parse($("#bibtex").val()); 
+          $("#creator").val(bibtex.author);
+          $("#title").val(bibtex.title);
+          $("#ispartof").val(
+            bibtex.journal? bibtex.journal : bibtex.booktitle
+          );
+          $("#volume").val(bibtex.volume);
+          $("#issue").val(bibtex.number);
+          $("#pages").val(bibtex.pages);
+          $("#publisher").val(bibtex.publisher);
+          $("#issued").val(bibtex.year);
+          $("#url").val(bibtex.ee);
+          $("#abstract").val(bibtex.abstract);
+          $(this).dialog("close");
+        },
+        {{i_cancel}}: function() {
+          $(this).dialog("close");
+        }
+      }
+    });
+  }
+
+  const RECORD_BEGIN = /@(\w+)\s*\{[^,]*/;
+  const ATTRIBUTE_BEGIN = /([\w\-]+)\s*=\s*[{"]/g;
+  const ATTRIBUTE_END = /\}(?=\s*[,\}])/g;
+  const TRAILING_COMMA = /,\s*\}/;
+  const COMMENT = /(%.*)/g;
+  const TABULATION = /\n\s{3,}/g;
+  const INNER_QUOTE = /"(?=[^{\n]*})/g;
+  const REMAINING_BRACE = /[{}]/g;
+  const REMAINING_BACKSLASH = /\\(?!")/g;
+
+  /**
+   * @return object corresponding to the parsed BibTeX
+   */
+  function parse(bibtex) {
+    var json = '{' + bibtex
+      .replace(COMMENT, '')
+      .replace(TABULATION, ' ')
+      .replace(INNER_QUOTE, '\\\"')
+      .replace(ATTRIBUTE_BEGIN, '"$1": "')
+      .replace(ATTRIBUTE_END, '"')
+      .replace(RECORD_BEGIN, '{"type": "$1"')
+      .replace(TRAILING_COMMA, '')
+      .replace(REMAINING_BRACE, '')
+      .replace(/\\`a/g, "à")
+      .replace(/\\\^a/g, "â")
+      .replace(/\\"a/g, "ä")
+      .replace(/\\'e/g, "é")
+      .replace(/\\`e/g, "è")
+      .replace(/\\\^e/g, "ê")
+      .replace(/\\"e/g, "ë")
+      .replace(/\\\^i/g, "î")
+      .replace(/\\"i/g, "ï")
+      .replace(/\\\^o/g, "ô")
+      .replace(/\\"o/g, "ö")
+      .replace(/\\`u/g, "ù")
+      .replace(/\\\^u/g, "û")
+      .replace(/\\"u/g, "ü")
+      .replace(/\\cc/g, "ç")
+      .replace(/\\`A/g, "À")
+      .replace(/\\'E/g, "É")
+      .replace(/\\\^E/g, "Ê")
+      .replace(/\\cC/g, "Ç")
+      .replace(REMAINING_BACKSLASH, "")
+      + '}';
+    var item = JSON.parse(json, function(key, value) {
+      if (key.toLowerCase()==='author') {
+        value = value.split(/ *and */);
+        for (a in value) {
+          value[a] = value[a].split(/, */).reverse().join(' ');
+        }
+      }
+      return value;
+    });
+    return item;
   }
 
   </script>
@@ -180,6 +267,7 @@
       </table>
     </form>
     <form id="footer" class="menu" enctype="multipart/form-data" method="post">
+      <button type="button" onclick="fromBibtex()">{{i_import}}...</button>
       <button type="button" onclick="save()">{{i_save}}</button>
       <input id="upload_rev" type="hidden" name="_rev" value="{{_rev}}" />
       <input id="uploader" type="file" name="_attachments" />

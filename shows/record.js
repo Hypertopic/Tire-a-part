@@ -43,6 +43,7 @@ function(o, req) {
         type: (o.ispartof)?"inproceedings":(o.publisher)?"book":"misc",
         id: o._id,
         abstract: o.abstract,
+        ee: o.url,
         publisher: o["DC.publisher"],
         booktitle: o["DC.relation.ispartof"],
         volume: o["DC.citation.volume"],

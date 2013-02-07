@@ -1,6 +1,7 @@
 {
   "en": { 
     "i_creator": "Authors",
+    "i_creator_example": "Firstname Surname, Firstname Surname",
     "i_title": "Title",
     "i_ispartof": "In",
     "i_volume": "Volume",
@@ -47,6 +48,7 @@
   },
   "fr": {
     "i_creator": "Auteurs",
+    "i_creator_example": "Prénom Nom, Prénom Nom",
     "i_title": "Titre",
     "i_ispartof": "In",
     "i_volume": "Volume",

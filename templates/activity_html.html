@@ -74,7 +74,9 @@
                   </div>
                 {{/ispartof}}
               <div>{{#publisher}}{{publisher}}, {{/publisher}}{{issued}}.</div>
-              <div>{{#indexed}}<img height="20" src="included/{{.}}.png" />{{/indexed}}</div>
+              <div>
+                {{#indexed}}<img height="20" src="included/{{.}}.png" title="{{i_referenced}} {{.}}" />{{/indexed}}
+              </div>
             </li>
           {{/papers}}
         </ol>

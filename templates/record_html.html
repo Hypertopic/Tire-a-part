@@ -24,9 +24,42 @@
   <script src="included/lib/jquery-form-3.19.js"></script>
   <script type="text/javascript">
 
+  const bibtexType = {
+    "ACL": "article",
+    "ACLN": "article",
+    "ASCL": "article",
+    "ACTI": "inproceedings",
+    "ACTN": "inproceedings",
+    "INV": "conference",
+    "COM": "conference",
+    "AFF": "conference",
+    "OS": "incollection",
+    "OV": "incollection",
+    "BRE": "misc",
+    "DO": "misc",
+    "TH": "misc",
+    "AP": "misc"
+  };
+
+  const sample = {
+    "article": "Journal of Great Research",
+    "inproceedings": "Proceedings of the 12th International Conference on Something Interesting (ICSI)",
+    "conference": "12th International Conference on Something Interesting (ICSI), Hawaï, June 21-27",
+    "incollection": "Handbook of Applied Research",
+    "misc": ""
+  }
+
+  function setSample(aeresType) {
+    $("#ispartof").attr("placeholder", sample[bibtexType[aeresType]]);
+  }
+
   $(document).ready(function() {
     $("#aeresType").val("{{aeresType}}");
     $("[name=indexed]").val({{{indexed}}});
+    setSample($("#aeresType").val());
+    $("#aeresType").on("change", function() {
+      setSample($(this).val());
+    });
   });
 	
   function save() {
@@ -201,6 +234,13 @@
         <tr><th>{{i_title}}</th>
           <td><input id="title" type="text" value="{{title}}" size="80" /></td>
         </tr>
+        <tr><th>{{i_aeresType}}</th>
+          <td><select id="aeresType">
+            {{#i_aeresTypeValues}}
+            <option value="{{key}}">{{label}}</option>
+            {{/i_aeresTypeValues}}
+          </select></td>
+        </tr>
         <tr><th>{{i_ispartof}}</th>
           <td><input id="ispartof" type="text" value="{{ispartof}}" size="80" /></td>
         </tr>
@@ -242,13 +282,6 @@
             <input type="checkbox" name="indexed" value="INIST" />INIST&nbsp;
           </label>
         </td></tr>
-        <tr><th>{{i_aeresType}}</th>
-          <td><select id="aeresType">
-            {{#i_aeresTypeValues}}
-            <option value="{{key}}">{{label}}</option>
-            {{/i_aeresTypeValues}}
-          </select></td>
-        </tr>
         <tr><th>{{i_abstract}}</th>
           <td>
             <textarea cols="80" rows="12" type="text" id="abstract">{{abstract}}</textarea>

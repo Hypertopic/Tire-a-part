@@ -11,7 +11,7 @@
     "i_issued": "Year",
     "i_url": "Publisher's URL",
     "i_indexed": "Indexed by",
-    "i_aeresType": "Type (AERES)",
+    "i_aeresType": "Type",
     "i_aeresTypeValues": [ 
       {"key":"ACL","label":"Peer-reviewed journal articles indexed in international databases"},
       {"key":"ACLN","label":"Unindexed peer-reviewed journal articles"},
@@ -59,7 +59,7 @@
     "i_issued": "Année",
     "i_url": "URL chez l'éditeur",
     "i_indexed": "Indexé par",
-    "i_aeresType": "Type (AERES)",
+    "i_aeresType": "Type",
     "i_aeresTypeValues": [
       {"key":"ACL","label":"Articles dans des revues répertoriées dans les bases de données internationales"},
       {"key":"ACLN","label":"Articles dans des revues non répertoriées dans les bases de données internationales"},

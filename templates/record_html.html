@@ -130,6 +130,14 @@
     self.location = "?bibtex";
   }
 
+  function goBack() {
+    if (history.length>2) {
+      history.back();
+    } else {
+      location.replace(".");
+    }
+  }
+
   function fromBibtex() {
     $("#dialog")
     .attr("title", "{{i_import}}...")
@@ -222,7 +230,7 @@
 <body>
   <div id="container">
     <div class="menu">
-      <a onclick="history.back()">{{i_back}}</span>
+      <a onclick="goBack()">{{i_back}}</span>
       <a id="help" href="https://github.com/benel/Tire-a-part/wiki/Référencement-des-revues-et-colloques">?&nbsp;</a>
     </div>
     <form id="content">

@@ -57,7 +57,11 @@
       <table>
         <input id="rev" type="hidden" value="{{_rev}}" size="90" />
         <tr><th>{{i_creator}}</th>
-          <td>{{formatted_creators}}</td>
+          <td>
+          {{#creators}}
+            <a href="./?by={{.}}">{{.}}</a>,
+          {{/creators}}
+          </td>
         </tr>
         <tr><th>{{i_title}}</th>
           <td>{{title}}</td>

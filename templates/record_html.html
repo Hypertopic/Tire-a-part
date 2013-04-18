@@ -24,110 +24,17 @@
   <script src="included/lib/jquery-form-3.19.js"></script>
   <script type="text/javascript">
 
-  const bibtexType = {
-    "ACL": "article",
-    "ACLN": "article",
-    "ASCL": "article",
-    "ACTI": "inproceedings",
-    "ACTN": "inproceedings",
-    "INV": "conference",
-    "COM": "conference",
-    "AFF": "conference",
-    "OS": "incollection",
-    "OV": "incollection",
-    "BRE": "misc",
-    "DO": "misc",
-    "TH": "misc",
-    "AP": "misc"
-  };
-
-  const sample = {
-    "article": "Journal of Great Research",
-    "inproceedings": "Proceedings of the 12th International Conference on Something Interesting (ICSI)",
-    "conference": "12th International Conference on Something Interesting (ICSI), Hawaï, June 21-27",
-    "incollection": "Handbook of Applied Research",
-    "misc": ""
-  }
-
-  function setSample(aeresType) {
-    $("#ispartof").attr("placeholder", sample[bibtexType[aeresType]]);
-  }
-
   $(document).ready(function() {
     $("#aeresType").val("{{aeresType}}");
     $("[name=indexed]").val({{{indexed}}});
-    setSample($("#aeresType").val());
-    $("#aeresType").on("change", function() {
-      setSample($(this).val());
-    });
   });
 	
-  function save() {
-    var pages = $("#pages").val().trim().split(/[-–]{1,2}/);
-    var data = {
-      "_attachments": {{{raw_attachments}}},
-      "_rev": $("#rev").val(),
-      "DC.creator": $("#creator").val().trim().split(/ *, */),
-      "DC.title": $("#title").val().trim(),
-      "DC.relation.ispartof": $("#ispartof").val().trim(),
-      "DC.citation.volume": $("#volume").val().trim(),
-      "DC.citation.issue": $("#issue").val().trim(),
-      "DC.citation.spage": pages[0],
-      "DC.citation.epage": pages[1],
-      "DC.publisher": $("#publisher").val().trim(),
-      "DC.issued": parseInt($("#issued").val()),
-      "url": $("#url").val(),
-      "indexed": $("input[name='indexed']:checked").map(function(){
-        return $(this).val();
-      }).get(),
-      "aeresType": $("#aeresType").val(),
-      "abstract": $("#abstract").val().trim()
-    };
-    $.ajax({
-      url: "",
-      type: "PUT",
-      dataType: "json",
-      contentType: "application/json",
-      data: JSON.stringify(data),
-      success: function(result) {
-        $("#rev").val(result.rev);
-        $("#upload_rev").val(result.rev);
-      }
-    });
-  }
-
-  function erase() {
-    $("#dialog").text("{{i_delete?}}")
-    .attr("title", "{{i_delete}}...")
-    .dialog({
-      modal: true,
-      buttons: {
-        {{i_delete}}: function() {
-          $.ajax({
-            url: "?rev=" + $("#rev").val(),
-            type: "DELETE",
-            success: function() {
-              self.location = ".";
-            }
-          });
-        },
-        {{i_cancel}}: function() {
-          $(this).dialog("close");
-        }
-      }
-    });
-  }
-
-  function upload() {
-    $("#footer").ajaxSubmit({
-      success: function() {
-        location.reload();
-      }
-    });
-  }
-
   function toBibtex() {
     self.location = "?bibtex";
+  }
+
+  function modify() {
+    self.location = "?form";
   }
 
   function goBack() {
@@ -136,93 +43,6 @@
     } else {
       location.replace(".");
     }
-  }
-
-  function fromBibtex() {
-    $("#dialog")
-    .attr("title", "{{i_import}}...")
-    .html('<form><textarea cols="50" rows="12" type="text" id="bibtex" placeholder="BibTeX" /></form>')
-    .dialog({
-      modal: true,
-      width: 400,
-      buttons: {
-        {{i_import}}: function() {
-          var bibtex = parse($("#bibtex").val()); 
-          $("#creator").val(bibtex.author);
-          $("#title").val(bibtex.title);
-          $("#ispartof").val(
-            bibtex.journal? bibtex.journal : bibtex.booktitle
-          );
-          $("#volume").val(bibtex.volume);
-          $("#issue").val(bibtex.number);
-          $("#pages").val(bibtex.pages);
-          $("#publisher").val(bibtex.publisher);
-          $("#issued").val(bibtex.year);
-          $("#url").val(bibtex.ee);
-          $("#abstract").val(bibtex.abstract);
-          $(this).dialog("close");
-        },
-        {{i_cancel}}: function() {
-          $(this).dialog("close");
-        }
-      }
-    });
-  }
-
-  const RECORD_BEGIN = /@(\w+)\s*\{[^,]*/;
-  const ATTRIBUTE_BEGIN = /([\w\-]+)\s*=\s*[{"]/g;
-  const ATTRIBUTE_END = /\}(?=\s*[,\}])/g;
-  const TRAILING_COMMA = /,\s*\}/;
-  const COMMENT = /(%.*)/g;
-  const TABULATION = /\n\s{3,}/g;
-  const INNER_QUOTE = /"(?=[^{\n]*})/g;
-  const REMAINING_BRACE = /[{}]/g;
-  const REMAINING_BACKSLASH = /\\(?!")/g;
-
-  /**
-   * @return object corresponding to the parsed BibTeX
-   */
-  function parse(bibtex) {
-    var json = '{' + bibtex
-      .replace(COMMENT, '')
-      .replace(TABULATION, ' ')
-      .replace(INNER_QUOTE, '\\\"')
-      .replace(ATTRIBUTE_BEGIN, '"$1": "')
-      .replace(ATTRIBUTE_END, '"')
-      .replace(RECORD_BEGIN, '{"type": "$1"')
-      .replace(TRAILING_COMMA, '')
-      .replace(REMAINING_BRACE, '')
-      .replace(/\\`a/g, "à")
-      .replace(/\\\^a/g, "â")
-      .replace(/\\"a/g, "ä")
-      .replace(/\\'e/g, "é")
-      .replace(/\\`e/g, "è")
-      .replace(/\\\^e/g, "ê")
-      .replace(/\\"e/g, "ë")
-      .replace(/\\\^i/g, "î")
-      .replace(/\\"i/g, "ï")
-      .replace(/\\\^o/g, "ô")
-      .replace(/\\"o/g, "ö")
-      .replace(/\\`u/g, "ù")
-      .replace(/\\\^u/g, "û")
-      .replace(/\\"u/g, "ü")
-      .replace(/\\cc/g, "ç")
-      .replace(/\\`A/g, "À")
-      .replace(/\\'E/g, "É")
-      .replace(/\\\^E/g, "Ê")
-      .replace(/\\cC/g, "Ç")
-      .replace(REMAINING_BACKSLASH, "")
-      + '}';
-    var item = JSON.parse(json, function(key, value) {
-      if (key.toLowerCase()==='author') {
-        value = value.split(/ *and */);
-        for (a in value) {
-          value[a] = value[a].split(/, */).reverse().join(' ');
-        }
-      }
-      return value;
-    });
-    return item;
   }
 
   </script>
@@ -237,63 +57,40 @@
       <table>
         <input id="rev" type="hidden" value="{{_rev}}" size="90" />
         <tr><th>{{i_creator}}</th>
-          <td><input id="creator" type="text" value="{{formatted_creators}}" size="90" placeholder="{{i_creator_example}}" /></td>
+          <td>{{formatted_creators}}</td>
         </tr>
         <tr><th>{{i_title}}</th>
-          <td><input id="title" type="text" value="{{title}}" size="90" /></td>
+          <td>{{title}}</td>
         </tr>
         <tr><th>{{i_aeresType}}</th>
-          <td><select id="aeresType">
-            {{#i_aeresTypeValues}}
-            <option value="{{key}}">{{label}}</option>
-            {{/i_aeresTypeValues}}
-          </select></td>
+          <td>{{aeresType}}</td>
         </tr>
         <tr><th>{{i_ispartof}}</th>
-          <td><input id="ispartof" type="text" value="{{ispartof}}" size="90" /></td>
+          <td>{{ispartof}}</td>
         </tr>
         <tr><th>{{i_volume}}</th>
-          <td><input id="volume" type="text" value="{{volume}}" size="90" /></td>
+          <td>{{volume}}</td>
         </tr>
         <tr><th>{{i_issue}}</th>
-          <td><input id="issue" type="text" value="{{issue}}" size="90" /></td>
+          <td>{{issue}}</td>
         </tr>
         <tr><th>{{i_pages}}</th>
-          <td><input id="pages" type="text" value="{{spage}}{{#epage}}–{{epage}}{{/epage}}" size="90" /></td>
+          <td>{{spage}}{{#epage}}–{{epage}}{{/epage}}</td>
         </tr>
         <tr><th>{{i_publisher}}</th>
-          <td><input id="publisher" type="text" value="{{publisher}}" size="90" /></td>
+          <td>{{publisher}}</td>
         </tr>
         <tr><th>{{i_issued}}</th>
-          <td><input id="issued" type="text" value="{{issued}}" size="90" /></td>
+          <td>{{issued}}</td>
         </tr>
         <tr><th>{{i_url}}</th>
-          <td><input id="url" type="text" value="{{url}}" size="90" /></td>
+          <td>{{url}}</td>
         </tr>
-        <tr><th>{{i_indexed}}</th><td>
-          <label>
-            <input type="checkbox" name="indexed" value="AERES" />AERES&nbsp;
-          </label>
-          <label>
-            <input type="checkbox" name="indexed" value="ISI" />ISI&nbsp;
-          </label>
-          <label>
-            <input type="checkbox" name="indexed" value="SCOPUS" />SCOPUS&nbsp;
-          </label>
-          <label>
-            <input type="checkbox" name="indexed" value="ACM" />ACM&nbsp;
-          </label>
-          <label>
-            <input type="checkbox" name="indexed" value="DBLP" />DBLP&nbsp;
-          </label>
-          <label>
-            <input type="checkbox" name="indexed" value="INIST" />INIST&nbsp;
-          </label>
-        </td></tr>
+        <tr><th>{{i_indexed}}</th>
+          <td>{{formatted_indexed}}</td>
+        </tr>
         <tr><th>{{i_abstract}}</th>
-          <td>
-            <textarea cols="80" rows="12" type="text" id="abstract">{{abstract}}</textarea>
-          </td>
+          <td>{{abstract}}</td>
         </tr>
         <tr><th>{{i_offprint}}</th>
           <td><ul>
@@ -308,14 +105,8 @@
       </table>
     </form>
     <form id="footer" class="menu" enctype="multipart/form-data" method="post">
-      <button type="button" onclick="fromBibtex()">{{i_import}}...</button>
-      <button type="button" onclick="save()">{{i_save}}</button>
-      <input id="upload_rev" type="hidden" name="_rev" value="{{_rev}}" />
-      <input id="uploader" type="file" name="_attachments" />
-      <button type="button" onclick="upload()">{{i_upload}}</button>
-      <button type="button" onclick="toBibtex()">{{i_export}}</button>
-      <button type="button" onclick="erase()">{{i_delete}}...</button>
-      <div id="dialog" />
+      <button type="button" onclick="toBibtex()">{{i_export}}</button>      
+      <button type="button" onclick="modify()">{{i_modify}}...</button>    
     </form>
   </div>
 </body>

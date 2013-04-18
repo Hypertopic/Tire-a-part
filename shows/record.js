@@ -1,9 +1,9 @@
 function(o, req) {
   // !json templates.record_html
+  // !json templates.record_html_form
   // !json templates.record_bibtex
   // !code lib/mustache.js
   // !code localization.js
-  
 
   function formatAttachments(attachments, paperID) {
     var result = [];
@@ -33,6 +33,9 @@ function(o, req) {
   if (!o["DC.creator"]) {
     o["DC.creator"] = [];
   }
+  if (!o.indexed) {
+    o.indexed = [];
+  }
   if (req.query.bibtex=="") {
     return {
       headers: {
@@ -55,7 +58,9 @@ function(o, req) {
       })
     };
   }
-  return Mustache.to_html(templates.record_html, {
+  var template = "record_html" + ((req.query.form=="")?"_form":"");
+  return Mustache.to_html(templates[template], {
+    id: o._id,
     _rev: o._rev,
     url: o.url,
     abstract: o.abstract,
@@ -71,6 +76,7 @@ function(o, req) {
     publisher: o["DC.publisher"],
     issued: o["DC.issued"],
     formatted_creators: o["DC.creator"].join(", "),
+    formatted_indexed: o.indexed.join(", "),
     identifiers: getIdentifiers(req.headers.Host, req.path, o._attachments),
     formatted_attachments: formatAttachments(o._attachments, o._id),
     raw_attachments: (o._attachments)?JSON.stringify(o._attachments):"{}",

@@ -53,9 +53,8 @@
       <a onclick="goBack()">{{i_back}}</span>
       <a id="help" href="https://github.com/benel/Tire-a-part/wiki/Référencement-des-revues-et-colloques">?&nbsp;</a>
     </div>
-    <form id="content">
+    <div id="content">
       <table>
-        <input id="rev" type="hidden" value="{{_rev}}" size="90" />
         <tr><th>{{i_creator}}</th>
           <td>
           {{#creators}}
@@ -65,9 +64,6 @@
         </tr>
         <tr><th>{{i_title}}</th>
           <td>{{title}}</td>
-        </tr>
-        <tr><th>{{i_aeresType}}</th>
-          <td>{{aeresType}}</td>
         </tr>
         <tr><th>{{i_ispartof}}</th>
           <td>{{ispartof}}</td>
@@ -91,7 +87,11 @@
           <td><a href="{{url}}">{{url}}</a></td>
         </tr>
         <tr><th>{{i_indexed}}</th>
-          <td>{{formatted_indexed}}</td>
+          <td>
+          {{#raw_indexed}}
+            <img height="20" src="./included/{{.}}.png" title="{{i_referenced}} {{.}}" />
+          {{/raw_indexed}}
+          </td>
         </tr>
         <tr><th>{{i_abstract}}</th>
           <td>{{abstract}}</td>
@@ -107,7 +107,7 @@
          </ul></td>
         </tr>
       </table>
-    </form>
+    </div>
     <form id="footer" class="menu" enctype="multipart/form-data" method="post">
       <button type="button" onclick="toBibtex()">{{i_export}}</button>      
       <button type="button" onclick="modify()">{{i_modify}}...</button>    

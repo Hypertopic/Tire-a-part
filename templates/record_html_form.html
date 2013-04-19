@@ -216,90 +216,72 @@
       <a id="help" href="https://github.com/benel/Tire-a-part/wiki/Référencement-des-revues-et-colloques">?&nbsp;</a>
     </div>
     <form id="content">
-      <table>
-        <input id="rev" type="hidden" value="{{_rev}}" size="90" />
-        <tr><th>{{i_creator}}</th>
-          <td><input id="creator" type="text" value="{{formatted_creators}}" size="90" placeholder="{{i_creator_example}}" /></td>
-        </tr>
-        <tr><th>{{i_title}}</th>
-          <td><input id="title" type="text" value="{{title}}" size="90" /></td>
-        </tr>
-        <tr><th>{{i_aeresType}}</th>
-          <td><select id="aeresType">
-            {{#i_aeresTypeValues}}
-            <option value="{{key}}">{{label}}</option>
-            {{/i_aeresTypeValues}}
-          </select></td>
-        </tr>
-        <tr><th>{{i_ispartof}}</th>
-          <td><input id="ispartof" type="text" value="{{ispartof}}" size="90" /></td>
-        </tr>
-        <tr><th>{{i_volume}}</th>
-          <td>
-            <input id="volume" type="text" value="{{volume}}" size="90" />
-          </td>
-        </tr>
-        <tr><th>{{i_issue}}</th>
-          <td>
-            <input id="issue" type="text" value="{{issue}}" size="90" />
-          </td>
-        </tr>
-        <tr><th>{{i_pages}}</th>
-          <td>
-            <input id="pages" type="text" value="{{spage}}{{#epage}}–{{epage}}{{/epage}}" size="90" />
-          </td>
-        </tr>
-        <tr><th>{{i_publisher}}</th>
-          <td>
-            <input id="publisher" type="text" value="{{publisher}}" size="90" />
-          </td>
-        </tr>
-        <tr><th>{{i_issued}}</th>
-          <td>
-            <input id="issued" type="text" value="{{issued}}" size="90" />
-          </td>
-        </tr>
-        <tr><th>{{i_url}}</th>
-          <td>
-            <input id="url" type="text" value="{{url}}" size="90" />
-          </td>
-        </tr>
-        <tr><th>{{i_indexed}}</th><td>
-          <label>
-            <input type="checkbox" name="indexed" value="AERES" />AERES&nbsp;
-          </label>
-          <label>
-            <input type="checkbox" name="indexed" value="ISI" />ISI&nbsp;
-          </label>
-          <label>
-            <input type="checkbox" name="indexed" value="SCOPUS" />SCOPUS&nbsp;
-          </label>
-          <label>
-            <input type="checkbox" name="indexed" value="ACM" />ACM&nbsp;
-          </label>
-          <label>
-            <input type="checkbox" name="indexed" value="DBLP" />DBLP&nbsp;
-          </label>
-          <label>
-            <input type="checkbox" name="indexed" value="INIST" />INIST&nbsp;
-          </label>
-        </td></tr>
-        <tr><th>{{i_abstract}}</th>
-          <td>
-            <textarea cols="80" rows="12" type="text" id="abstract">{{abstract}}</textarea>
-          </td>
-        </tr>
-        <tr><th>{{i_offprint}}</th>
-          <td><ul>
-           {{#formatted_attachments}}
-           <li>
-             <a href="{{url}}">{{name}}</a>
-             ({{size}} Mo)
-           </li>
-           {{/formatted_attachments}}
-         </ul></td>
-        </tr>
-      </table>
+      <input id="rev" type="hidden" value="{{_rev}}" size="90" />
+      <div>
+        <label for="creator">{{i_creator}}</label>
+        <input id="creator" type="text" value="{{formatted_creators}}" size="90" placeholder="{{i_creator_example}}" />
+      </div>
+      <div>
+        <label for="title">{{i_title}}</label>
+        <input id="title" type="text" value="{{title}}" size="90" />
+      </div>
+      <div>
+        <label for "aeresType">{{i_aeresType}}</label>
+        <select id="aeresType">
+        {{#i_aeresTypeValues}}
+          <option value="{{key}}">{{label}}</option>
+        {{/i_aeresTypeValues}}
+        </select>
+      </div>
+      <div>
+        <label for="ispartof">{{i_ispartof}}</label>
+        <input id="ispartof" type="text" value="{{ispartof}}" size="90" />
+      </div>
+      <div>
+        <label for="volume">{{i_volume}}</label>
+        <input id="volume" type="text" value="{{volume}}" size="90" />
+      </div>
+      <div>
+        <label for="issue">{{i_issue}}</label>
+        <input id="issue" type="text" value="{{issue}}" size="90" />
+      </div>
+      <div>
+        <label for="pages">{{i_pages}}</label>
+        <input id="pages" type="text" value="{{spage}}{{#epage}}–{{epage}}{{/epage}}" size="90" />
+      </div>
+      <div>
+        <label for="publisher">{{i_publisher}}</label>
+        <input id="publisher" type="text" value="{{publisher}}" size="90" />
+      </div>
+      <div>
+        <label for="issued">{{i_issued}}</label>
+        <input id="issued" type="text" value="{{issued}}" size="90" />
+      </div>
+      <div>
+        <label for="url">{{i_url}}</label>
+        <input id="url" type="text" value="{{url}}" size="90" />
+      </div>
+      <div>
+        <label for="indexed">{{i_indexed}}</label>
+        <input type="checkbox" name="indexed" value="AERES" />AERES&nbsp;
+        <input type="checkbox" name="indexed" value="ISI" />ISI&nbsp;
+        <input type="checkbox" name="indexed" value="SCOPUS" />SCOPUS&nbsp;
+        <input type="checkbox" name="indexed" value="ACM" />ACM&nbsp;
+        <input type="checkbox" name="indexed" value="DBLP" />DBLP&nbsp;
+        <input type="checkbox" name="indexed" value="INIST" />INIST&nbsp;
+      </div>
+      <div>
+        <label for="abstract">{{i_abstract}}</label>
+        <textarea cols="80" rows="12" type="text" id="abstract">{{abstract}}</textarea>
+      </div>
+      <div>
+        <label>{{i_offprint}}</label>
+        <ul>
+          {{#formatted_attachments}}
+          <li><a href="{{{url}}}">{{name}}</a> ({{size}} Mo)</li>
+          {{/formatted_attachments}}
+        </ul>
+      </div>
     </form>
     <form id="footer" class="menu" enctype="multipart/form-data" method="post">
       <button type="button" onclick="fromBibtex()">{{i_import}}...</button>

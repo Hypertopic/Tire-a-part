@@ -42,14 +42,18 @@ body {
   font-size: 80%;
 }
 
-th {
-  vertical-align: top;
+form label {
   text-align: right;
+  float: left;
+  width: 15%;
   color: gray;
+  margin: 0 5px 0 0;
 }
 
-td {
-  vertical-align: top;
-  text-align: left;
+form ul {
+  float: left;
+  margin: 0;
+  padding: 0 20;
 }
+
 

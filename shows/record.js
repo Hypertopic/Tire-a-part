@@ -80,6 +80,7 @@ function(o, req) {
     identifiers: getIdentifiers(req.headers.Host, req.path, o._attachments),
     formatted_attachments: formatAttachments(o._attachments, o._id),
     raw_attachments: (o._attachments)?JSON.stringify(o._attachments):"{}",
+    has_content: o.abstract || o._attachments,
     i18n: localized()
   });
 }

@@ -64,34 +64,46 @@
         <div class="label">{{i_title}}</div>
         <div>{{title}}</div>
       </div>
+      {{#ispartof}}
       <div>
         <div class="label">{{i_ispartof}}</div>
         <div>{{ispartof}}</div>
       </div>
+      {{/ispartof}}
+      {{#volume}}
       <div>
         <div class="label">{{i_volume}}</div>
         <div>{{volume}}</div>
       </div>
+      {{/volume}}
+      {{#issue}}
       <div>
         <div class="label">{{i_issue}}</div>
         <div>{{issue}}</div>
       </div>
+      {{/issue}}
+      {{#spage}}
       <div>
         <div class="label">{{i_pages}}</div>
         <div>{{spage}}{{#epage}}–{{epage}}{{/epage}}</div>
       </div>
+      {{/spage}}
+      {{#publisher}}
       <div>
         <div class="label">{{i_publisher}}</div>
         <div>{{publisher}}</div>
       </div>
+      {{/publisher}}
       <div>
         <div class="label">{{i_issued}}</div>
         <div>{{issued}}</div>
       </div>
+      {{#url}}
       <div>
         <div class="label">{{i_url}}</div>
         <div><a href="{{url}}">{{url}}</a></div>
       </div>
+      {{/url}}
       <div>
         <div class="label">{{i_indexed}}</div>
         <div>
@@ -100,10 +112,12 @@
         {{/raw_indexed}}
         </div>
       </div>
+      {{#abstract}}
       <div>
         <div class="label">{{i_abstract}}</div>
         <div>{{abstract}}</div>
       </div>
+      {{/abstract}}
       <div>
         <div class="label">{{i_offprint}}</div>
         <div>

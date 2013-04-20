@@ -96,6 +96,17 @@
     if ($("#creator").val().indexOf(".")!=-1) {
       notify("ko", "{{i_creator_abbreviation}}");
     }
+    switch ($("#aeresType").val()) {
+      case "ACL":
+      case "ACLN":
+      case "ASCL":
+      case "ACTI":
+      case "ACTN":
+      case "INV":
+      case "COM":
+      case "AFF":
+        if ($("#ispartof").val()=="") notify("ko", "{{i_ispartof_empty}}");
+    }
   }
 
   function erase() {

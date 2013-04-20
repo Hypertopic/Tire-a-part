@@ -43,9 +43,11 @@
     $("#aeresType").val("{{aeresType}}");
     $("[name=indexed]").val({{{indexed}}});
     setSample($("#aeresType").val());
-    validate();
+    if ($("#title").val()) validate();
     $("#aeresType").on("change", function() {
       setSample($(this).val());
+      $("#console").empty();
+      validate();
     });
   });
 	

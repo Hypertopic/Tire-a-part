@@ -42,18 +42,20 @@ body {
   font-size: 80%;
 }
 
-#content label {
-  text-align: right;
-  float: left;
-  width: 15%;
-  color: gray;
-  margin: 0 5px 0 0;
+#content>div {
+  display: table-row;
 }
 
-form ul {
-  float: left;
-  margin: 0;
+#content label, .label {
+  display: table-cell;
+  text-align: right;
+  vertical-align: top;
+  width: 20%;
+  color: gray;
+  padding: 0 5px 5px 0;
+}
+
+#content ul {
   padding: 0 20;
 }
-
 

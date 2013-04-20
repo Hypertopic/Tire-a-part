@@ -50,63 +50,70 @@
 <body>
   <div id="container">
     <div class="menu">
-      <a onclick="goBack()">{{i_back}}</span>
+      <a onclick="goBack()">{{i_back}}</a>
       <a id="help" href="https://github.com/benel/Tire-a-part/wiki/Référencement-des-revues-et-colloques">?&nbsp;</a>
     </div>
     <div id="content">
-      <table>
-        <tr><th>{{i_creator}}</th>
-          <td>
-          {{#creators}}
-            <a href="./?by={{.}}">{{.}}</a>,
-          {{/creators}}
-          </td>
-        </tr>
-        <tr><th>{{i_title}}</th>
-          <td>{{title}}</td>
-        </tr>
-        <tr><th>{{i_ispartof}}</th>
-          <td>{{ispartof}}</td>
-        </tr>
-        <tr><th>{{i_volume}}</th>
-          <td>{{volume}}</td>
-        </tr>
-        <tr><th>{{i_issue}}</th>
-          <td>{{issue}}</td>
-        </tr>
-        <tr><th>{{i_pages}}</th>
-          <td>{{spage}}{{#epage}}–{{epage}}{{/epage}}</td>
-        </tr>
-        <tr><th>{{i_publisher}}</th>
-          <td>{{publisher}}</td>
-        </tr>
-        <tr><th>{{i_issued}}</th>
-          <td>{{issued}}</td>
-        </tr>
-        <tr><th>{{i_url}}</th>
-          <td><a href="{{url}}">{{url}}</a></td>
-        </tr>
-        <tr><th>{{i_indexed}}</th>
-          <td>
-          {{#raw_indexed}}
-            <img height="20" src="./included/{{.}}.png" title="{{i_referenced}} {{.}}" />
-          {{/raw_indexed}}
-          </td>
-        </tr>
-        <tr><th>{{i_abstract}}</th>
-          <td>{{abstract}}</td>
-        </tr>
-        <tr><th>{{i_offprint}}</th>
-          <td><ul>
-           {{#formatted_attachments}}
-           <li>
-             <a href="{{url}}">{{name}}</a>
-             ({{size}} Mo)
-           </li>
-           {{/formatted_attachments}}
-         </ul></td>
-        </tr>
-      </table>
+      <div>
+        <div class="label">{{i_creator}}</div>
+        <div>
+          {{#creators}}<a href="./?by={{.}}">{{.}}</a>, {{/creators}}
+        </div>
+      </div>
+      <div>
+        <div class="label">{{i_title}}</div>
+        <div>{{title}}</div>
+      </div>
+      <div>
+        <div class="label">{{i_ispartof}}</div>
+        <div>{{ispartof}}</div>
+      </div>
+      <div>
+        <div class="label">{{i_volume}}</div>
+        <div>{{volume}}</div>
+      </div>
+      <div>
+        <div class="label">{{i_issue}}</div>
+        <div>{{issue}}</div>
+      </div>
+      <div>
+        <div class="label">{{i_pages}}</div>
+        <div>{{spage}}{{#epage}}–{{epage}}{{/epage}}</div>
+      </div>
+      <div>
+        <div class="label">{{i_publisher}}</div>
+        <div>{{publisher}}</div>
+      </div>
+      <div>
+        <div class="label">{{i_issued}}</div>
+        <div>{{issued}}</div>
+      </div>
+      <div>
+        <div class="label">{{i_url}}</div>
+        <div><a href="{{url}}">{{url}}</a></div>
+      </div>
+      <div>
+        <div class="label">{{i_indexed}}</div>
+        <div>
+        {{#raw_indexed}}
+          <img height="20" src="./included/{{.}}.png" title="{{i_referenced}} {{.}}" />
+        {{/raw_indexed}}
+        </div>
+      </div>
+      <div>
+        <div class="label">{{i_abstract}}</div>
+        <div>{{abstract}}</div>
+      </div>
+      <div>
+        <div class="label">{{i_offprint}}</div>
+        <div>
+          <ul>
+             {{#formatted_attachments}}
+              <li><a href="{{url}}">{{name}}</a> ({{size}} Mo)</li>
+             {{/formatted_attachments}}
+          </ul>
+        </div>
+      </div>
     </div>
     <form id="footer" class="menu" enctype="multipart/form-data" method="post">
       <button type="button" onclick="toBibtex()">{{i_export}}</button>      

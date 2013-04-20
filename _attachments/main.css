@@ -59,3 +59,24 @@ body {
   padding: 0 20;
 }
 
+#console {
+  text-align: center;
+}
+
+
+.ok {
+  color: green;
+}
+
+.ko {
+  color: red;
+}
+
+.ok:before {
+  content: "\2713";
+}
+
+.ko:before {
+  content: "\26a0";
+}
+

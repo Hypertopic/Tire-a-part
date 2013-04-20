@@ -49,6 +49,7 @@
   });
 	
   function save() {
+    $("#console").empty();
     var pages = $("#pages").val().trim().split(/[-–]{1,2}/);
     var data = {
       "_attachments": {{{raw_attachments}}},
@@ -78,8 +79,13 @@
       success: function(result) {
         $("#rev").val(result.rev);
         $("#upload_rev").val(result.rev);
+        notify("ok", "{{i_saved}}");
       }
     });
+  }
+
+  function notify(type, message) {
+    $("#console").append('<div class="' + type + '"> ' + message + '</div>');
   }
 
   function erase() {
@@ -282,6 +288,7 @@
           {{/formatted_attachments}}
         </ul>
       </div>
+      <p id="console" />
     </form>
     <form id="footer" class="menu" enctype="multipart/form-data" method="post">
       <button type="button" onclick="fromBibtex()">{{i_import}}...</button>

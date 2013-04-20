@@ -102,10 +102,11 @@
       case "ASCL":
       case "ACTI":
       case "ACTN":
+        if (!$("#pages").val()) notify("ko", "{{i_pages_empty}}");
       case "INV":
       case "COM":
       case "AFF":
-        if ($("#ispartof").val()=="") notify("ko", "{{i_ispartof_empty}}");
+        if (!$("#ispartof").val()) notify("ko", "{{i_ispartof_empty}}");
     }
   }
 

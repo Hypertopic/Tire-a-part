@@ -114,6 +114,7 @@
       case "ACL":
       case "ACTI":
         if (!$("input[name='indexed']:checked").val()) notify("ko", "{{i_indexed_empty}}");
+        if (!$("#publisher").val()) notify("ko", "{{i_publisher_empty}}");
     }
   }
 

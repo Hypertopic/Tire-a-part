@@ -96,7 +96,8 @@
     if ($("#creator").val().indexOf(".")!=-1) {
       notify("ko", "{{i_creator_abbreviation}}");
     }
-    switch ($("#aeresType").val()) {
+    var type = $("#aeresType").val();
+    switch (type) {
       case "ACL":
       case "ACLN":
       case "ASCL":
@@ -108,6 +109,11 @@
       case "COM":
       case "AFF":
         if (!$("#ispartof").val()) notify("ko", "{{i_ispartof_empty}}");
+    }
+    switch (type) {
+      case "ACL":
+      case "ACTI":
+        if (!$("input[name='indexed']:checked").val()) notify("ko", "{{i_indexed_empty}}");
     }
   }
 

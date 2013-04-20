@@ -42,7 +42,7 @@ body {
   font-size: 80%;
 }
 
-form label {
+#content label {
   text-align: right;
   float: left;
   width: 15%;

@@ -116,6 +116,7 @@
         if (!$("input[name='indexed']:checked").val()) notify("ko", "{{i_indexed_empty}}");
         if (!$("#publisher").val()) notify("ko", "{{i_publisher_empty}}");
     }
+    if (!$("#issued").val()) notify("ko", "{{i_issued_empty}}");
   }
 
   function erase() {

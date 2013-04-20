@@ -119,6 +119,9 @@
         if (!$("#publisher").val()) notify("ko", "{{i_publisher_empty}}");
     }
     if (!$("#issued").val()) notify("ko", "{{i_issued_empty}}");
+    if ({{{raw_attachments}}}!={}) {
+      if ($("#publisher").val() && !$("#url").val()) notify("ko", "{{i_url_empty}}");
+    }
   }
 
   function erase() {

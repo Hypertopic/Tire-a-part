@@ -43,6 +43,7 @@
     $("#aeresType").val("{{aeresType}}");
     $("[name=indexed]").val({{{indexed}}});
     setSample($("#aeresType").val());
+    validate();
     $("#aeresType").on("change", function() {
       setSample($(this).val());
     });
@@ -80,12 +81,21 @@
         $("#rev").val(result.rev);
         $("#upload_rev").val(result.rev);
         notify("ok", "{{i_saved}}");
+      },
+      complete: function(status) {
+        validate();
       }
     });
   }
 
   function notify(type, message) {
     $("#console").append('<div class="' + type + '"> ' + message + '</div>');
+  }
+
+  function validate() {
+    if ($("#creator").val().indexOf(".")!=-1) {
+      notify("ko", "{{i_creator_abbreviation}}");
+    }
   }
 
   function erase() {

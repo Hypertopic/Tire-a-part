@@ -96,7 +96,7 @@
     "i_volume_empty": "Pour les articles de revue, précisez le volume.",
     "i_indexed_empty": "Pour les articles 'répertoriés', précisez dans quelles bases de données ils le sont.",
     "i_publisher_empty": "Pour les articles 'répertoriés', précisez l'éditeur qui les publie.",
-    "i_issued_empty": "Tant que l'année n'est pas précisée, la production est considérée comme non publiée : elle n'apparaîtra pas dans la liste. Pensez à la garder dans dans vos signets pour la modifier plus tard.",
+    "i_issued_empty": "Tant que l'année n'est pas précisée, la production est considérée comme non publiée : elle n'apparaîtra pas dans la liste. Pensez à la garder dans vos signets pour la modifier plus tard.",
     "i_url_empty": "En contre-partie de la mise en ligne d'un tiré à part, il est recommandé de mentionner l'URL de la publication chez l'éditeur.",
     "i_content_none": "Pour être référencée par Google Scholar, la notice doit contenir un tiré à part ou un résumé.",
     "i_references": "Publications de",

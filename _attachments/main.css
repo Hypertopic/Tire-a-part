@@ -55,7 +55,7 @@ body {
   padding: 0 5px 5px 0;
 }
 
-#content ul {
+#content ul:not(.chzn-choices) {
   padding: 0 20;
 }
 

@@ -2,6 +2,7 @@ function(o, req) {
   // !json templates.record_html
   // !json templates.record_html_form
   // !json templates.record_bibtex
+  // !json settings
   // !code lib/mustache.js
   // !code localization.js
 
@@ -67,6 +68,7 @@ function(o, req) {
     aeresType: o.aeresType,
     raw_indexed: o.indexed,
     indexed: JSON.stringify(o.indexed),
+    affiliation: JSON.stringify(o.affiliation),
     creators: o["DC.creator"],
     title: o["DC.title"],
     ispartof: o["DC.relation.ispartof"],
@@ -81,6 +83,7 @@ function(o, req) {
     formatted_attachments: formatAttachments(o._attachments, o._id),
     raw_attachments: (o._attachments)?JSON.stringify(o._attachments):"{}",
     has_content: o.abstract || o._attachments,
+    settings: settings,
     i18n: localized()
   });
 }

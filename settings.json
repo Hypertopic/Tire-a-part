@@ -1,0 +1,30 @@
+{
+  "groups": [
+    "CREIDD",
+    "ERA",
+    "GAMMA3",
+    "LASMIS",
+    "LM2S",
+    "LNIO",
+    "LOSI",
+    "TECH-CICO"
+  ], "programs": [
+    "Résilience et gestion de crise",
+    "Surveillance et sûreté des grands systèmes",
+    "Cyber-sécurité",
+    "E-santé",
+    "Éco-conception"
+  ], "platforms": [
+    "NANOMAT",
+    "NUM3D",
+    "CAPSEC"
+  ], "partners": [
+    "Europe",
+    "Asie",
+    "Afrique",
+    "Amérique du Nord",
+    "Amérique du Sud",
+    "Océanie"
+  ]
+}
+

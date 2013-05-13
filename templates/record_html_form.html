@@ -3,11 +3,12 @@
 <head>
   <title>{{i_record}}</title>
   <link rel="stylesheet" type="text/css" href="included/lib/jquery-ui-1.8.23.custom.css" />
+  <link rel="stylesheet" type="text/css" href="included/lib/chosen.css" />
   <link rel="stylesheet" type="text/css" href="included/main.css" />
   <meta charset="utf-8" />
   <script src="included/lib/jquery-1.8.0.min.js"></script>
   <script src="included/lib/jquery-ui-1.8.23.custom.min.js"></script>
-  <script src="included/lib/jquery-form-3.19.js"></script>
+  <script src="included/lib/chosen.jquery.min.js"></script>
   <script type="text/javascript">
 
   const bibtexType = {
@@ -42,6 +43,7 @@
   $(document).ready(function() {
     $("#aeresType").val("{{aeresType}}");
     $("[name=indexed]").val({{{indexed}}});
+    $("#affiliation").val({{{affiliation}}});
     setSample($("#aeresType").val());
     if ($("#title").val()) validate();
     $("#aeresType").on("change", function() {
@@ -49,6 +51,7 @@
       $("#console").empty();
       validate();
     });
+    $("select[multiple]").chosen({width:"100%"});
   });
 	
   function save() {
@@ -71,7 +74,8 @@
         return $(this).val();
       }).get(),
       "aeresType": $("#aeresType").val(),
-      "abstract": $("#abstract").val().trim()
+      "abstract": $("#abstract").val().trim(),
+      "affiliation": $("#affiliation").val()
     };
     $.ajax({
       url: "",
@@ -317,6 +321,33 @@
       <div>
         <label for="abstract">{{i_abstract}}</label>
         <textarea cols="80" rows="12" type="text" id="abstract">{{abstract}}</textarea>
+      </div>
+      <div>
+        <label>{{i_affiliation}}</label>
+        <select id="affiliation" multiple data-placeholder="{{i_affiliation_example}}">
+          {{#settings}}
+          <optgroup label="{{i_research_groups}}">
+            {{#groups}}
+            <option>{{.}}</option>
+            {{/groups}}
+          </optgroup>
+          <optgroup label="{{i_research_programs}}">
+            {{#programs}}
+            <option>{{.}}</option>
+            {{/programs}}
+          </optgroup>
+          <optgroup label="{{i_research_platforms}}">
+            {{#platforms}}
+            <option>{{.}}</option>
+            {{/platforms}}
+          </optgroup>
+          <optgroup label="{{i_research_partners}}">
+            {{#partners}}
+            <option>{{.}}</option>
+            {{/partners}}
+          </optgroup>
+          {{/settings}}
+        </select>
       </div>
       <div>
         <label>{{i_offprint}}</label>

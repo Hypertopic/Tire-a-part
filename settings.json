@@ -25,6 +25,10 @@
     "Amérique du Nord",
     "Amérique du Sud",
     "Océanie"
-  ]
+  ],
+  "order": {
+    "ACL": 13, "ACLN": 12, "ASCL": 11, "BRE": 10, "INV": 9, "ACTI": 8, "ACTN": 7,
+    "COM": 6, "AFF": 5, "OS": 4, "OV": 3, "DO":2 , "TH":1, "AP": 0
+  }
 }
 

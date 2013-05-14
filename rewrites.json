@@ -24,10 +24,11 @@
   }, {
     "method": "GET",
     "from": "",
-    "to": "_list/activity/year",
+    "to": "_list/activity/activity",
     "query": {
       "descending": "true",
-      "endkey": [":since"],
+      "startkey": [":by",{}],
+      "endkey": [":by"],
       "include_docs": "true"
     }
   }, {

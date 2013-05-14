@@ -14,21 +14,24 @@ function(head, req) {
   }
   headers["Content-Type"] = "text/" + contentType + ";charset=utf-8";
   start({headers: headers});
-  const order = {
-    ACL: 0, ACLN: 1, ASCL: 2, BRE: 3, INV: 4, ACTI: 5, ACTN: 6,
-    COM: 7, AFF: 8, OS: 9, OV: 10, DO:11 , TH:12, AP: 13
-  };
+  const typeLabels = localized().i_aeresTypeValues;
   var types = [];
-  for each (var t in localized().i_aeresTypeValues) {
-    types.push({
-      label: t.label,
-      papers:[]
-    });
-  }
+  var lastType = null;
+  var typeData = null;
   while (row = getRow()) {
     var o = row.doc;
-    if (!req.query.by || o['DC.creator'].indexOf(req.query.by)>=0) {
-      types[order[o.aeresType]].papers.push({
+    if (!req.query.since || req.query.since<=o['DC.issued']) {
+      if (o.aeresType != lastType) {
+        if (lastType) {
+          types.push(typeData);
+        }
+        lastType = o.aeresType;
+        typeData = {
+          label: typeLabels[typeLabels.length-1-row.key[1]].label,
+          papers: []
+        };
+      }
+      typeData.papers.push({
         _id: o._id,
         creators: o["DC.creator"],
         title: o["DC.title"],
@@ -44,9 +47,9 @@ function(head, req) {
       });
     }
   }
-  types = types.filter(function(t) {
-    return t.papers.length>0;
-  });
+  if (typeData) {
+    types.push(typeData);
+  }
   return Mustache.to_html(templates["activity_" + contentType], {
     query: req.query,
     i18n: localized(),

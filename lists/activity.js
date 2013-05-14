@@ -3,6 +3,7 @@ function(head, req) {
   // !json templates.activity_plain
   // !code lib/mustache.js
   // !code localization.js
+  // !json settings
 
   var contentType;
   var headers = {};
@@ -53,6 +54,7 @@ function(head, req) {
   return Mustache.to_html(templates["activity_" + contentType], {
     query: req.query,
     i18n: localized(),
+    settings: settings,
     types: types
   });
 }

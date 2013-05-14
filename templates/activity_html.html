@@ -17,12 +17,12 @@
           if (o.key[0]=="issued" || o.value>1) {
             var key = (o.key[2]?o.key[2]+" ":"") + o.key[1];
             $("#" + o.key[0]).append(
-              "<option"
-              + ((key==SINCE || key==BY)?" selected":"")
-              + ">" + key + "</option>"
+              "<option>" + key + "</option>"
             );
           }
         });
+        $("[name=by]").val(BY);
+        $("[name=since]").val(SINCE);
       }
     });
   });
@@ -49,8 +49,19 @@
   <div id="container">
     <form class="menu" method="get">
       <label>{{i_references}}</label>&nbsp;
-      <select id="creator" name="by">
+      <select name="by">
         <option value="">{{i_all}}</option>
+        <optgroup label="{{i_research_groups}}">
+          {{#settings.groups}}
+            <option>{{.}}</option>
+          {{/settings.groups}}
+        </optgroup>
+        <optgroup label="{{i_research_programs}}">
+          {{#settings.programs}}
+            <option>{{.}}</option>
+          {{/settings.programs}}
+        </optgroup>
+        <optgroup id="creator" label="{{i_creator}}" />
       </select>&nbsp;
       <label>{{i_since}}</label>&nbsp;
       <select id="issued" name="since"></select>&nbsp;

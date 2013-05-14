@@ -9,5 +9,8 @@ function(o) {
     for each (var creator in o['DC.creator']) {
       emitFilteredAndSorted(creator, o);
     }
+    for each (var a in o.affiliation) {
+      emitFilteredAndSorted(a, o);
+    }
   }
 }

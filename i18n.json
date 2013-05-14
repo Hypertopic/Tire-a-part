@@ -22,7 +22,7 @@
       {"key":"ACTN","label":"Unindexed proceedings articles"},
       {"key":"COM","label":"Conference talks with no proceedings"},
       {"key":"AFF","label":"Conference posters"},
-      {"key":"OS","label":"Scientific books (or chapters)}"},
+      {"key":"OS","label":"Scientific books (or chapters)"},
       {"key":"OV","label":"Popularization books (or chapters)"},
       {"key":"DO","label":"Books or journal issues directions"},
       {"key":"TH","label":"PhD and habilitation theses"},

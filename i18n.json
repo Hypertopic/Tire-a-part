@@ -62,8 +62,8 @@
     "i_cancel": "Cancel",
     "i_modify": "Modify",
     "i_done": "Done",
-    "i_record": "Reference (record)",
-    "i_records": "References (records)"
+    "i_record": "Record",
+    "i_records": "References"
   },
   "fr": {
     "i_creator": "Auteurs",
@@ -128,7 +128,7 @@
     "i_cancel": "Annuler",
     "i_modify": "Modifier",
     "i_done": "Terminé",
-    "i_record": "Publication (notice)",
-    "i_records": "Publications (reférences)"
+    "i_record": "Notice",
+    "i_records": "Publications"
   }
 }

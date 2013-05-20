@@ -312,12 +312,9 @@
       </div>
       <div>
         <label for="indexed">{{i_indexed}}</label>
-        <input type="checkbox" name="indexed" value="ISI" />ISI&nbsp;
-        <input type="checkbox" name="indexed" value="SCOPUS" />SCOPUS&nbsp;
-        <input type="checkbox" name="indexed" value="ACM" />ACM&nbsp;
-        <input type="checkbox" name="indexed" value="DBLP" />DBLP&nbsp;
-        <input type="checkbox" name="indexed" value="INIST" />INIST&nbsp;
-        <input type="checkbox" name="indexed" value="AERES" />AERES-SHS&nbsp;
+        {{#settings.indexers}}
+          <input type="checkbox" name="indexed" value="{{.}}" />{{.}}&nbsp;
+        {{/settings.indexers}}
         <a href="https://github.com/benel/Tire-a-part/wiki/Référencement-des-revues-et-colloques" 
           class="ui-icon ui-icon-info info">
         </a>

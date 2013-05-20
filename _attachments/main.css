@@ -55,6 +55,14 @@ body {
   padding: 0 5px 5px 0;
 }
 
+.ui-icon {
+  display: inline-block;
+}
+
+.ui-icon.info {
+  background-image: url(lib/images/ui-icons_2e83ff_256x240.png);
+}
+
 #content ul:not(.chzn-choices) {
   padding: 0 20;
 }

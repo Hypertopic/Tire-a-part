@@ -2,10 +2,14 @@
 {{#i18n}}
 <head>
   <link rel="stylesheet" type="text/css" href="included/main.css" />
+  <link rel="stylesheet" type="text/css" href="included/lib/chosen.css" />
   <script src="script/jquery.js"></script>
+  <script src="included/lib/chosen.jquery.min.js"></script>
   <script type="text/javascript">
 
   $(document).ready(function() {
+    $("[name=by]").chosen();
+    $("[name=since]").chosen({disable_search_threshold: 999, width: "7%"});
     $.ajax({
       url: "attribute",
       type: "GET",
@@ -23,6 +27,11 @@
         });
         $("[name=by]").val(BY);
         $("[name=since]").val(SINCE);
+        $("select")
+          .trigger("liszt:updated")
+          .change(function() {
+            $("#header").submit();
+          });
       }
     });
   });
@@ -47,7 +56,7 @@
 </head>
 <body>
   <div id="container">
-    <form class="menu" method="get">
+    <form id="header" class="menu" method="get">
       <label>{{i_references}}</label>&nbsp;
       <select name="by">
         <option value="">{{i_all}}</option>
@@ -65,7 +74,6 @@
       </select>&nbsp;
       <label>{{i_since}}</label>&nbsp;
       <select id="issued" name="since"></select>&nbsp;
-      <button type="submit">{{i_filter}}</button>
       <a id="help" href="https://github.com/benel/Tire-a-part/wiki">?&nbsp;</a>
     </form>
     <div id="content">

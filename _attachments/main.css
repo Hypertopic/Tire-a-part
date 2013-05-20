@@ -19,8 +19,16 @@ body {
   position: fixed;
   width: 100%;
   background-color: black;
-  color: white;
   padding: 2px 8px;
+}
+
+#header {
+  padding: 4px;
+}
+
+.menu label {
+  color: white;
+  vertical-align: middle;
 }
 
 .menu a {

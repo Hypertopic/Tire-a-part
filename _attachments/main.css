@@ -23,7 +23,7 @@ body {
 }
 
 #header {
-  padding: 4px;
+  padding: 4px 8px;
 }
 
 .menu label {
@@ -35,6 +35,7 @@ body {
   text-decoration: none;
   color: white;
   cursor: pointer;
+  padding-top: 4px;
 }
 
 #content {

@@ -27,8 +27,9 @@
     "Océanie"
   ],
   "order": {
-    "ACL": 13, "ACLN": 12, "ASCL": 11, "BRE": 10, "INV": 9, "ACTI": 8, "ACTN": 7,
-    "COM": 6, "AFF": 5, "OS": 4, "OV": 3, "DO":2 , "TH":1, "AP": 0
+    "ACL": 15, "ACLN": 14, "ASCL": 13, "BRE": 12, "INV": 11, "ACTI": 10, "ACTN": 9,
+    "COM": 8, "AFF": 7, "OS": 6, "OV": 5, "DO":4 , "TH-H":3, "TH-D":2, "TH-M":1,
+    "AP": 0
   },
   "indexers": [
     "ISI",

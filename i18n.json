@@ -25,7 +25,9 @@
       {"key":"OS","label":"Scientific books (or chapters)"},
       {"key":"OV","label":"Popularization books (or chapters)"},
       {"key":"DO","label":"Books or journal issues directions"},
-      {"key":"TH","label":"PhD and habilitation theses"},
+      {"key":"TH-H","label":"Habilitation theses"},
+      {"key":"TH-D","label":"PhD theses"},
+      {"key":"TH-M","label":"Master theses"},
       {"key":"AP","label":"Other productions"}
     ],
     "i_abstract": "Abstract",
@@ -90,7 +92,9 @@
       {"key":"OS","label":"Ouvrages scientifiques (ou chapitres de ces ouvrages)"},
       {"key":"OV","label":"Ouvrages de vulgarisation (ou chapitres de ces ouvrages)"},
       {"key":"DO","label":"Directions d'ouvrages ou de revues"},
-      {"key":"TH","label":"Thèses de doctorat ou d'habilitation à diriger des recherches"},
+      {"key":"TH-H","label":"Mémoires d'habilitation à diriger des recherches"},
+      {"key":"TH-D","label":"Thèses de doctorat"},
+      {"key":"TH-M","label":"Mémoires de master"},
       {"key":"AP","label":"Autres productions"}
     ],
     "i_abstract": "Résumé",

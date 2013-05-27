@@ -34,4 +34,18 @@ feature 'Import a record' do
     # No abstract
   end
 
+  scenario 'from SCOPUS' do
+    fill_in 'bibtex', :with => sample('scopus')
+    click_on 'Importer'
+    field('creator').should == 'F.a Merle, A.b Bénel, G.a Doyen, D.a  Gaïti'
+    field('title').should == 'Decentralized documents authoring system for decentralized teamwork matching architecture with organizational structure'
+    field('ispartof').should == 'GROUP\'12 - Proceedings of the ACM 2012 International Conference on Support Group Work'
+    field('pages').should == '117-120'
+    # No publisher
+    field('issued').should == '2012'
+    field('url').should == 'http://dx.doi.org/10.1145/2389176.2389195'
+    field('abstract').should == 'While systems for collaborative distributed works focus on enhancing distributed work group productivity, little attention has been paid to their architecture. In fact, most of these systems rely on centralized ones for both user communications and data hosting. These architectures raise issues about the administrative control, maintenance and management of the central entity. In this paper, we present a new architecture based on peer-to-peer (P2P) model driven by user relationship. In our architecture, users choose the trusted co-workers they are connected with. Thus, only the most trusted users manage to obtain a high number of connections which grant them a relative authority inside the system. Copyright © 2012 by the Association for Computing Machinery, Inc. (ACM).'
+  end
+
+
 end

@@ -191,7 +191,9 @@
           $("#pages").val(bibtex.pages);
           $("#publisher").val(bibtex.publisher);
           $("#issued").val(bibtex.year);
-          $("#url").val(bibtex.ee);
+          $("#url").val(
+            bibtex.url? bibtex.url : bibtex.ee
+          );
           $("#abstract").val(bibtex.abstract);
           $(this).dialog("close");
         },
@@ -252,6 +254,7 @@
         for (a in value) {
           value[a] = value[a].split(/, */).reverse().join(' ');
         }
+        value = value.join(', ');
       }
       return value;
     });

@@ -11,26 +11,26 @@ feature 'Import a record' do
   scenario 'from ACM' do
     fill_in 'bibtex', :with => sample('acm')
     in_dialog.click_button 'Importer'
-    page.should have_field 'creator', :with => 'Frédéric Merle, Aurélien Bénel, Guillaume Doyen, Dominique Gaïti'
-    page.should have_field 'title', :with => 'Decentralized documents authoring system for decentralized teamwork: matching architecture with organizational structure'
-    page.should have_field 'ispartof', :with => 'Proceedings of the 17th ACM international conference on Supporting group work'
-    page.should have_field 'pages', :with => '117--120'
-    page.should have_field 'publisher', :with => 'ACM'
-    page.should have_field 'issued', :with => '2012'
-    page.should have_field 'url', :with => 'http://doi.acm.org/10.1145/2389176.2389195'
+    field('creator').should == 'Frédéric Merle, Aurélien Bénel, Guillaume Doyen, Dominique Gaïti'
+    field('title').should == 'Decentralized documents authoring system for decentralized teamwork: matching architecture with organizational structure'
+    field('ispartof').should == 'Proceedings of the 17th ACM international conference on Supporting group work'
+    field('pages').should == '117--120'
+    field('publisher').should == 'ACM'
+    field('issued').should == '2012'
+    field('url').should == 'http://dx.doi.org/10.1145/2389176.2389195'
     # No abstract
   end
 
   scenario 'from DBLP' do
     fill_in 'bibtex', :with => sample('dblp')
     click_on 'Importer'
-    page.should have_field 'creator', :with => 'Frédéric Merle, Aurélien Bénel, Guillaume Doyen, Dominique Gaïti'
-    page.should have_field 'title', :with => 'Decentralized documents authoring system for decentralized teamwork: matching architecture with organizational structure'
-    page.should have_field 'ispartof', :with => 'GROUP'
-    page.should have_field 'pages', :with => '117-120'
-    #page.should have_field 'publisher', :with => 'ACM'
-    page.should have_field 'issued', :with => '2012'
-    page.should have_field 'url', :with => 'http://doi.acm.org/10.1145/2389176.2389195'
+    field('creator').should == 'Frédéric Merle, Aurélien Bénel, Guillaume Doyen, Dominique Gaïti'
+    field('title').should == 'Decentralized documents authoring system for decentralized teamwork: matching architecture with organizational structure'
+    field('ispartof').should == 'GROUP'
+    field('pages').should == '117-120'
+    #field('publisher').should == 'ACM'
+    field('issued').should == '2012'
+    field('url').should == 'http://doi.acm.org/10.1145/2389176.2389195'
     # No abstract
   end
 

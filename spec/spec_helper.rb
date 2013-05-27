@@ -21,3 +21,8 @@ end
 def sample(name)
   IO.read("spec/samples/#{name}.bib")
 end
+
+def field(id)
+  find_by_id(id).value
+end 
+

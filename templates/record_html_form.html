@@ -192,7 +192,9 @@
           $("#publisher").val(bibtex.publisher);
           $("#issued").val(bibtex.year);
           $("#url").val(
-            bibtex.url? bibtex.url : bibtex.ee
+            bibtex.doi? "http://dx.doi.org/" + bibtex.doi
+            : bibtex.url? bibtex.url
+            : bibtex.ee
           );
           $("#abstract").val(bibtex.abstract);
           $(this).dialog("close");

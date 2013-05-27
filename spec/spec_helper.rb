@@ -17,3 +17,7 @@ end
 def prefer_language(language)
   page.driver.header 'Accept-Language', language
 end
+
+def sample(name)
+  IO.read("spec/samples/#{name}.bib")
+end

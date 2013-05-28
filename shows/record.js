@@ -69,6 +69,9 @@ function(o, req) {
     raw_indexed: o.indexed,
     indexed: JSON.stringify(o.indexed),
     affiliation: JSON.stringify(o.affiliation),
+    raw_affiliation: o.affiliation.filter(function(a) {
+      return settings.groups.indexOf(a)>=0 || settings.programs.indexOf(a)>=0;
+    }),
     creators: o["DC.creator"],
     title: o["DC.title"],
     ispartof: o["DC.relation.ispartof"],

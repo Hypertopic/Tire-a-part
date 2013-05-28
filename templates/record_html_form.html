@@ -189,7 +189,9 @@
           $("#volume").val(bibtex.volume);
           $("#issue").val(bibtex.number);
           $("#pages").val(bibtex.pages);
-          $("#publisher").val(bibtex.publisher);
+          $("#publisher").val(
+            bibtex.publisher? bibtex.publisher : bibtex.organization
+          );
           $("#issued").val(bibtex.year);
           $("#url").val(
             bibtex.doi? "http://dx.doi.org/" + bibtex.doi

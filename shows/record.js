@@ -3,8 +3,8 @@ function(o, req) {
   // !json templates.record_html_form
   // !json templates.record_bibtex
   // !json settings
-  // !code lib/mustache.js
   // !code localization.js
+  var Mustache = require("lib/mustache");
 
   function formatAttachments(attachments, paperID) {
     var result = [];
@@ -37,13 +37,16 @@ function(o, req) {
   if (!o.indexed) {
     o.indexed = [];
   }
+  if (!o.affiliation) {
+    o.affiliation = [];
+  }
   if (req.query.bibtex=="") {
     return {
       headers: {
         "Content-Type": "application/x-bibtex",
         "Content-Disposition": "attachment;filename=record.bib"
       }, 
-      body: Mustache.to_html(templates.record_bibtex, {
+      body: Mustache.render(templates.record_bibtex, {
         type: (o.ispartof)?"inproceedings":(o.publisher)?"book":"misc",
         id: o._id,
         abstract: o.abstract,
@@ -60,7 +63,7 @@ function(o, req) {
     };
   }
   var template = "record_html" + ((req.query.form=="")?"_form":"");
-  return Mustache.to_html(templates[template], {
+  return Mustache.render(templates[template], {
     id: o._id,
     _rev: o._rev,
     url: o.url,

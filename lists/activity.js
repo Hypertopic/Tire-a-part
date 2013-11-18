@@ -1,9 +1,9 @@
 function(head, req) {
   // !json templates.activity_html
   // !json templates.activity_plain
-  // !code lib/mustache.js
   // !code localization.js
   // !json settings
+  var Mustache = require("lib/mustache");
 
   var contentType;
   var headers = {};

@@ -102,8 +102,12 @@
   }
 
   function validate() {
-    if ($("#creator").val().indexOf(".")!=-1) {
+    var creator = $("#creator").val();
+    if (creator.indexOf(".")!=-1) {
       notify("ko", "{{i_creator_abbreviation}}");
+    }
+    if (!creator.match(/^[^, ]+( [^, ]+)+(, ?[^, ]+( [^, ]+)+)*$/)) {
+      notify("ko", "{{i_creator_comma}}");
     }
     var type = $("#aeresType").val();
     switch (type) {

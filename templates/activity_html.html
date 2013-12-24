@@ -7,7 +7,7 @@
   <script src="included/lib/chosen.jquery.min.js"></script>
   <script type="text/javascript">
 
-  function toASCII(string) {
+  function normalize(string) {
     return string
       .replace(/[ÂÄÀ]/g, "A")
       .replace(/[âäà]/g, "a")
@@ -22,7 +22,8 @@
       .replace(/Ç/g, "C")
       .replace(/ç/g, "c")
       .replace(/Ñ/g, "N")
-      .replace(/ñ/g, "n");
+      .replace(/ñ/g, "n")
+      .toUpperCase();
   }
 
   $(document).ready(function() {
@@ -39,7 +40,7 @@
           if (o.key[0]=="issued" || o.value>1) {
             var key = (o.key[2]?o.key[2]+" ":"") + o.key[1];
             $("#" + o.key[0]).append(
-              '<option value="' + toASCII(key) + '">' + key + '</option>'
+              '<option value="' + normalize(key) + '">' + key + '</option>'
             );
           }
         });

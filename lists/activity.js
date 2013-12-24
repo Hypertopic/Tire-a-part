@@ -6,10 +6,10 @@ function(head, req) {
   // !json settings
   var Mustache = require("lib/mustache");
 
-  if (req.query.by && !isASCII(req.query.by)) {
+  if (req.query.by && !isNormalized(req.query.by)) {
     start({
       code: 302,
-      headers: {Location: "?by=" + toASCII(req.query.by)}
+      headers: {Location: "?by=" + normalize(req.query.by)}
     });
     return;
   }
@@ -62,7 +62,7 @@ function(head, req) {
   }
   var programs = [];
   for each (p in settings.programs) {
-    programs.push({key: toASCII(p), value: p});
+    programs.push({key: normalize(p), value: p});
   }
   return Mustache.to_html(templates["activity_" + contentType], {
     query: req.query,

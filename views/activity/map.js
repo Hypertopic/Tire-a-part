@@ -8,10 +8,10 @@ function(o) {
     emitFilteredAndSorted('', o);
     emitFilteredAndSorted(':by', o); // workaround for a rewrite bug
     for each (var creator in o['DC.creator']) {
-      emitFilteredAndSorted(toASCII(creator), o);
+      emitFilteredAndSorted(normalize(creator), o);
     }
     for each (var a in o.affiliation) {
-      emitFilteredAndSorted(toASCII(a), o);
+      emitFilteredAndSorted(normalize(a), o);
     }
   }
 }

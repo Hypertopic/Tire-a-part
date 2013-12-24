@@ -2,8 +2,17 @@ function(head, req) {
   // !json templates.activity_html
   // !json templates.activity_plain
   // !code localization.js
+  // !code lib/string.js
   // !json settings
   var Mustache = require("lib/mustache");
+
+  if (req.query.by && !isASCII(req.query.by)) {
+    start({
+      code: 302,
+      headers: {Location: "?by=" + toASCII(req.query.by)}
+    });
+    return;
+  }
 
   var contentType;
   var headers = {};
@@ -51,10 +60,15 @@ function(head, req) {
   if (typeData) {
     types.push(typeData);
   }
+  var programs = [];
+  for each (p in settings.programs) {
+    programs.push({key: toASCII(p), value: p});
+  }
   return Mustache.to_html(templates["activity_" + contentType], {
     query: req.query,
     i18n: localized(),
-    settings: settings,
+    groups: settings.groups,
+    programs: programs,
     types: types
   });
 }

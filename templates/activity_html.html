@@ -7,6 +7,24 @@
   <script src="included/lib/chosen.jquery.min.js"></script>
   <script type="text/javascript">
 
+  function toASCII(string) {
+    return string
+      .replace(/[ÂÄÀ]/g, "A")
+      .replace(/[âäà]/g, "a")
+      .replace(/[ÉÊËÈ]/g, "E")
+      .replace(/[éêëè]/g, "e")
+      .replace(/[ÎÏ]/g, "I")
+      .replace(/[îï]/g, "i")
+      .replace(/[ÔÖ]/g, "O")
+      .replace(/[ôö]/g, "o")
+      .replace(/[ÛÜÙ]/g, "U")
+      .replace(/[ûüù]/g, "u")
+      .replace(/Ç/g, "C")
+      .replace(/ç/g, "c")
+      .replace(/Ñ/g, "N")
+      .replace(/ñ/g, "n");
+  }
+
   $(document).ready(function() {
     $("[name=by]").chosen();
     $("[name=since]").chosen({disable_search_threshold: 999, width: "7%"});
@@ -21,7 +39,7 @@
           if (o.key[0]=="issued" || o.value>1) {
             var key = (o.key[2]?o.key[2]+" ":"") + o.key[1];
             $("#" + o.key[0]).append(
-              "<option>" + key + "</option>"
+              '<option value="' + toASCII(key) + '">' + key + '</option>'
             );
           }
         });
@@ -61,14 +79,14 @@
       <select name="by">
         <option value="">{{i_all}}</option>
         <optgroup label="{{i_research_groups}}">
-          {{#settings.groups}}
+          {{#groups}}
             <option>{{.}}</option>
-          {{/settings.groups}}
+          {{/groups}}
         </optgroup>
         <optgroup label="{{i_research_programs}}">
-          {{#settings.programs}}
-            <option>{{.}}</option>
-          {{/settings.programs}}
+          {{#programs}}
+            <option value="{{key}}">{{value}}</option>
+          {{/programs}}
         </optgroup>
         <optgroup id="creator" label="{{i_creator}}" />
       </select>&nbsp;

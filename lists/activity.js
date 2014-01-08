@@ -11,7 +11,7 @@ function(head, req) {
       code: 302,
       headers: {Location: "?by=" + normalize(req.query.by)}
     });
-    return;
+    return "Redirecting...";
   }
 
   var contentType;

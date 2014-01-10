@@ -2,7 +2,10 @@ function(o) {
   // !code lib/string.js
   // !json settings.order
   function emitFilteredAndSorted(filter, record) {
-    emit([filter, settings.order[record.aeresType], record['DC.issued']]);
+    emit([
+      filter,
+      settings.order[record.aeresType], record['DC.issued'], record['DC.title']
+    ]);
   }
   if (o['DC.issued']) {
     emitFilteredAndSorted('', o);

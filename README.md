@@ -25,6 +25,8 @@ Installation procedure
         couchapp init
         couchapp push http://127.0.0.1:5984/tire-a-part
 
+* Set `httpd secure_rewrites` to `false` in <http://127.0.0.1:5984/_utils/config.html>. 
+
 * The application should be now accessible at <http://127.0.0.1:5984/tire-a-part/_design/tire-a-part/_rewrite/>.
 
 * Set up your reverse proxy so that:

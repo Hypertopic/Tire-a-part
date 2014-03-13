@@ -20,7 +20,7 @@ Installation procedure
 
 * In any folder:
 
-        git clone git://github.com/benel/Tire-a-part.git
+        git clone git@github.com:benel/Tire-a-part.git
         cd Tire-a-part
         couchapp init
         couchapp push http://127.0.0.1:5984/tire-a-part

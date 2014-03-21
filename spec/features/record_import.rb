@@ -59,5 +59,12 @@ feature 'Import a record' do
     # No URI nor DOI
     # No abstract
   end
+  
+  scenario 'with an attribute starting with a maj' do
+      fill_in 'bibtex', :with => '@CONFERENCE{Merle2012117,Author={Merle, F.a  and Bénel, A.b  and Doyen, G.a  and Gaïti, D.a }}'
+      click_on 'Importer'
+      field('creator').should == 'F.a Merle, A.b Bénel, G.a Doyen, D.a  Gaïti'
+  end
+  
 
 end

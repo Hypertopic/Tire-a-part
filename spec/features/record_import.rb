@@ -60,4 +60,10 @@ feature 'Import a record' do
     # No abstract
   end
 
+  scenario 'from BibTeX' do
+      fill_in 'bibtex', :with => '@article{author = {Lepetit, Alexandre}}'
+      in_dialog.click_button 'Importer'
+      field('creator').should == 'Alexandre Lepetit'
+   end
+
 end

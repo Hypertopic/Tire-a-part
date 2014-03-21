@@ -8,6 +8,13 @@ feature 'Import a record' do
     click_on 'Importer...'
   end
 
+  scenario 'from scopus_bis' do
+    fill_in 'bibtex', :with => '@CONFERENCE{Merle2012117,author={Alexandre Amberti, Nadia Kamoun },}'
+    click_on 'Importer'
+    field('creator').should == 'Nadia Kamoun  Alexandre Amberti'
+    # No abstract
+  end
+
   scenario 'from ACM' do
     fill_in 'bibtex', :with => sample('acm')
     in_dialog.click_button 'Importer'

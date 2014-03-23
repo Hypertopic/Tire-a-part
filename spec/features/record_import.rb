@@ -60,4 +60,12 @@ feature 'Import a record' do
     # No abstract
   end
 
+  scenario 'Author name with and'
+    fill_in 'bibtex', :with => '@inproceedings{Merle:2012:DDA:2389176.2389195,
+ author = {Gerard,Marcel and Leptit, Alexandre},}'
+    in_dialog.click_button 'Importer'
+    field('creator').should == 'Marcel Gerard, Alexandre Lepetit'
+  end
+
+  
 end

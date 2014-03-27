@@ -33,6 +33,12 @@ feature 'Import a record' do
     field('url').should == 'http://doi.acm.org/10.1145/2389176.2389195'
     # No abstract
   end
+  
+  scenario 'when the "and" is included in a name.' do
+      fill_in 'bibtex', :with => '@CONFERENCE{Merle2012117,author={Merle, Paul and Bénel, Alexandre and Doyen, Guillaume}}'
+      click_on 'Importer'
+      field('creator').should == 'Paul Merle, Alexandre Bénel, Guillaume Doyen'
+  end
 
   scenario 'from SCOPUS' do
     fill_in 'bibtex', :with => sample('scopus')

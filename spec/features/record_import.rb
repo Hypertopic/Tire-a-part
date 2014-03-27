@@ -34,10 +34,10 @@ feature 'Import a record' do
     # No abstract
   end
   
-  scenario 'should ignore "and" when its located in the name.' do
-      fill_in 'bibtex', :with => '@CONFERENCE{Merle2012117,author={Merle, F.a  Bénandel, A.b  and Doyen, G.a  and Gaïti, D.a }}'
+  scenario 'when the "and" is included in a name.' do
+      fill_in 'bibtex', :with => '@CONFERENCE{Merle2012117,author={Merle, Paul and Bénel, Alexandre and Doyen, Guillaume}}'
       click_on 'Importer'
-      field('creator').should == 'F.a Merle, A.b Bénandel, G.a Doyen, D.a  Gaïti'
+      field('creator').should == 'Paul Merle, Alexandre Bénel, Guillaume Doyen'
   end
 
   scenario 'from SCOPUS' do

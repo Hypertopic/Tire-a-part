@@ -59,5 +59,11 @@ feature 'Import a record' do
     # No URI nor DOI
     # No abstract
   end
+  
+  scenario 'should ignore "and" when its located in the name.' do
+      fill_in 'bibtex', :with => '@CONFERENCE{Merle2012117,author={Merle, F.a  Bénandel, A.b  and Doyen, G.a  and Gaïti, D.a }}'
+      click_on 'Importer'
+      field('creator').should == 'F.a Merle, A.b Bénandel, G.a Doyen, D.a  Gaïti'
+  end
 
 end

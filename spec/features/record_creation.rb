@@ -2,6 +2,10 @@ require 'spec_helper'
 
 feature 'Create a record' do
 
+  background do
+    prefer_language 'fr'
+  end
+
   scenario 'for an unpublished article' do
     visit '/'
     click_on 'Créer...'

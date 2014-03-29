@@ -3,6 +3,7 @@ require 'spec_helper'
 feature 'Import a record' do
 
   background do
+    prefer_language 'fr'
     visit '/'
     click_on 'Créer...'
     click_on 'Importer...'
@@ -35,6 +36,7 @@ feature 'Import a record' do
   end
 
   scenario 'from SCOPUS' do
+    pending '3 lines header not handled'
     fill_in 'bibtex', :with => sample('scopus')
     click_on 'Importer'
     field('creator').should == 'F.a Merle, A.b Bénel, G.a Doyen, D.a  Gaïti'

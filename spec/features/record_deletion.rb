@@ -5,7 +5,6 @@ feature 'Delete a record' do
   $a_title = a_string()
 
   background do
-    prefer_language 'fr'
     visit '/'
     click_on 'Créer...' 
     fill_in 'title', :with => $a_title

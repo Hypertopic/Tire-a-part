@@ -6,6 +6,12 @@ Capybara.default_driver = :webkit
 Capybara.app_host = 
   'http://127.0.0.1:5984/tire-a-part/_design/tire-a-part/_rewrite'
 
+RSpec.configure do |config|
+  config.before(:each) do
+    prefer_language 'fr'
+  end
+end
+
 def a_string()
   s = ('a'..'z').to_a.shuffle[0,8].join
 end

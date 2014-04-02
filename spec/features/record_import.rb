@@ -3,7 +3,6 @@ require 'spec_helper'
 feature 'Import a record' do
 
   background do
-    prefer_language 'fr'
     visit '/'
     click_on 'Créer...'
     click_on 'Importer...'

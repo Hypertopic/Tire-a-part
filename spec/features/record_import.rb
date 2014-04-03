@@ -60,5 +60,18 @@ feature 'Import a record' do
     # No URI nor DOI
     # No abstract
   end
+  
+  scenario 'from someone with uppercase field' do
+      fill_in 'bibtex', :with => sample('sensitivecase')
+      in_dialog.click_button 'Importer'
+      field('creator').should == 'A. Lorton and M. Fouladirad and A. Grall'
+      field('title').should == 'A methodology for probabilistic model-based prognosis'
+      field('ispartof').should == 'European Journal of Operational Research'
+      field('pages').should == '443--454'
+      # no publisher
+      field('issued').should == '2013'
+      # No URI nor DOI
+      # No abstract
+  end
 
 end

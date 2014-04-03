@@ -60,5 +60,12 @@ feature 'Import a record' do
     # No URI nor DOI
     # No abstract
   end
+  
+  scenario 'case insensitive file' do
+      fill_in 'bibtex', :with => '@article{Lort12a,
+          Author = {A. Lorton and M. Fouladirad and A. Grall}}'
+      click_on 'Importer'
+      field('creator').should == 'A. Lorton and M. Fouladirad and A. Grall'
+  end
 
 end

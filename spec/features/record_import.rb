@@ -61,4 +61,14 @@ feature 'Import a record' do
     # No abstract
   end
 
+  scenario 'from Jabref' do
+      fill_in 'bibtex', :with => sample('jabref')
+      in_dialog.click_button 'Importer'
+      field('owner').should == 'Arthur Bourjac'
+      field('title').should == 'A lifetime a ginger thought'
+      field('author').should == 'Arthur Bourjac'
+      field('journal').should == 'Reflections'
+      field('year').should == '2014'
+  end
+
 end

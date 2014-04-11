@@ -61,4 +61,14 @@ feature 'Import a record' do
     # No abstract
   end
 
+  scenario 'from JabRef' do
+      pending 'uppercase attributes not handled'
+      fill_in 'bibtex', :with => sample('jabref')
+      in_dialog.click_button 'Importer'
+      field('creator').should == 'Arthur Bourjac'
+      field('title').should == 'A lifetime a ginger thought'
+      field('ispartof').should == 'Reflections'
+      field('issued').should == '2014'
+  end
+
 end

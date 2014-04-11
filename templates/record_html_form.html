@@ -258,7 +258,15 @@
       }
       return value;
     });
-    return item;
+    return normalize(item);
+  }
+
+  function normalize(item) {
+    var result = {};
+    Object.keys(item).forEach(function (key) {
+      result[key.toLowerCase()] = item[key];
+    });
+    return result;
   }
 
   </script>

@@ -60,6 +60,20 @@ feature 'Import a record' do
     # No URI nor DOI
     # No abstract
   end
+  
+    scenario 'which author has "and" in his name' do
+      fill_in 'bibtex', :with => '@book{test,
+          title = "IF05 pour les Nuls",
+          author = "Lepetit, Alexandre and Segouin, Florent and Le, Minh",
+          publisher = "UTT",
+          year = "2014"
+      }'
+      in_dialog.click_button 'Importer'
+      field('creator').should == 'Lepetit, Alexandre and Segouin, Florent and Le, Minh'
+      field('title').should == 'IF05 pour les Nuls'
+      field('publisher').should == 'UTT'
+      field('issued').should == '2014'
+  end
 
   scenario 'from JabRef' do
       fill_in 'bibtex', :with => sample('jabref')

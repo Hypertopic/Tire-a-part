@@ -219,6 +219,7 @@
    */
   function parse(bibtex) {
     var json = '{' + bibtex
+      .slice(bibtex.search('@'))
       .replace(COMMENT, '')
       .replace(TABULATION, ' ')
       .replace(INNER_QUOTE, '\\\"')

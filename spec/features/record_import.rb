@@ -67,7 +67,7 @@ feature 'Import a record' do
       field('creator').should == 'Arthur Bourjac'
       field('title').should == 'A lifetime a ginger thought'
       field('author').should == 'Arthur Bourjac'
-      field('journal').should == 'Reflections'
+      field('ispartof').should == 'Reflections'
       field('issued').should == '2014'
   end
 

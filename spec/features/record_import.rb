@@ -60,6 +60,12 @@ feature 'Import a record' do
     # No URI nor DOI
     # No abstract
   end
+  
+  scenario 'when the "and" is included in a name.' do
+      fill_in 'bibtex', :with => '@CONFERENCE{Merle2012117,author={Merle, Paul and Bénel, Alexandre and Doyen, Guillaume}}'
+      click_on 'Importer'
+      field('creator').should == 'Paul Merle, Alexandre Bénel, Guillaume Doyen'
+  end
 
   scenario 'from JabRef' do
       fill_in 'bibtex', :with => sample('jabref')

@@ -250,7 +250,7 @@
       + '}';
     var item = JSON.parse(json, function(key, value) {
       if (key.toLowerCase()==='author') {
-        value = value.split(/ *and */);
+        value = value.split(/ +and +/);
         for (a in value) {
           value[a] = value[a].split(/, */).reverse().join(' ');
         }

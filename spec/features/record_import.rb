@@ -62,7 +62,6 @@ feature 'Import a record' do
   end
   
   scenario 'which author has "and" in his name' do
-    pending 'not supported yet'
     fill_in 'bibtex', :with => '@book{alexandre,
       author = {Lepetit, Alexandre and Segouin, Florent and Le, Minh}
     }'

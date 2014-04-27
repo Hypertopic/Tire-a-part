@@ -1,2 +1,0 @@
-{{#types}}{{#papers}}{{aeresType}};{{issued}};{{_id}};"{{{creators}}}","{{{title}}}"
-{{/papers}}{{/types}}

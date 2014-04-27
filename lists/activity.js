@@ -1,6 +1,5 @@
 function(head, req) {
   // !json templates.activity_html
-  // !json templates.activity_plain
   // !code localization.js
   // !code lib/string.js
   // !json settings

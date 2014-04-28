@@ -59,6 +59,22 @@
     $(".ui-icon-circle-plus").on("click", function() {
       $("#uploader").trigger("click");
     });
+    $(".ui-icon-circle-close").on("click", function() {
+      var uri = $(this).data("uri");
+      $("#dialog").text("{{i_remove?}}")
+      .attr("title", "{{i_remove}}...")
+      .dialog({
+        modal: true,
+        buttons: {
+          {{i_remove}}: function() {
+            remove_attachment(uri);
+          },
+          {{i_cancel}}: function() {
+            $(this).dialog("close");
+          }
+        }
+      });
+    });
   });
 	
   function save() {
@@ -167,6 +183,22 @@
     $.when(save()).done(function() {
       $("#footer").ajaxSubmit({
         success: function() {
+          location.reload();
+          validate();
+        }
+      });
+    });
+  }
+
+  function remove_attachment(uri) {
+    $.when(save()).done(function() {
+      $.ajax({
+        url: uri + "?rev=" + $("#rev").val(),
+        type: "DELETE",
+        dataType: "json",
+        success: function(result) {
+          $("#rev").val(result.rev);
+          $("#upload_rev").val(result.rev);
           location.reload();
           validate();
         }
@@ -373,11 +405,13 @@
       </div>
       <div>
         <label>{{i_offprint}}</label>
-        <ul>
-          {{#formatted_attachments}}
-          <li><a href="{{{url}}}">{{name}}</a> ({{size}} Mo)</li>
-          {{/formatted_attachments}}
-        </ul>
+        {{#formatted_attachments}}
+        <div>
+          <span class="ui-icon ui-icon-circle-close" title="{{i_remove}}..."
+            data-uri="{{{url}}}"></span>
+          <a href="{{{url}}}">{{name}}</a> ({{size}} Mo)</li>
+        </div>
+        {{/formatted_attachments}}
         <span class="ui-icon ui-icon-circle-plus" title="{{i_upload}}..." />
       </div>
       <p id="console" />

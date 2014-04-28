@@ -31,6 +31,24 @@
     "COM": 8, "AFF": 7, "OS": 6, "OV": 5, "DO":4 , "TH-H":3, "TH-D":2, "TH-M":1,
     "AP": 0
   },
+  "bibtexType": {
+    "ACL": "article",
+    "ACLN": "article",
+    "ASCL": "article",
+    "ACTI": "inproceedings",
+    "ACTN": "inproceedings",
+    "INV": "conference",
+    "COM": "conference",
+    "AFF": "conference",
+    "OS": "incollection",
+    "OV": "incollection",
+    "BRE": "misc",
+    "DO": "misc",
+    "TH-H": "misc",
+    "TH-D": "misc",
+    "TH-M": "misc",
+    "AP": "misc"
+  },
   "indexers": [
     "ISI",
     "SCOPUS",

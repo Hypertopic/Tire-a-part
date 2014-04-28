@@ -77,6 +77,7 @@ function(o, req) {
     raw_attachments: (o._attachments)?JSON.stringify(o._attachments):"{}",
     has_content: o.abstract || o._attachments,
     settings: settings,
+    bibtexType: JSON.stringify(settings.bibtexType),
     i18n: localized()
   });
 }

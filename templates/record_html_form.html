@@ -212,6 +212,8 @@
   }
 
   const RECORD_BEGIN = /@(\w+)\s*\{[^,]*/;
+  const DOUBLE_OPENING_BRACE = /\{\{/g;
+  const DOUBLE_CLOSING_BRACE = /\}\},/g;
   const ATTRIBUTE_BEGIN = /([\w\-]+)\s*=\s*[{"]/g;
   const ATTRIBUTE_END = /\}(?=\s*[,\}])/g;
   const TRAILING_COMMA = /,\s*\}/;
@@ -228,6 +230,8 @@
     var json = '{' + bibtex
       .slice(bibtex.search('@'))
       .replace(COMMENT, '')
+      .replace(DOUBLE_OPENING_BRACE, '{')
+      .replace(DOUBLE_CLOSING_BRACE, '},')
       .replace(TABULATION, ' ')
       .replace(INNER_QUOTE, '\\\"')
       .replace(ATTRIBUTE_BEGIN, '"$1": "')

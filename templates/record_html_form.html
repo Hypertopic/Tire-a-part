@@ -216,6 +216,7 @@
   const DOUBLE_CLOSING_BRACE = /\}\},/g;
   const ATTRIBUTE_BEGIN = /([\w\-]+)\s*=\s*[{"]/g;
   const ATTRIBUTE_END = /\}(?=\s*[,\}])/g;
+  const UNQUOTED_ONE_LINE_ATTRIBUTE = /([\w\-]+)\s+=\s+([^,]+)/g;
   const TRAILING_COMMA = /,\s*\}/;
   const COMMENT = /(%.*)/g;
   const TABULATION = /\n\s{3,}/g;
@@ -236,6 +237,7 @@
       .replace(INNER_QUOTE, '\\\"')
       .replace(ATTRIBUTE_BEGIN, '"$1": "')
       .replace(ATTRIBUTE_END, '"')
+      .replace(UNQUOTED_ONE_LINE_ATTRIBUTE, '"$1": "$2"')
       .replace(RECORD_BEGIN, '{"type": "$1"')
       .replace(TRAILING_COMMA, '')
       .replace(REMAINING_BRACE, '')

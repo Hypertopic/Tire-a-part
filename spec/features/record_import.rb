@@ -60,6 +60,19 @@ feature 'Import a record' do
     # No abstract
   end
   
+  scenario 'from ISI' do
+    fill_in 'bibtex', :with => sample('isi')
+    click_on 'Importer'
+    field('creator').should == 'Frederic Merle, Aurelien Benel, Guillaume Doyen, Dominique Gaiti'
+    field('title').should == 'Decentralized Documents Authoring System for Decentralized Teamwork'
+    field('ispartof').should == 'PROCEEDINGS OF THE 17TH ACM INTERNATIONAL CONFERENCE ON SUPPORTING GROUP WORK'
+    field('pages').should == '117-120'
+    field('publisher').should == 'ASSOC COMPUTING MACHINERY'
+    field('issued').should == '2012'
+    # No URI nor DOI
+    field('abstract').should == 'While systems for collaborative distributed works focus on enhancing distributed work group productivity, little attention has been paid to their architecture. In fact, most of these systems rely on centralized ones for both user communications and data hosting. These architectures raise issues about the administrative control, maintenance and management of the central entity. In this paper, we present a new architecture based on peer-to-peer (P2P) model driven by user relationship. In our architecture, users choose the trusted co-workers they are connected with. Thus, only the most trusted users manage to obtain a high number of connections which grant them a relative authority inside the system.'
+  end
+
   scenario 'which author has "and" in his name' do
     fill_in 'bibtex', :with => '@book{alexandre,
       author = {Lepetit, Alexandre and Segouin, Florent and Le, Minh}

@@ -219,7 +219,7 @@
   const UNQUOTED_ONE_LINE_ATTRIBUTE = /([\w\-]+)\s+=\s+([^,]+)/g;
   const TRAILING_COMMA = /,\s*\}/;
   const COMMENT = /(%.*)/g;
-  const TABULATION = /\n\s{3,}/g;
+  const INDENTATION = /\n(\s{3,}|\t+)/g;
   const INNER_QUOTE = /"(?=[^{\n]*})/g;
   const REMAINING_BRACE = /[{}]/g;
   const REMAINING_BACKSLASH = /\\(?!")/g;
@@ -233,7 +233,7 @@
       .replace(COMMENT, '')
       .replace(DOUBLE_OPENING_BRACE, '{')
       .replace(DOUBLE_CLOSING_BRACE, '},')
-      .replace(TABULATION, ' ')
+      .replace(INDENTATION, ' ')
       .replace(INNER_QUOTE, '\\\"')
       .replace(ATTRIBUTE_BEGIN, '"$1": "')
       .replace(ATTRIBUTE_END, '"')

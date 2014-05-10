@@ -32,3 +32,8 @@ def field(id)
   find_by_id(id).value
 end 
 
+# for select boxes handled by Chosen
+def fill_in_and_select(value, options)
+  options[:visible] = false
+  select value, options
+end

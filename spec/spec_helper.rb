@@ -3,7 +3,7 @@ require 'capybara/webkit'
 
 Capybara.run_server = false
 Capybara.default_driver = :webkit
-Capybara.app_host = 
+Capybara.app_host =
   'http://127.0.0.1:5984/tire-a-part/_design/tire-a-part/_rewrite'
 
 RSpec.configure do |config|
@@ -30,10 +30,14 @@ end
 
 def field(id)
   find_by_id(id).value
-end 
+end
 
 # for select boxes handled by Chosen
 def fill_in_and_select(value, options)
   options[:visible] = false
   select value, options
+end
+
+def check_downloaded_file_name(filename)
+  page.driver.response_headers['Content-Disposition'].should have_content filename
 end

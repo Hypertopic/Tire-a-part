@@ -39,6 +39,7 @@ feature 'Report the activity' do
   end
 
   scenario 'of a researcher since a given year as a bibtex file' do
+    pending 'export multiple records as bibtex'
     visit '/'
     fill_in_and_select 'Professeur Shadoko', :from => 'Publications de'
     fill_in_and_select '2012', :from => 'depuis'

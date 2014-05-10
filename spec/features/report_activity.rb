@@ -26,17 +26,25 @@ feature 'Report the activity' do
   scenario 'of a researcher' do
     visit '/'
     fill_in_and_select 'Gardner', :from => 'Publications de'
-    page.should_not have_content 'real' 
+    page.should_not have_content 'real'
     page.should have_content 'annotated'
   end
 
   scenario 'since a given year' do
     visit '/'
     fill_in_and_select '1982', :from => 'depuis'
-    page.should_not have_content 'adventures' 
-    page.should have_content 'real' 
+    page.should_not have_content 'adventures'
+    page.should have_content 'real'
     page.should have_content 'annotated'
   end
 
-end
+  scenario 'of a researcher since a given year as a bibtex file' do
+    pending 'export multiple records as bibtex'
+    visit '/'
+    fill_in_and_select 'Professeur Shadoko', :from => 'Publications de'
+    fill_in_and_select '2012', :from => 'depuis'
+    click_on 'Exporter'
+    check_downloaded_file_name("filename=Professeur-Shadoko_since_2012.bib")
+  end
 
+end

@@ -41,10 +41,10 @@ feature 'Report the activity' do
   scenario 'of a researcher since a given year as a bibtex file' do
     pending 'export multiple records as bibtex'
     visit '/'
-    fill_in_and_select 'Professeur Shadoko', :from => 'Publications de'
-    fill_in_and_select '2012', :from => 'depuis'
+    fill_in_and_select 'Gardner', :from => 'Publications de'
+    fill_in_and_select '1965', :from => 'depuis'
     click_on 'Exporter'
-    check_downloaded_file_name("filename=Professeur-Shadoko_since_2012.bib")
+    check_downloaded_file_name("filename=Martin-Gardner_since_1965.bib")
   end
 
 end

@@ -1,36 +1,49 @@
 function(head, req) {
   // !json templates.activity_html
-  // !json templates.activity_plain
   // !code localization.js
   // !code lib/string.js
+  // !code lib/record.js
   // !json settings
   var Mustache = require("lib/mustache");
+  const BY = req.query.by;
+  const SINCE = req.query.since;
 
-  if (req.query.by && !isNormalized(req.query.by)) {
+  if (BY && !isNormalized(BY)) {
     start({
       code: 302,
-      headers: {Location: "?by=" + normalize(req.query.by)}
+      headers: {Location: "?by=" + normalize(BY)}
     });
     return "Redirecting...";
   }
 
-  var contentType;
-  var headers = {};
-  if (req.query.csv=="") {
-    contentType = "plain";
-    headers["Content-Disposition"] = "attachment;filename=activity.csv";
-  } else {
-    contentType = "html";
+  if (req.query.bibtex=="") {
+    start({
+      headers: {
+        "Content-Type": "application/x-bibtex",
+        "Content-Disposition": "attachment;filename=activity"
+          + (BY ? "_by_" + BY.replace(/ /g, "_") : "")
+          + (SINCE ? "_since_" + SINCE : "")
+          + ".bib"
+      }
+    });
+    while (row = getRow()) {
+      var o = row.doc;
+      if (!SINCE || SINCE<=o['DC.issued']) {
+        send(toBibtex(o));
+      }
+    }
+    return;
   }
-  headers["Content-Type"] = "text/" + contentType + ";charset=utf-8";
-  start({headers: headers});
+  start({
+    headers: {"Content-Type": "text/html;charset=utf-8"}
+  });
   const typeLabels = localized().i_aeresTypeValues;
   var types = [];
   var lastType = null;
   var typeData = null;
   while (row = getRow()) {
     var o = row.doc;
-    if (o.aeresType && (!req.query.since || req.query.since<=o['DC.issued'])) {
+    if (o.aeresType && (!SINCE || SINCE<=o['DC.issued'])) {
       if (o.aeresType != lastType) {
         if (lastType) {
           types.push(typeData);
@@ -64,7 +77,7 @@ function(head, req) {
   for each (p in settings.programs) {
     programs.push({key: normalize(p), value: p});
   }
-  return Mustache.to_html(templates["activity_" + contentType], {
+  return Mustache.to_html(templates["activity_html"], {
     query: req.query,
     i18n: localized(),
     groups: settings.groups,

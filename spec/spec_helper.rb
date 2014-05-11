@@ -38,6 +38,14 @@ def fill_in_and_select(value, options)
   select value, options
 end
 
-def check_downloaded_file_name(filename)
-  page.driver.response_headers['Content-Disposition'].should have_content filename
+def wait_until
+  require "timeout"
+  Timeout.timeout(Capybara.default_wait_time) do
+    sleep(0.1) until value = yield
+    value
+  end
+end
+
+def downloaded_file_name
+  wait_until {page.response_headers['Content-Disposition']}.partition('=').last
 end

@@ -37,3 +37,7 @@ def fill_in_and_select(value, options)
   options[:visible] = false
   select value, options
 end
+
+def check_downloaded_file_name(filename)
+  page.driver.response_headers['Content-Disposition'].should have_content filename
+end

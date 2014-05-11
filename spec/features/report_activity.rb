@@ -38,5 +38,12 @@ feature 'Report the activity' do
     page.should have_content 'annotated'
   end
 
-end
+  scenario 'of a researcher since a given year as a bibtex file' do
+    pending 'export multiple records as bibtex'
+    visit '/'
+    fill_in_and_select 'Gardner', :from => 'Publications de'
+    fill_in_and_select '1965', :from => 'depuis'
+    check_downloaded_file_name("filename=activity_by_Gardner_since_1965.bib")
+  end
 
+end

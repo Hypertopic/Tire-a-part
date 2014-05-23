@@ -51,7 +51,7 @@ feature 'Report the activity' do
     fill_in_and_select 'Gardner', :from => 'by'
     fill_in_and_select '1965', :from => 'since'
     click_on 'Compter'
-    downloaded_file_name.should == 'activity_by_MARTIN_GARDNER_since_1965.csv' 
+    downloaded_file_name.should == 'references_by_MARTIN_GARDNER_since_1965.csv' 
   end
 
 end

@@ -26,11 +26,6 @@
     "Amérique du Sud",
     "Océanie"
   ],
-  "order": {
-    "ACL": 15, "ACLN": 14, "ASCL": 13, "BRE": 12, "INV": 11, "ACTI": 10, "ACTN": 9,
-    "COM": 8, "AFF": 7, "OS": 6, "OV": 5, "DO":4 , "TH-H":3, "TH-D":2, "TH-M":1,
-    "AP": 0
-  },
   "bibtexType": {
     "ACL": "article",
     "ACLN": "article",
@@ -49,7 +44,10 @@
     "TH-M": "misc",
     "AP": "misc"
   },
-  "indexers": [
+  "categories": [
+    "ACL", "ACLN", "ASCL", "BRE", "INV", "ACTI", "ACTN", "COM", "AFF",
+    "OS", "OV", "DO", "TH-H", "TH-D", "TH-M", "AP"
+  ], "indexers": [
     "ISI",
     "SCOPUS",
     "ACM",

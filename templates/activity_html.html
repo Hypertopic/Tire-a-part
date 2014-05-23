@@ -53,6 +53,13 @@
           });
       }
     });
+    $('#export').on('click',function(){
+      self.location = "?bibtex&by={{{query.by}}}&since={{{query.since}}}";
+    });
+    $('#count').on('click', function(){
+      self.location = "dashboard?by={{{query.by}}}&since={{{query.since}}}";
+    });
+
   });
 
   function create() {
@@ -64,10 +71,6 @@
       data: "{}",
       success: function(data) {location.replace(data.id+"?form")}
     });
-  }
-
-  function toCSV() {
-    self.location = "?bibtex&by={{{query.by}}}&since={{{query.since}}}";
   }
 
   </script>
@@ -122,8 +125,9 @@
       {{/types}}
     </div>
     <form id="footer" class="menu">
-      <button type="button" onclick="create()">{{i_create}}</button>
-      <button type="button" onclick="toCSV()">{{i_export}}</button>
+      	<button type="button" onclick="create()">{{i_create}}</button>
+	<button type="button" id="export">{{i_export}}</button>
+	<button type="button" id="count">{{i_count}}</button>
     </form>
   </div>
 </body>

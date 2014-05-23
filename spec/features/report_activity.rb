@@ -45,5 +45,13 @@ feature 'Report the activity' do
     click_on 'Exporter'
     downloaded_file_name.should == 'activity_by_MARTIN_GARDNER_since_1965.bib' 
   end
+  
+  scenario 'of a researcher since a given year as a csv file' do
+    visit '/'
+    fill_in_and_select 'Gardner', :from => 'Publications de'
+    fill_in_and_select '1965', :from => 'depuis'
+    click_on 'Compter'
+    downloaded_file_name.should == 'references_by_MARTIN_GARDNER_since_1965.csv' 
+  end
 
 end

@@ -32,3 +32,7 @@ def field(id)
   find_by_id(id).value
 end 
 
+def upload_file(input, file_path)
+    input[:visible] = false
+    attach_file(input,file_path)
+end

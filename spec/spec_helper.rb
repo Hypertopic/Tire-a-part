@@ -49,3 +49,13 @@ end
 def downloaded_file_name
   wait_until {page.response_headers['Content-Disposition']}.partition('=').last
 end
+
+def check_path_content(content)
+  uri = URI.parse(current_url)
+  uri.path.should == content
+end
+
+def check_query_content(content)
+  uri = URI.parse(current_url)
+  url.query.should == content
+end

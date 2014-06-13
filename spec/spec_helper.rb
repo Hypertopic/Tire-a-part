@@ -1,7 +1,7 @@
 require 'capybara/rspec'
 require 'capybara/webkit'
 
-Capybara.default_wait_time = 3.3
+Capybara.default_wait_time = 3.4
 Capybara.run_server = false
 Capybara.default_driver = :webkit
 Capybara.app_host = 

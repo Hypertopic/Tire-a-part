@@ -66,6 +66,7 @@ body {
 
 .ui-icon {
   display: inline-block;
+  cursor: pointer;
 }
 
 .ui-icon.info {
@@ -80,6 +81,9 @@ body {
   text-align: center;
 }
 
+#uploader {
+  display: none;
+}
 
 .ok {
   color: green;

@@ -7,9 +7,8 @@ feature 'Delete a record' do
   background do
     visit '/'
     click_on 'Créer...' 
-    fill_in 'title', :with => $a_title
-    fill_in 'issued', :with => '1885'
-    select 'invitation', :from => 'aeresType'    
+    fill_in 'Titre', :with => $a_title
+    fill_in 'Année', :with => '1885'
     click_on 'Enregistrer'    
   end
 

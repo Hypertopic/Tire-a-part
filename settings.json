@@ -25,7 +25,26 @@
     "Amérique du Nord",
     "Amérique du Sud",
     "Océanie"
-  ], "categories": [
+  ],
+  "bibtexType": {
+    "ACL": "article",
+    "ACLN": "article",
+    "ASCL": "article",
+    "ACTI": "inproceedings",
+    "ACTN": "inproceedings",
+    "INV": "conference",
+    "COM": "conference",
+    "AFF": "conference",
+    "OS": "incollection",
+    "OV": "incollection",
+    "BRE": "misc",
+    "DO": "misc",
+    "TH-H": "misc",
+    "TH-D": "misc",
+    "TH-M": "misc",
+    "AP": "misc"
+  },
+  "categories": [
     "ACL", "ACLN", "ASCL", "BRE", "INV", "ACTI", "ACTN", "COM", "AFF",
     "OS", "OV", "DO", "TH-H", "TH-D", "TH-M", "AP"
   ], "indexers": [

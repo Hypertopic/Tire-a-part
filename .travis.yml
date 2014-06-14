@@ -1,6 +1,6 @@
 services: couchdb
 language: ruby
-rvm: 2.1.0
+rvm: 2.1
 install:
 - curl -X PUT -d '"false"' localhost:5984/_config/httpd/secure_rewrites
 - curl -X PUT localhost:5984/tire-a-part

@@ -14,10 +14,10 @@ feature 'Delete a record' do
 
   scenario 'for any record' do
     click_on 'Supprimer...'
-    page.should have_content 'Voulez-vous supprimer cette notice ?'
+    expect(page).to have_content 'Voulez-vous supprimer cette notice ?'
     in_dialog.click_button 'Supprimer'
-    page.should have_content 'Publications de'
-    page.should_not have_content $a_title
+    expect(page).to have_content 'Publications de'
+    expect(page).not_to have_content $a_title
   end
 
 end

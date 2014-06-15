@@ -4,6 +4,7 @@ require 'capybara/webkit'
 Capybara.default_wait_time = 4
 Capybara.run_server = false
 Capybara.default_driver = :webkit
+Capybara.default_wait_time = 5
 Capybara.app_host = 
   'http://127.0.0.1:5984/tire-a-part/_design/tire-a-part/_rewrite'
 

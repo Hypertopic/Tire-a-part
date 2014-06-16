@@ -26,16 +26,16 @@ feature 'Report the activity' do
   scenario 'of a researcher' do
     visit '/'
     fill_in_and_select 'Gardner', :from => 'Publications de'
-    page.should_not have_content 'real' 
-    page.should have_content 'annotated'
+    expect(page).not_to have_content 'real'
+    expect(page).to have_content 'annotated'
   end
 
   scenario 'since a given year' do
     visit '/'
     fill_in_and_select '1982', :from => 'depuis'
-    page.should_not have_content 'adventures' 
-    page.should have_content 'real' 
-    page.should have_content 'annotated'
+    expect(page).not_to have_content 'adventures'
+    expect(page).to have_content 'real'
+    expect(page).to have_content 'annotated'
   end
 
   scenario 'of a researcher since a given year as a bibtex file' do
@@ -43,7 +43,7 @@ feature 'Report the activity' do
     fill_in_and_select 'Gardner', :from => 'Publications de'
     fill_in_and_select '1965', :from => 'depuis'
     click_on 'Exporter'
-    downloaded_file_name.should == 'activity_by_MARTIN_GARDNER_since_1965.bib' 
+    expect(downloaded_file_name).to eq 'activity_by_MARTIN_GARDNER_since_1965.bib' 
   end
   
   scenario 'of a researcher since a given year as a csv file' do

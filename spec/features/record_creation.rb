@@ -10,9 +10,9 @@ feature 'Create a record' do
     click_on 'Enregistrer'
     bookmark = current_url
     visit '/'
-    page.should_not have_content 'Supercolor-Tryphonar'
+    expect(page).not_to have_content 'Supercolor-Tryphonar'
     visit bookmark
-    page.should have_field 'creator', :with => 'Tryphon Tournesol'
+    expect(page).to have_field 'creator', :with => 'Tryphon Tournesol'
   end
 
   scenario 'for a published article' do
@@ -28,7 +28,7 @@ feature 'Create a record' do
     fill_in 'Résumé', :with => 'Je dis des choses tellement intelligentes\nque le plus souvent je ne comprends pas ce que je dis.'
     click_on 'Enregistrer'
     visit '/'
-    page.should have_content 'pataphysique'
+    expect(page).to have_content 'pataphysique'
   end
 
 end

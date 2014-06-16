@@ -8,22 +8,14 @@
   <script type="text/javascript">
 
   function normalize(string) {
-    return string
+    return string.toUpperCase()
       .replace(/[ÂÄÀ]/g, "A")
-      .replace(/[âäà]/g, "a")
       .replace(/[ÉÊËÈ]/g, "E")
-      .replace(/[éêëè]/g, "e")
       .replace(/[ÎÏ]/g, "I")
-      .replace(/[îï]/g, "i")
       .replace(/[ÔÖ]/g, "O")
-      .replace(/[ôö]/g, "o")
       .replace(/[ÛÜÙ]/g, "U")
-      .replace(/[ûüù]/g, "u")
       .replace(/Ç/g, "C")
-      .replace(/ç/g, "c")
-      .replace(/Ñ/g, "N")
-      .replace(/ñ/g, "n")
-      .toUpperCase();
+      .replace(/Ñ/g, "N");
   }
 
   $(document).ready(function() {
@@ -53,6 +45,13 @@
           });
       }
     });
+    $('#export').on('click',function(){
+      self.location = "?bibtex&by={{{query.by}}}&since={{{query.since}}}";
+    });
+    $('#count').on('click', function(){
+      self.location = "dashboard?by={{{query.by}}}&since={{{query.since}}}";
+    });
+
   });
 
   function create() {
@@ -66,18 +65,14 @@
     });
   }
 
-  function toCSV() {
-    self.location = "dashboard?by={{{query.by}}}&since={{{query.since}}}";
-  }
-
   </script>
   <title>{{#query.by}}{{query.by}} — {{/query.by}}{{i_records}}</title>
 </head>
 <body>
   <div id="container">
     <form id="header" class="menu" method="get">
-      <label>{{i_references}}</label>&nbsp;
-      <select name="by">
+      <label for="actor">{{i_references}}</label>&nbsp;
+      <select id="actor" name="by">
         <option value="">{{i_all}}</option>
         <optgroup label="{{i_research_groups}}">
           {{#groups}}
@@ -91,7 +86,7 @@
         </optgroup>
         <optgroup id="creator" label="{{i_creator}}" />
       </select>&nbsp;
-      <label>{{i_since}}</label>&nbsp;
+      <label for="issued">{{i_since}}</label>&nbsp;
       <select id="issued" name="since"></select>&nbsp;
       <a id="help" href="https://github.com/benel/Tire-a-part/wiki" target="_blank">?&nbsp;</a>
     </form>
@@ -122,8 +117,9 @@
       {{/types}}
     </div>
     <form id="footer" class="menu">
-      <button type="button" onclick="create()">{{i_create}}</button>
-      <button type="button" onclick="toCSV()">{{i_count}}</button>
+      	<button type="button" onclick="create()">{{i_create}}</button>
+	<button type="button" id="export">{{i_export}}</button>
+	<button type="button" id="count">{{i_count}}</button>
     </form>
   </div>
 </body>

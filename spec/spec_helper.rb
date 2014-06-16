@@ -3,6 +3,7 @@ require 'capybara/webkit'
 
 Capybara.run_server = false
 Capybara.default_driver = :webkit
+Capybara.default_wait_time = 5
 Capybara.app_host = 
   'http://127.0.0.1:5984/tire-a-part/_design/tire-a-part/_rewrite'
 
@@ -32,3 +33,20 @@ def field(id)
   find_by_id(id).value
 end 
 
+# for select boxes handled by Chosen
+def fill_in_and_select(value, options)
+  options[:visible] = false
+  select value, options
+end
+
+def wait_until
+  require "timeout"
+  Timeout.timeout(Capybara.default_wait_time) do
+    sleep(0.1) until value = yield
+    value
+  end
+end
+
+def downloaded_file_name
+  wait_until {page.response_headers['Content-Disposition']}.partition('=').last
+end

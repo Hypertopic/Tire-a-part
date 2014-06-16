@@ -7,18 +7,17 @@ feature 'Delete a record' do
   background do
     visit '/'
     click_on 'Créer...' 
-    fill_in 'title', :with => $a_title
-    fill_in 'issued', :with => '1885'
-    select 'invitation', :from => 'aeresType'    
+    fill_in 'Titre', :with => $a_title
+    fill_in 'Année', :with => '1885'
     click_on 'Enregistrer'    
   end
 
   scenario 'for any record' do
     click_on 'Supprimer...'
-    page.should have_content 'Voulez-vous supprimer cette notice ?'
+    expect(page).to have_content 'Voulez-vous supprimer cette notice ?'
     in_dialog.click_button 'Supprimer'
-    page.should have_content 'Publications de'
-    page.should_not have_content $a_title
+    expect(page).to have_content 'Publications de'
+    expect(page).not_to have_content $a_title
   end
 
 end

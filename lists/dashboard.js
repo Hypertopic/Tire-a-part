@@ -27,4 +27,5 @@ function(head, req) {
       data[row.key[2]] = row.value;
     }
   }
+  send(data.join(";") + "\n");
 }

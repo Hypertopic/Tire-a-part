@@ -12,6 +12,14 @@
       "group": "true"
     }
   }, {
+    "from": "dashboard",
+    "to": "_list/dashboard/dashboard",
+    "query": {
+      "startkey": [":by"],
+      "endkey": [":by",{}],
+      "group": "true"
+    }
+  }, {
     "method": "GET",
     "from": ":object",
     "to": "_show/record/:object"

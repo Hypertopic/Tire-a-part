@@ -58,8 +58,12 @@
     });
   }
 
-  function toCSV() {
+  function toBibtex() {
     self.location = "?bibtex&by={{{query.by}}}&since={{{query.since}}}";
+  }
+
+  function toCSV() {
+    self.location = "dashboard?by={{{query.by}}}&since={{{query.since}}}";
   }
 
   </script>
@@ -115,7 +119,8 @@
     </div>
     <form id="footer" class="menu">
       <button type="button" onclick="create()">{{i_create}}</button>
-      <button type="button" onclick="toCSV()">{{i_export}}</button>
+      <button type="button" onclick="toBibtex()">{{i_export}}</button>
+      <button type="button" onclick="toCSV()">{{i_count}}</button>
     </form>
   </div>
 </body>

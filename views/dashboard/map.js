@@ -2,12 +2,13 @@ function(o) {
   // !code lib/string.js
   // !json settings.categories
   function getRank(category) {
-    return settings.categories.length - settings.categories.indexOf(category) - 1;
+    return settings.categories.indexOf(category) + 1;
   }
   function emitFilteredAndSorted(filter, record) {
     emit([
       filter,
-      getRank(record.aeresType), record['DC.issued'], record['DC.title']
+      record['DC.issued'],
+      getRank(record.aeresType)
     ]);
   }
   if (o['DC.issued']) {

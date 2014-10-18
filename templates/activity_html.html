@@ -40,6 +40,7 @@
       <button type="button" id="export">{{i_export}}</button>
       <button type="button" id="count">{{i_count}}</button>
       <button type="button" id="check_creators">{{i_check_creators}}</button>
+      <button type="button" id="check_titles">{{i_check_titles}}</button>
     </form>
   </div>
 </body>
@@ -67,6 +68,10 @@ $('#count').on('click', function() {
 
 $('#check_creators').on('click', function() {
   self.location = "authors?by={{{query.by}}}";
+});
+
+$('#check_titles').on('click', function() {
+  self.location = "titles?by={{{query.by}}}";
 });
 
 </script>

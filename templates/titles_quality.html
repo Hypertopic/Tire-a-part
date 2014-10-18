@@ -1,0 +1,37 @@
+<html>
+{{#i18n}}
+<head>
+  <link rel="stylesheet" type="text/css" href="included/main.css" />
+  <link rel="stylesheet" type="text/css" href="included/lib/chosen.css" />
+  <script src="script/jquery.js"></script>
+  <title>{{#query.by}}{{query.by}} — {{/query.by}}{{i_records}}</title>
+</head>
+<body>
+  <div id="container">
+    {{>filter_form}}
+    <div id="content">
+      <h1>{{i_titles}}</h1>
+      <table>
+      {{#references}}
+        <tr>
+          <td class="sorted"><a href="{{id}}">{{title}}</a></td>
+          <td>{{ispartof}}</td>
+        </tr>
+      {{/references}}
+      </table>
+    </div>
+    <form id="footer" class="menu">
+      <button type="button" id="done">{{i_done}}</button>
+    </form>
+  </div>
+</body>
+{{/i18n}}
+<script type="text/javascript">
+
+$('#issued').prop('disabled', true);
+$('#done').on('click', function() {
+  self.location = "./?by={{{query.by}}}";
+});
+
+</script>
+</html>

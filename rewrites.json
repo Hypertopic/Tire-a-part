@@ -20,13 +20,19 @@
       "group": "true"
     }
   }, {
-    "method": "GET",
     "from": "authors",
     "to": "_list/creators_quality/creators_quality",
     "query": {
       "startkey": [":by"],
       "endkey": [":by",{}],
       "group": "true"
+    }
+  }, {
+    "from": "titles",
+    "to": "_list/titles_quality/titles_quality",
+    "query": {
+      "startkey": [":by"],
+      "endkey": [":by",{}]
     }
   }, {
     "method": "GET",

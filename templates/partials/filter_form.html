@@ -1,0 +1,64 @@
+<form id="header" class="menu" method="get">
+  <label for="actor">{{i_references}}</label>&nbsp;
+  <select id="actor" name="by">
+    <option value="">{{i_all}}</option>
+    <optgroup label="{{i_research_groups}}">
+      {{#groups}}
+        <option>{{.}}</option>
+      {{/groups}}
+    </optgroup>
+    <optgroup label="{{i_research_programs}}">
+      {{#programs}}
+        <option value="{{key}}">{{value}}</option>
+      {{/programs}}
+    </optgroup>
+    <optgroup id="creator" label="{{i_creator}}" />
+  </select>&nbsp;
+  <label for="issued">{{i_since}}</label>&nbsp;
+  <select id="issued" name="since"></select>&nbsp;
+  <a id="help" href="https://github.com/benel/Tire-a-part/wiki" target="_blank">?&nbsp;</a>
+</form>
+<script src="included/lib/chosen.jquery.min.js"></script>
+<script type="text/javascript">
+
+  function normalize(string) {
+    return string.toUpperCase()
+      .replace(/[ÂÄÀ]/g, "A")
+      .replace(/[ÉÊËÈ]/g, "E")
+      .replace(/[ÎÏ]/g, "I")
+      .replace(/[ÔÖ]/g, "O")
+      .replace(/[ÛÜÙ]/g, "U")
+      .replace(/Ç/g, "C")
+      .replace(/Ñ/g, "N");
+  }
+
+  $(document).ready(function() {
+    $("[name=by]").chosen();
+    $("[name=since]").chosen({disable_search_threshold: 999, width: "7%"});
+    $.ajax({
+      url: "attribute",
+      type: "GET",
+      dataType: "json",
+      success: function(result) {
+        const BY = "{{{query.by}}}"; 
+        const SINCE = "{{query.since}}"; 
+        $.each(result.rows, function(i, o) {
+          if (o.key[0]=="issued" || o.value>1) {
+            var key = (o.key[2]?o.key[2]+" ":"") + o.key[1];
+            $("#" + o.key[0]).append(
+              '<option value="' + normalize(key) + '">' + key + '</option>'
+            );
+          }
+        });
+        $("[name=by]").val(BY);
+        $("[name=since]").val(SINCE);
+        $("select")
+          .trigger("liszt:updated")
+          .change(function() {
+            $("#header").submit();
+          });
+      }
+    });
+  });
+
+</script>

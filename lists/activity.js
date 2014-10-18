@@ -1,5 +1,4 @@
 function(head, req) {
-  // !json templates.activity_html
   // !code localization.js
   // !code lib/string.js
   // !code lib/record.js
@@ -77,11 +76,11 @@ function(head, req) {
   for each (p in settings.programs) {
     programs.push({key: normalize(p), value: p});
   }
-  return Mustache.to_html(templates["activity_html"], {
+  return Mustache.to_html(this.templates.activity_html, {
     query: req.query,
     i18n: localized(),
     groups: settings.groups,
     programs: programs,
     types: types
-  });
+  }, this.templates.partials);
 }

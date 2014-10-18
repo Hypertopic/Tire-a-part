@@ -101,3 +101,6 @@ body {
   content: "\26a0";
 }
 
+.sorted {
+  font-weight: bold
+}

@@ -21,6 +21,15 @@
     }
   }, {
     "method": "GET",
+    "from": "authors",
+    "to": "_list/creators_quality/creators_quality",
+    "query": {
+      "startkey": [":by"],
+      "endkey": [":by",{}],
+      "group": "true"
+    }
+  }, {
+    "method": "GET",
     "from": ":object",
     "to": "_show/record/:object"
   }, {

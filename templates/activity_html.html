@@ -39,6 +39,7 @@
       <button type="button" id="create">{{i_create}}</button>
       <button type="button" id="export">{{i_export}}</button>
       <button type="button" id="count">{{i_count}}</button>
+      <button type="button" id="check_creators">{{i_check_creators}}</button>
     </form>
   </div>
 </body>
@@ -62,6 +63,10 @@ $('#export').on('click', function() {
 
 $('#count').on('click', function() {
   self.location = "dashboard?by={{{query.by}}}&since={{{query.since}}}";
+});
+
+$('#check_creators').on('click', function() {
+  self.location = "authors?by={{{query.by}}}";
 });
 
 </script>

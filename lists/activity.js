@@ -7,10 +7,10 @@ function(head, req) {
   const BY = req.query.by;
   const SINCE = req.query.since;
 
-  if (BY && !isNormalized(BY)) {
+  if (BY && !BY.isNormalized()) {
     start({
       code: 302,
-      headers: {Location: "?by=" + normalize(BY)}
+      headers: {Location: "?by=" + BY.normalize()}
     });
     return "Redirecting...";
   }
@@ -74,7 +74,7 @@ function(head, req) {
   }
   var programs = [];
   for each (p in settings.programs) {
-    programs.push({key: normalize(p), value: p});
+    programs.push({key: p.normalize(), value: p});
   }
   return Mustache.to_html(this.templates.activity_html, {
     query: req.query,

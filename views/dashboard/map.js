@@ -15,10 +15,10 @@ function(o) {
     emitFilteredAndSorted('', o);
     emitFilteredAndSorted(':by', o); // workaround for a rewrite bug
     for each (var creator in o['DC.creator']) {
-      emitFilteredAndSorted(normalize(creator), o);
+      emitFilteredAndSorted(creator.normalize(), o);
     }
     for each (var a in o.affiliation) {
-      emitFilteredAndSorted(normalize(a), o);
+      emitFilteredAndSorted(a.normalize(), o);
     }
   }
 }

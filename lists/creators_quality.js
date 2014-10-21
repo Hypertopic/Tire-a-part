@@ -17,7 +17,7 @@ function(head, req) {
   }
   var programs = [];
   for each (p in settings.programs) {
-    programs.push({key: normalize(p), value: p});
+    programs.push({key: p.normalize(), value: p});
   }
   return Mustache.to_html(this.templates.creators_quality, {
     query: req.query,

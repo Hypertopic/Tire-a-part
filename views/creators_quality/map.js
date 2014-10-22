@@ -2,7 +2,7 @@ function(o) {
   // !code lib/string.js
   for each (var author in o['DC.creator']) {
     if (author) {
-      var name_parts = author.normalize().split(/\s/),
+      var name_parts = author.normalize().split(' '),
         firstname = name_parts.shift(),
         surname = name_parts.join(' ');
       emit(['', surname, firstname]);

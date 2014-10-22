@@ -16,7 +16,7 @@
         <tr>
           <td>{{firstname}}</td>
           <td class="sorted">{{surname}}</td>
-          <td><a href="./?by={{firstname}} {{surname}}&since={{query.since}}">{{count}}</a></td>
+          <td><a href="./?by={{firstname}}{{#surname}} {{.}}{{/surname}}&since={{query.since}}">{{count}}</a></td>
         </tr>
       {{/creators}}
       </table>

@@ -17,7 +17,8 @@
   ], "platforms": [
     "NANOMAT",
     "NUM3D",
-    "CAPSEC"
+    "CAPSEC",
+    "ADHERE"
   ], "partners": [
     "Europe",
     "Asie",

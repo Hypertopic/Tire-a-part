@@ -2,7 +2,6 @@ function(head, req) {
   // !code localization.js
   // !code lib/string.js
   // !code lib/record.js
-  // !json settings
   var Mustache = require("lib/mustache");
   const BY = req.query.by;
   const SINCE = req.query.since;
@@ -73,13 +72,13 @@ function(head, req) {
     types.push(typeData);
   }
   var programs = [];
-  for each (p in settings.programs) {
+  for each (p in this.settings.programs) {
     programs.push({key: p.normalize(), value: p});
   }
   return Mustache.to_html(this.templates.activity_html, {
     query: req.query,
     i18n: localized(),
-    groups: settings.groups,
+    groups: this.settings.groups,
     programs: programs,
     types: types
   }, this.templates.partials);

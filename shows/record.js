@@ -1,10 +1,8 @@
 function(o, req) {
-  // !json templates.record_html
-  // !json templates.record_html_form
-  // !json settings
   // !code localization.js
   // !code lib/record.js
   var Mustache = require("lib/mustache");
+  var settings = this.settings;
 
   function formatAttachments(attachments, paperID) {
     var result = [];
@@ -50,7 +48,7 @@ function(o, req) {
     };
   }
   var template = "record_html" + ((req.query.form=="")?"_form":"");
-  return Mustache.render(templates[template], {
+  return Mustache.render(this.templates[template], {
     id: o._id,
     _rev: o._rev,
     url: o.url,

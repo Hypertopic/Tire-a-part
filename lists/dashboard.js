@@ -1,5 +1,4 @@
 function(head, req) {
-  // !json settings.categories  
   var Mustache = require("lib/mustache");
   const BY = req.query.by;
   const SINCE = req.query.since;
@@ -14,7 +13,7 @@ function(head, req) {
   });
   var row;
   var lastYear = null;
-  var data = settings.categories;
+  var data = this.settings.categories;
   data.unshift("");
   while (row = getRow()) {
     var year = row.key[1];

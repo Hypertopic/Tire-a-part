@@ -16,6 +16,10 @@ function(o, req) {
     return result;
   }
 
+  function urlencode(data) {
+    return data.replace(/ /g, '%20');
+  }
+
   //TODO just one identifier?
   function getIdentifiers(host, path, attachments) {
     var result = [];
@@ -24,7 +28,7 @@ function(o, req) {
       baseUrl += f + '/';
     }
     for (var a in attachments) {
-      result.push(baseUrl + a);
+      result.push(baseUrl + urlencode(a));
     }
     return result;
   }
@@ -70,7 +74,7 @@ function(o, req) {
     publisher: o["DC.publisher"],
     issued: o["DC.issued"],
     formatted_creators: o["DC.creator"].join(", "),
-    identifiers: getIdentifiers(req.headers.Host, req.path, o._attachments),
+    identifiers: getIdentifiers(req.headers.Host, [o._id], o._attachments),
     formatted_attachments: formatAttachments(o._attachments, o._id),
     raw_attachments: (o._attachments)?JSON.stringify(o._attachments):"{}",
     has_content: o.abstract || o._attachments,

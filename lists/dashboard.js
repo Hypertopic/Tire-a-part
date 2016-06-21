@@ -12,7 +12,7 @@ function(head, req) {
   });
   var row;
   var lastYear = null;
-  var data = this.settings.categories;
+  var data = this.settings.categories.slice();
   data.unshift("");
   while (row = getRow()) {
     var year = row.key[1];

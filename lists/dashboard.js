@@ -1,5 +1,4 @@
 function(head, req) {
-  var Mustache = require("lib/mustache");
   const BY = req.query.by;
   const SINCE = req.query.since;
   start({

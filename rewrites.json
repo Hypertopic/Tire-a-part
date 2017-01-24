@@ -39,8 +39,9 @@
     "from": ":object",
     "to": "_show/record/:object"
   }, {
+    "method":"PUT",
     "from": ":object",
-    "to": "../../:object"
+    "to": "_update/timestamp/:object"
   }, {
     "from": ":object/:attachment",
     "to": "../../:object/:attachment"

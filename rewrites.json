@@ -35,6 +35,9 @@
       "endkey": [":by",{}]
     }
   }, {
+    "from": "oai",
+    "to": "_show/GetRecord/:identifier"
+  }, {
     "method": "GET",
     "from": ":object",
     "to": "_show/record/:object"

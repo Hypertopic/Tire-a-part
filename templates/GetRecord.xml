@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/
+         http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd">
+  <responseDate>{{timestamp}}</responseDate>
+  <request verb="GetRecord" identifier="oai:arXiv.org:cs/0112017"
+           metadataPrefix="oai_dc">http://arXiv.org/oai2</request>
+  <GetRecord>
+   <record> 
+    <header>
+      <identifier>urn:uuid:{{id}}</identifier>
+      <datestamp>{{timestamp}}</datestamp>
+      <setSpec>{{affiliation}}</setSpec>
+    </header>
+    <metadata>
+      <oai_dc:dc 
+         xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/" 
+         xmlns:dc="http://purl.org/dc/elements/1.1/" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ 
+         http://www.openarchives.org/OAI/2.0/oai_dc.xsd">
+        {{#creator}}
+        <dc:creator>{{.}}</dc.creator>
+        {{/creator}}
+        <dc:title>{{title}}</dc:title>
+        {{#relation_ispartof}}
+        <dc:relation_ispartof>{{.}}
+        </dc:relation_ispartof>
+        {{/relation_ispartof}}
+        <dc:citation.volume>{{citation_volume}}</dc:citation.volume>
+        <dc:citation.issue>{{citation_issue}}</dc:citation.issue>
+        <dc:citation.spage>{{citation_spage}}</dc:citation.spage>
+        <dc:citation.epage>{{citation_epage}}</dc:citation.epage>
+        <dc:publisher>{{publisher}}</dc:publisher>
+        <dc:issued>{{issued}}</dc:issued>
+        <dc:description.abstract>{{description_abstract}}</dc:description.abstract>
+      </oai_dc:dc>
+    </metadata>
+  </record>
+ </GetRecord>
+</OAI-PMH>

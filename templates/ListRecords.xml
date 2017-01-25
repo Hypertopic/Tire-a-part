@@ -1,0 +1,59 @@
+{{#publication}}
+<?xml version="1.0" encoding="UTF-8"?>
+<OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/
+         http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd">
+ <responseDate>{{timestamp}}</responseDate> 
+ <request verb="ListRecords" from="1998-01-15"
+          set="physics:hep"
+          metadataPrefix="oai_rfc1807">
+          http://an.oa.org/OAI-script</request>
+ <ListRecords>
+  <record>
+    <header>
+      <identifier>urn:uuid:{{id}}</identifier>
+      <datestamp>{{timestamp}}</datestamp>
+      <setSpec>{{affiliation}}</setSpec>
+    </header>
+    <metadata>
+     <rfc1807 xmlns=
+        "http://info.internet.isi.edu:80/in-notes/rfc/files/rfc1807.txt" 
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+      xsi:schemaLocation=
+       "http://info.internet.isi.edu:80/in-notes/rfc/files/rfc1807.txt
+        http://www.openarchives.org/OAI/1.1/rfc1807.xsd">
+        <bib-version>v2</bib-version>
+        {{#creator}}
+        <dc:creator>{{.}}</dc.creator>
+        {{/creator}}
+        <dc:title>{{title}}</dc:title>
+        {{#relation_ispartof}}
+        <dc:relation_ispartof>{{.}}
+        </dc:relation_ispartof>
+        {{/relation_ispartof}}
+        <dc:citation.volume>{{citation_volume}}</dc:citation.volume>
+        <dc:citation.issue>{{citation_issue}}</dc:citation.issue>
+        <dc:citation.spage>{{citation_spage}}</dc:citation.spage>
+        <dc:citation.epage>{{citation_epage}}</dc:citation.epage>
+        <dc:publisher>{{publisher}}</dc:publisher>
+        <dc:issued>{{issued}}</dc:issued>
+        <dc:description.abstract>{{description_abstract}}</dc:description.abstract>
+     </rfc1807>
+    </metadata>
+    <about>
+      <oai_dc:dc 
+          xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/" 
+          xmlns:dc="http://purl.org/dc/elements/1.1/" 
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+          xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ 
+          http://www.openarchives.org/OAI/2.0/oai_dc.xsd">
+        <dc:publisher>{{publisher}}</dc:publisher>
+      </oai_dc:dc>
+    </about>
+  </record>
+  <record>
+  </record>
+ </ListRecords>
+</OAI-PMH>
+{{/publication}}

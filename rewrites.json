@@ -35,6 +35,14 @@
       "endkey": [":by",{}]
     }
   }, {
+    "from": "oailist",
+    "to": "_list/ListRecords/publication",
+    "query": {
+      "startkey": [":by"],
+      "endkey": [":by",{}],
+      "group": "true"
+    }
+  }, {
     "from": "oai",
     "to": "_show/GetRecord/:identifier"
   }, {

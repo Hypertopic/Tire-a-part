@@ -1,7 +1,6 @@
 #language: fr
 
-Fonctionnalité: Accéder à l'actvité d'une équipe à travers un tableau de bord
-détaillé
+Fonctionnalité: Accéder à l'actvité d'une équipe à travers un tableau de bord détaillé
 
 Scénario: 
 	Etant donné un utilisateur identifié qui appartient à une équipe et que l'utilisateur est chef d'équipe

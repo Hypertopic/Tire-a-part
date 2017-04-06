@@ -3,9 +3,6 @@
     "from": "included/*",
     "to": "*"
   }, {
-    "from": "script/:file", 
-    "to": "../../../_utils/script/:file"
-  }, {
     "from": "attribute",
     "to": "_view/attribute",
     "query": {

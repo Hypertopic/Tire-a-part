@@ -4,6 +4,6 @@ Fonctionnalité: Référencer un article publié sur la plateforme dans google s
 
 Scénario: Référencer un article
 
-Étant donné qu'un chercheur saisis un article sur la plateforme
+Étant donné qu'un chercheur saisit un article sur la plateforme
 Quand l'article est publié
 Alors l'article doit être référencé sur google scholar

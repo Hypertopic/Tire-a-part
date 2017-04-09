@@ -1,11 +1,12 @@
 #language:fr
 
-Fonctionnalité: Déposer le PDF d'un article.
+Fonctionnalité: Je souhaite pouvoir déposer un article.
 
-Scénario:
+Scénario: Déposer le PDF représentant l'article.
 
   L'utilisateur doit être authentifié dans le système et doit disposer des droits requis.
 
-  Etant donné que je suis un utilisateur et que je dispose d'un article
+  Etant donné que je suis un chercheur
+  Et que je dispose d'un article
   Quand j'ai diffusé un article
   Alors je devrais pouvoir déposer le PDF représentant l'article

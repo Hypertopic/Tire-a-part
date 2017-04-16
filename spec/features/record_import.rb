@@ -7,7 +7,18 @@ feature 'Import a record' do
     click_on 'Créer...'
     click_on 'Importer...'
   end
-
+  
+  scenario 'from JabRef' do
+      fill_in 'bibtex', :with => sample('toto')
+      in_dialog.click_button 'Importer'
+      field('title').should == 'Story of Toto'
+      field('author').should == 'toto'
+      field('publisher').should == 'JabRef'
+      field('issued').should == '2014'
+      field('url').should == 'http://dx.doi.org/10.1145/2389176.2389195'
+      # No abstract
+  end
+  
   scenario 'from ACM' do
     fill_in 'bibtex', :with => sample('acm')
     in_dialog.click_button 'Importer'

@@ -1,20 +1,20 @@
 #language:fr
 
-Fonctionnalité: Consulter les droits de publications des éditeurs.
+Fonctionnalité: Consulter les droits de diffusion des publications associés aux éditeurs.
 
- Le chercheur souhaite publier son travail. Il aimerait avant cela, accèder à la liste des droits propres à chaque éditeur afin de savoir ce qu'il est autorisé de faire.
+ Le chercheur souhaite rendre public son travail à travers la plateforme. Il aimerait avant cela, accèder à la liste des droits propres à chaque éditeur afin de savoir ce qu'il est autorisé de diffuser.
 
-Scénario: le chercheur visualise les droits de tous les éditeurs
+Scénario: le chercheur visualise les droits de diffusion de tous les éditeurs
 
- Etant donné que le chercheur veut publier son travail
- Et que il souhaite obtenir des informations sur les droits liés aux éditeurs
+ Etant donné que le chercheur veut mettre en ligne son travail
+ Et que il souhaite obtenir des informations sur les droits de diffusion associés aux éditeurs
  Quand il accède à la liste des éditeurs
- Alors les droits de tous les éditeurs sont affichés
+ Alors les droits de diffusion des publications de tous les éditeurs sont affichés
 
-Scénario: le chercheur recherche les droits propres à un éditeur
+Scénario: le chercheur recherche les droits de diffusion propres à un éditeur
 
- Etant donné que le chercheur a ciblé un éditeur précis pour sa publication
- Et que il souhaite connaître les droits proposés par cet éditeur
- Et que il connaît le nom de cet éditeur
- Quand il fait la recherche sur la plateforme avec ce nom
- Alors les droits liés à cet éditeur sont affichés
+ Etant donné que le chercheur veut mettre en ligne son travail
+ Et que il souhaite obtenir les droits de diffusion associés à un éditeur précis
+ Quand il saisit le nom de l'éditeur dans le formulaire de création d'une publication
+ Alors les droits de diffusion liés à cet éditeur sont affichés
+ Et le chercheur sait exactement quelles versions de son travail il peut rendre public

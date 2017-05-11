@@ -21,8 +21,8 @@ Alors(/^le chercheur sait exactement quelles versions de son travail il peut ren
   pending # Write code here that turns the phrase above into concrete actions
 end
 
-Etantdonné(/^une "([^"]*)" existante possédant un "([^"]*)"$/) do |notice, tire-a-part|
-  expect(notice).to have_content(tire-a-part)
+Etantdonné(/^une "([^"]*)" existante possédant un "([^"]*)"$/) do |notice, tireapart|
+  expect(notice).to have_content(tireapart)
 end
 
 Quand(/^un utilisateur identifié consulte cette "([^"]*)"$/) do |notice|
@@ -30,5 +30,5 @@ Quand(/^un utilisateur identifié consulte cette "([^"]*)"$/) do |notice|
 end
 
 Alors(/^il peut vérifier les droits de diffusion associés à l'éditeur de la publication$/) do
-  expect(page). to have_button('consult_rights')
+  expect(page).to have_button('consult_rights')
 end

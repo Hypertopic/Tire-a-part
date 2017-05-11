@@ -9,7 +9,6 @@ cache:
   - ~/.rvm/gems
   - ~/.local
 install:
-- curl -X PUT -d '"false"' localhost:5984/_config/httpd/secure_rewrites
 - curl -X PUT localhost:5984/tire-a-part
 - pip install --user couchapp
 - couchapp push . http://localhost:5984/tire-a-part

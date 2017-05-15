@@ -1,8 +1,8 @@
 #language: fr
 
-Fonctionnalité: Accéder à l'activité d'une équipe à travers un tableau de bord détaillé
+FonctionnalitÃ©: Consulter la liste des membres d'une Ã©quipe de recherche qui n'ont pas publiÃ©s depuis plus de 6 mois
 
-Scénario: Visualiser l'activité d'une équipe avec le tableau de bord
-	Etant donné un utilisateur identifié qui appartient à une équipe et que l'utilisateur est chef d'équipe
-	Quand il accède au menu "Tableau de bord" disponible aux utilisateurs identifés
-	Alors l'activité de l'équipe de recherche auquel il appartient est affichée
+ScÃ©nario:
+	Etant donnÃ© que un utilisateur consulte l'activitÃ© des auteurs pour une Ã©quipe
+	Quand il choisit une Ã©quipe de recherche et une durÃ©e d'inactivitÃ©
+	Alors il est affichÃ© une liste d'auteurs correspndant Ã  ces critÃ¨res

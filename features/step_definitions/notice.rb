@@ -1,7 +1,7 @@
 require 'capybara/cucumber'
 
 
-Etantdonné /je suis un visiteur/ do
+Etantdonné /je suis un visiteur du site/ do
 
 end
 

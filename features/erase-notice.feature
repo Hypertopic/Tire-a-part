@@ -1,8 +1,9 @@
-﻿#language:fr
+#language:fr
 
-Fonctionnalité: Supprime une notice
+ Fonctionnalité: Supprime une notice
  
-Scénario: Supprimer une notice
-Etant donné que l'utilisateur souhaite supprimer une notice,
-Quand il veut supprimer une notice en particulier,
-Alors il va cliquer sur le champs supprimer de la page de la notice
+ Scénario: Supprimer une notice
+ Etant donné un utlisateur ayant un compte sur la plateforme
+ Quand il clique sur le champs supprimer d'une de ses notices
+ Alors sa notice devrait être supprimée de la liste
+  

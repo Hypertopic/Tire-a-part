@@ -46,6 +46,13 @@ feature 'Import a record' do
     expect(field 'url').to eq 'http://dx.doi.org/10.1145/2389176.2389195'
     expect(field 'abstract').to eq 'While systems for collaborative distributed works focus on enhancing distributed work group productivity, little attention has been paid to their architecture. In fact, most of these systems rely on centralized ones for both user communications and data hosting. These architectures raise issues about the administrative control, maintenance and management of the central entity. In this paper, we present a new architecture based on peer-to-peer (P2P) model driven by user relationship. In our architecture, users choose the trusted co-workers they are connected with. Thus, only the most trusted users manage to obtain a high number of connections which grant them a relative authority inside the system. Copyright © 2012 by the Association for Computing Machinery, Inc. (ACM).'
   end
+  
+  scenario 'with attribut in uppercase' do
+      fill_in 'bibtex', :with => sample('test')
+      click_on 'Importer'
+      field('creator').should == 'A. Lorton, M. Fouladirad, A. Grall'
+  end
+
 
   scenario 'from Google Scholar' do
     fill_in 'bibtex', :with => sample('google')

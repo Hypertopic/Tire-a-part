@@ -7,6 +7,12 @@ feature 'Import a record' do
     click_on 'Créer...'
     click_on 'Importer...'
   end
+  
+  scenario 'from BibTex with \'and\' in author name' do
+    fill_in 'bibtex', :with => sample('andpbm')
+    in_dialog.click_button 'Importer'
+    field('creator').should == 'Frédéric Merlande, Aurélien Bénel, Guillaume Doyen, Dominique Gaïti'
+  end
 
   scenario 'from ACM' do
     fill_in 'bibtex', :with => sample('acm')

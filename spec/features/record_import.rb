@@ -7,6 +7,12 @@ feature 'Import a record' do
     click_on 'Créer...'
     click_on 'Importer...'
   end
+  
+  scenario 'TEST_AND' do
+    fill_in 'bibtex', :with => sample('and')
+    click_on 'Importer'
+    field('creator').should == 'Alexandre Lepetit'
+  end
 
   scenario 'from ACM' do
     fill_in 'bibtex', :with => sample('acm')

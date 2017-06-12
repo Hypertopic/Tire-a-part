@@ -1,0 +1,162 @@
+<html>
+{{#i18n}}
+<head>
+  <link rel="stylesheet" type="text/css" href="included/main.css" />
+  <link rel="stylesheet" type="text/css" href="included/lib/chosen.css" />
+  <script src="script/jquery.js"></script>
+  <title>{{#query.by}}{{query.by}} — {{/query.by}}{{i_records}}</title>
+</head>
+<body>
+  <div id="container">
+    {{>filter_form}}
+        <section class="slider">
+          <ul id="slider-ul">
+            <li>
+              <p><b>{{ i_question_export }}</b></p>
+              <small><i>{{ i_answer_export }}</i></small>
+            </li>
+            <li>
+              <p><b>{{ i_question_doublons }}</b></p>
+              <small><i>{{ i_answer_doublons }}</i></small>
+            </li>
+            <li>
+              <p><b>{{ i_question_import }}</b></p>
+              <small><i>{{ i_answer_import }}</i></small>
+            </li>
+            <li>
+              <p><b>{{ i_question_rights }}</b></p>
+              <small><i>{{ i_answer_rights }}</i></small>
+            </li>
+          </ul>
+          <div id="navigation_arrows">
+            <a id="slider-l"><b><</b></a>
+            <a id="slider-r"><b>></b></a>
+          </div>
+      </section>
+    <div id="content">
+      {{#types}}
+        <h1>{{label}}</h1>
+        <ol>
+          {{#papers}}
+            <li>
+              <div>{{#creators}}{{.}}, {{/creators}}</div>
+                {{^ispartof}}
+                  <div><a href="{{_id}}"><i>{{title}}.</i></a></div>
+                {{/ispartof}}
+                {{#ispartof}}
+                  <div><a href="{{_id}}">{{title}}.</a></div>
+                  <div><i>{{ispartof}}{{#volume}}
+                      <b>{{volume}}{{#issue}}({{issue}}){{/issue}}</b>{{/volume}}</i>{{#spage}},
+                      {{spage}}{{#epage}}–{{epage}}{{/epage}}{{/spage}}.
+                  </div>
+                {{/ispartof}}
+              <div>{{#publisher}}{{publisher}}, {{/publisher}}{{issued}}.</div>
+              <div>
+                {{#indexed}}<img height="20" src="included/{{.}}.png" title="{{i_referenced}} {{.}}" />{{/indexed}}
+              </div>
+            </li>
+          {{/papers}}
+        </ol>
+      {{/types}}
+    </div>
+    <form id="footer" class="menu">
+      <button type="button" id="create">{{i_create}}</button>
+      <button type="button" id="export">{{i_export}}</button>
+      <button type="button" id="count">{{i_count}}</button>
+      <button type="button" id="check_creators">{{i_check_creators}}</button>
+      <button type="button" id="check_titles">{{i_check_titles}}</button>
+    </form>
+  </div>
+</body>
+{{/i18n}}
+<script type="text/javascript">
+
+$('#create').on('click', function() {
+    $.ajax({
+    url: ".",
+    type: "POST",
+    dataType: "json",
+    contentType: "application/json",
+    data: "{}",
+    success: function(data) {location.replace(data.id+"?form")}
+  });
+});
+
+$('#export').on('click', function() {
+  self.location = "?bibtex&by={{{query.by}}}&since={{{query.since}}}";
+});
+
+$('#count').on('click', function() {
+  self.location = "dashboard?by={{{query.by}}}&since={{{query.since}}}";
+});
+
+$('#check_creators').on('click', function() {
+  self.location = "authors?by={{{query.by}}}";
+});
+
+$('#check_titles').on('click', function() {
+  self.location = "titles?by={{{query.by}}}";
+});
+
+
+// Handling slider with information text
+var sliderLeftButton = $("#slider-l");
+var sliderRightButton = $("#slider-r");
+
+// Get number of <li> elements in the si
+var sliderItemCount = document.getElementById('slider-ul').querySelectorAll('li').length;
+
+// Set length based on the itemCount
+var sliderWidth = sliderItemCount * 100 + "vw";
+$(".slider ul").css("width", sliderWidth);
+
+var sliderPosition = 0;
+
+// Handling right and left button event
+sliderRightButton.click(function() {
+  if (sliderPosition < (sliderItemCount - 1)) {
+    sliderPosition++;
+    var m = "-" + (100 * sliderPosition) + "vw";
+    $(".slider ul").animate({
+      "left": m
+    }, 500);
+    greyButton();
+  }
+});
+
+sliderLeftButton.click(function() {
+  if (sliderPosition > 0) {
+    sliderPosition--;
+    var m = "-" + (100 * sliderPosition) + "vw";
+    $(".slider ul").animate({
+      "left": m
+    }, 500);
+    greyButton();
+  }
+});
+
+// This function aims to update arrow's color (depends if this is the first or last information of the slider)
+var greyButton = function() {
+  if (sliderPosition == 0) {
+    sliderLeftButton.css("opacity", "0.3");
+    sliderLeftButton.css("cursor", "default");
+  } else if (sliderPosition == (sliderItemCount - 1)) {
+    sliderRightButton.css("opacity", "0.3");
+    sliderRightButton.css("cursor", "default");
+  } else {
+    sliderRightButton.css("opacity", "1");
+    sliderRightButton.css("cursor", "pointer");
+    sliderLeftButton.css("opacity", "1");
+    sliderLeftButton.css("cursor", "pointer");
+  }
+}
+
+greyButton();
+
+// If there is one information, we don't display arrows
+if ( sliderItemCount == 1 ) {
+  $('.slider-control').css('display','none');
+}
+
+</script>
+</html>

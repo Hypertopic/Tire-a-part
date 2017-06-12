@@ -139,6 +139,14 @@
     "i_modify": "Modifier",
     "i_done": "Terminé",
     "i_record": "Notice",
-    "i_records": "Publications"
+    "i_records": "Publications",
+    "i_question_export": "Comment importer une notice au format BibTex ?",
+    "i_answer_export": "Lorsque vous consultez votre publication sur le site SCOPUS : cliquez sur 'Export', cochez le format 'BibTex', les cases 'Bibliographical information' et 'Publisher' et décochez 'Abstract'. Une fois exportée, utilisez un éditeur de texte (ex: Notepad) et copiez les informations présentes à partir de la ligne 3. Enfin, lors de la création d'une notice, cliquez sur le bouton 'Importer' et collez les informations au format BibTex.",
+    "i_question_doublons": "Comment vérifier la présence de doublons dans les notices ?",
+    "i_answer_doublons": "Sur la page d'accueil, cliquez sur le bouton 'Vérifier les titres'.",
+    "i_question_import": "Comment exporter une notice au format BibTex ?",
+    "i_answer_import": "Lorsque vous consultez une notice, cliquez sur le bouton 'Exporter' situé en bas de page.",
+    "i_question_rights": "Comment peut-on vérifier le respect des droits de diffusion de l'éditeur ?",
+    "i_answer_rights": "Lors de la consultation ou de l'édition d'une notice, le bouton 'Consulter les droits de cet éditeur' vous permet de vérifier cela directement à partir du site SHERPA/RoMEO."
   }
 }

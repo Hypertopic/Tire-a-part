@@ -104,3 +104,38 @@ body {
 .sorted {
   font-weight: bold
 }
+
+#btn_editorRights {
+  display: inline-block;
+  margin-left: 5;
+  padding: 1px 10px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #4298f4;
+  border: none;
+  border-radius: 7px;
+  box-shadow: 0 2px #999;
+  visibility: hidden;
+}
+
+#btn_editorRights:hover {background-color: #417df4}
+
+#btn_editorRightsn:active {
+  background-color: #417df41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+}
+
+.icon_editorRights {
+  cursor: pointer;
+  display: inline-block;
+  margin-left: 5;
+}
+
+#publisher {
+  display: inline-block;
+}

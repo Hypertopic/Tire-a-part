@@ -1,9 +1,9 @@
 [
-  { 
+  {
     "from": "included/*",
     "to": "*"
   }, {
-    "from": "script/:file", 
+    "from": "script/:file",
     "to": "../../../_utils/script/:file"
   }, {
     "from": "attribute",
@@ -34,7 +34,18 @@
       "startkey": [":by"],
       "endkey": [":by",{}]
     }
-  }, {
+  },
+
+  {
+    "from": "history",
+    "to": "_list/authors_history/authors_history",
+    "query": {
+      "startkey": [":by"],
+      "endkey": [":by",{}]
+    }
+  },
+
+  {
     "method": "GET",
     "from": ":object",
     "to": "_show/record/:object"

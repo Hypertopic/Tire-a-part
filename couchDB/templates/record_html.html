@@ -2,6 +2,7 @@
 {{#i18n}}
 <head>
   <title>{{title}} — {{i_record}}</title>
+  <link rel="stylesheet" type="text/css" href="included/lib/jquery-ui-1.8.23.custom.css" />
   <link rel="stylesheet" type="text/css" href="included/main.css" />
   <meta charset="utf-8" />
   {{#has_content}}
@@ -26,7 +27,33 @@
   $(document).ready(function() {
     $("#aeresType").val("{{aeresType}}");
     $("[name=indexed]").val({{{indexed}}});
-  });
+
+    // editor rights consultation
+    var node = document.createElement("a");
+    node.setAttribute("class", "icon_editorRights ui-icon ui-icon-info info");
+    node.setAttribute("title", "Consulter les droits de diffusion de cet éditeur");
+    node.setAttribute("target", "_blank");
+    node.setAttribute("href", "http://www.sherpa.ac.uk/romeo/search.php");
+
+    divNode = document.getElementById("attachments");
+    ulNode = divNode.getElementsByTagName("ul")[0];
+    if(ulNode.children.length>0) { // Si des tirés-à-part sont présents
+      ulNode.children[0].appendChild(node);
+    }
+    else { // aucun tiré-à-part
+      divNode.appendChild(node);
+    }
+
+    if(document.getElementById("publisher") != null) {
+      var editor = document.getElementById("publisher").innerHTML;
+      var link = "http://www.sherpa.ac.uk/romeo/search.php?pub="+editor+"&qtype=all";
+      var editorRights_icons = document.getElementsByClassName("icon_editorRights");
+      for(var i = 0; i < editorRights_icons.length; i++) {
+        editorRights_icons[i].setAttribute("href", link);
+      }
+    }
+  }
+  );
 	
   function toBibtex() {
     self.location = "?bibtex";
@@ -82,7 +109,8 @@
       {{#publisher}}
       <div>
         <div class="label">{{i_publisher}}</div>
-        <div>{{publisher}}</div>
+        <div id="publisher">{{publisher}}</div>
+        <a href="http://www.sherpa.ac.uk/romeo/search.php" class="icon_editorRights ui-icon ui-icon-info info" title="Consulter les droits de diffusion de cet éditeur" target="_blank"></a>
       </div>
       {{/publisher}}
       <div>
@@ -121,10 +149,12 @@
       </div>
       <div>
         <div class="label">{{i_offprint}}</div>
-        <div>
+        <div id="attachments">
           <ul>
              {{#formatted_attachments}}
-              <li><a href="{{url}}">{{name}}</a> ({{size}} Mo)</li>
+              <li>
+                <a href="{{url}}">{{name}}</a> ({{size}} Mo)
+              </li>
              {{/formatted_attachments}}
           </ul>
         </div>

@@ -42,6 +42,33 @@
     $(".ui-icon-circle-plus").on("click", function() {
       $("#uploader").trigger("click");
     });
+	// Editor rights consultation
+    var node = document.createElement("a");
+    node.setAttribute("class", "icon_editorRights ui-icon ui-icon-info info");
+    node.setAttribute("title", "Consulter les droits de diffusion de cet éditeur");
+    node.setAttribute("target", "_blank");
+    node.setAttribute("href", "http://www.sherpa.ac.uk/romeo/search.php");
+
+    divNode = document.getElementById("attachments");
+    ulNode = divNode.getElementsByTagName("ul")[0];
+    if(ulNode.children.length>0) { // Si des tirés-à-part sont présents
+      ulNode.children[0].appendChild(node);
+    }
+    else { // aucun tiré-à-part
+      divNode.appendChild(node);
+    }
+    
+    var editor = document.getElementById("publisher").value;
+    var link = "http://www.sherpa.ac.uk/romeo/search.php?pub="+editor+"&qtype=all";
+    var editorRights_icons = document.getElementsByClassName("icon_editorRights");
+    var i;
+    for(i = 0; i < editorRights_icons.length; i++) {
+      editorRights_icons[i].setAttribute("href", link);
+    }
+
+    if(document.getElementById("publisher").value != '') {
+      document.getElementById("btn_editorRights").setAttribute("style", "visibility: visible");
+    }
     $(".ui-icon-circle-close").on("click", function() {
       var uri = $(this).data("uri");
       $("#dialog").text("{{i_remove?}}")
@@ -297,7 +324,16 @@
     });
     return result;
   }
+  function searchEditorRights() {
+    var editor = document.getElementById("publisher").value;
+    window.open('http://www.sherpa.ac.uk/romeo/search.php?pub='+editor+'&qtype=all');
+  }
 
+  function showBtn_editorRights() {
+    if(document.getElementById("publisher").value != '') {
+      document.getElementById("btn_editorRights").setAttribute("style", "visibility: visible");
+    }
+  }
   </script>
 </head>
 <body>
@@ -343,6 +379,7 @@
       <div>
         <label for="publisher">{{i_publisher}}</label>
         <input id="publisher" type="text" value="{{publisher}}" size="90" />
+		<button id="btn_editorRights" type="button" onClick="searchEditorRights()">Consulter les droits de cet éditeur</button>
       </div>
       <div>
         <label for="issued">{{i_issued}}</label>
@@ -392,15 +429,16 @@
           {{/settings}}
         </select>
       </div>
-      <div>
+      <div id="attachments">
         <label>{{i_offprint}}</label>
+		<ul>
         {{#formatted_attachments}}
-        <div>
-          <span class="ui-icon ui-icon-circle-close" title="{{i_remove}}..."
-            data-uri="{{{url}}}"></span>
-          <a href="{{{url}}}">{{name}}</a> ({{size}} Mo)</li>
-        </div>
+			<li>
+				<span class="ui-icon ui-icon-circle-close" title="{{i_remove}}..." data-uri="{{{url}}}"></span>
+				<a href="{{{url}}}">{{name}}</a> ({{size}} Mo)</li>
+			</li>
         {{/formatted_attachments}}
+		</ul>
         <span class="ui-icon ui-icon-circle-plus" title="{{i_upload}}..." />
       </div>
       <p id="console" />

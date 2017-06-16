@@ -9,6 +9,30 @@
 <body>
   <div id="container">
     {{>filter_form}}
+      <section class="slider">
+        <ul id="slider-ul">
+          <li>
+            <p><b>{{ i_question_export }}</b></p>
+            <small><i>{{ i_answer_export }}</i></small>
+          </li>
+          <li>
+            <p><b>{{ i_question_doublons }}</b></p>
+            <small><i>{{ i_answer_doublons }}</i></small>
+          </li>
+          <li>
+            <p><b>{{ i_question_import }}</b></p>
+            <small><i>{{ i_answer_import }}</i></small>
+          </li>
+          <li>
+            <p><b>{{ i_question_rights }}</b></p>
+            <small><i>{{ i_answer_rights }}</i></small>
+          </li>
+        </ul>
+        <div id="navigation_arrows">
+          <a id="slider-l"><b><</b></a>
+          <a id="slider-r"><b>></b></a>
+        </div>
+      </section>
     <div id="content">
       {{#types}}
         <h1>{{label}}</h1>
@@ -73,6 +97,65 @@ $('#check_creators').on('click', function() {
 $('#check_titles').on('click', function() {
   self.location = "titles?by={{{query.by}}}";
 });
+
+// Handling slider with information text
+var sliderLeftButton = $("#slider-l");
+var sliderRightButton = $("#slider-r");
+
+// Get number of <li> elements in the si
+var sliderItemCount = document.getElementById('slider-ul').querySelectorAll('li').length;
+
+// Set length based on the itemCount
+var sliderWidth = sliderItemCount * 100 + "vw";
+$(".slider ul").css("width", sliderWidth);
+
+var sliderPosition = 0;
+
+// Handling right and left button event
+sliderRightButton.click(function() {
+  if (sliderPosition < (sliderItemCount - 1)) {
+    sliderPosition++;
+    var m = "-" + (100 * sliderPosition) + "vw";
+    $(".slider ul").animate({
+      "left": m
+    }, 500);
+    greyButton();
+  }
+});
+
+sliderLeftButton.click(function() {
+  if (sliderPosition > 0) {
+    sliderPosition--;
+    var m = "-" + (100 * sliderPosition) + "vw";
+    $(".slider ul").animate({
+      "left": m
+    }, 500);
+    greyButton();
+  }
+});
+
+// This function aims to update arrow's color (depends if this is the first or last information of the slider)
+var greyButton = function() {
+  if (sliderPosition == 0) {
+    sliderLeftButton.css("opacity", "0.3");
+    sliderLeftButton.css("cursor", "default");
+  } else if (sliderPosition == (sliderItemCount - 1)) {
+    sliderRightButton.css("opacity", "0.3");
+    sliderRightButton.css("cursor", "default");
+  } else {
+    sliderRightButton.css("opacity", "1");
+    sliderRightButton.css("cursor", "pointer");
+    sliderLeftButton.css("opacity", "1");
+    sliderLeftButton.css("cursor", "pointer");
+  }
+}
+
+greyButton();
+
+// If there is one information, we don't display arrows
+if ( sliderItemCount == 1 ) {
+  $('.slider-control').css('display','none');
+}
 
 </script>
 </html>

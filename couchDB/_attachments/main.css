@@ -16,7 +16,6 @@ body {
 }
 
 .menu {
-  position: fixed;
   width: 100%;
   background-color: black;
   padding: 2px 8px;
@@ -137,4 +136,54 @@ body {
 
 #publisher {
   display: inline-block;
+}
+
+/* Css for information at the top of the home page */
+.slider {
+  font-family: 'Georgia', serif;
+  background-color: #f5f5f5;
+  overflow: hidden;
+  width: 100%;
+}
+
+.slider ul {
+  list-style: none;
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding: 0;
+}
+
+.slider ul li {
+  display: inline-block;
+  padding: 1rem;
+  position: relative;
+  text-align: center;
+  width: 100vw;
+}
+
+.slider ul li p {
+  max-width: 600px;
+  margin: 1rem auto;
+  width: 50%;
+}
+
+.slider-control {
+  background-color: rgba(255,255,255,0.2);
+  display: flex;
+  justify-content: center;
+}
+
+.slider-control i {
+  cursor: pointer;
+  padding: 1.3rem;
+}
+
+#navigation_arrows {
+  text-align: center;
+} 
+
+.slider {
+  border: 1px solid black;
 }
